@@ -1,0 +1,318 @@
+.ide { padding-right: 48px; }
+
+/* ---------- Topo ---------- */
+.ide__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px 24px;
+}
+
+.ide__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  background: #07102a;
+  font-size: 0.95rem;
+  color: #e3e8f3;
+  transition: background .2s;
+}
+
+.chip:hover { background: #0b1736; }
+.chip svg { width: 22px; height: 22px; }
+
+.chip--select select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0 24px 0 0;
+  background: none;
+  border: 0;
+  color: var(--teal);
+  cursor: pointer;
+}
+
+.chip--select option { background: #0b1735; color: var(--text); }
+.chip--select > svg { position: absolute; right: 14px; width: 18px; height: 18px; pointer-events: none; }
+
+.ide__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ---------- Editor ---------- */
+.editor {
+  min-width: 0;
+  background: #040a19;
+  border: 1px solid #0c1838;
+}
+
+.editor__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 0 6px;
+  height: 46px;
+  background: #050d22;
+  border-bottom: 2px solid #0c1838;
+}
+
+.editor__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 22px 0 12px;
+  background: #0a1631;
+  font-size: 1rem;
+}
+
+.editor__c {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2f80ff;
+}
+
+.editor__add,
+.editor__actions button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  color: #dfe5f2;
+  cursor: pointer;
+}
+
+.editor__add:hover,
+.editor__actions button:hover { background: rgba(255, 255, 255, .06); }
+
+.editor__add svg { width: 14px; height: 14px; }
+.editor__actions { display: flex; gap: 8px; margin-left: auto; }
+.editor__actions svg { width: 22px; height: 22px; }
+
+.editor__body {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  min-height: 300px;
+  padding: 14px 0;
+}
+
+.editor__gutter,
+.editor__code {
+  margin: 0;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.editor__gutter {
+  padding-right: 18px;
+  text-align: right;
+  color: #8592b0;
+  user-select: none;
+}
+
+.editor__code {
+  padding: 0 16px;
+  overflow-x: auto;
+  outline: 0;
+  color: #e3e8f3;
+  caret-color: #2f80ff;
+  tab-size: 4;
+}
+
+/* o <code> herdaria outra fonte e desalinharia as linhas */
+.editor__code code { font: inherit; }
+
+/* destaque de sintaxe */
+.tk-pp  { color: #4aa8e0; }
+.tk-inc { color: #f5a524; }
+.tk-kw  { color: #4aa8e0; }
+.tk-fn  { color: #ff5b5b; }
+
+/* Barra de execução */
+.editor__run {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-top: 2px solid #0c1838;
+  border-bottom: 2px solid #0c1838;
+}
+
+.btn--run { min-height: 40px; padding: 0 16px; font-weight: 600; }
+.btn--run svg { width: 20px; height: 20px; }
+
+.btn--clear {
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.btn--clear svg { width: 18px; height: 18px; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.status svg { width: 20px; height: 20px; }
+.status--ok { color: #2ecc71; }
+
+/* Console */
+.console { min-height: 170px; padding: 14px 20px; }
+
+.console h2 {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #c6cee0;
+}
+
+.console pre {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 2;
+  color: #c6cee0;
+  white-space: pre-wrap;
+}
+
+.console .in { margin-left: 8px; font-weight: 600; color: #2ecc71; }
+
+/* ---------- Desafio ---------- */
+.challenge {
+  overflow: hidden;
+  border: 1px solid #10224a;
+  border-radius: 18px;
+  background: #050d22;
+}
+
+.challenge__card { padding: 20px 16px 16px 22px; }
+
+.challenge__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.challenge__head h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #c6cee0;
+}
+
+.xp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+}
+
+.xp-pill svg { width: 26px; height: 26px; color: var(--blue-2); }
+
+.challenge h3 { margin: 0; font-size: 1.15rem; font-weight: 500; }
+
+.challenge p {
+  margin: 2px 0 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #c6cee0;
+}
+
+.challenge h4 { margin: 12px 0 0; font-size: 1.05rem; font-weight: 700; }
+.tag-in  { color: #ff4d4d; }
+.tag-out { color: #2ecc71; }
+
+.hint {
+  margin-top: 16px;
+  padding: 10px 12px 4px;
+  background: #0a1631;
+}
+
+.hint h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3d8bff;
+}
+
+.hint svg { width: 26px; height: 26px; }
+
+.hint code {
+  font-family: "Fira Code", monospace;
+  font-size: 0.9em;
+  color: #e3e8f3;
+}
+
+.examples { padding: 8px 0 10px; border-top: 1px solid #10224a; }
+
+.examples h2 {
+  margin: 0 0 6px;
+  padding: 0 16px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #c6cee0;
+}
+
+.examples a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 22px 8px 16px;
+  font-size: 1rem;
+  color: #c6cee0;
+  transition: background .2s;
+}
+
+.examples a:hover { background: #0a1631; }
+.examples a.is-active { background: var(--blue); color: #fff; }
+.examples a svg { width: 20px; height: 20px; }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1300px) {
+  .ide__grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; }
+}
+
+@media (max-width: 1100px) {
+  .ide { padding-right: 16px; }
+  .ide__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .editor__body { grid-template-columns: 38px minmax(0, 1fr); }
+  .editor__gutter { padding-right: 10px; }
+  .editor__gutter, .editor__code { font-size: 0.82rem; }
+  .status { margin-left: 0; }
+  .chip { flex: 1 1 auto; justify-content: center; }
+}

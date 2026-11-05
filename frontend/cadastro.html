@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codify – Criar sua conta</title>
+  <meta name="description" content="Crie sua conta no Codify e tenha acesso a trilhas de missões, salas virtuais e materiais exclusivos.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/cadastro.css">
+</head>
+<body>
+
+  <!-- Ícones (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-user-plus" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="21" cy="15" r="7.5"/>
+          <path d="M6 40c0-8 6-14 15-14 3 0 5 .6 7 1.6"/>
+          <path d="M35 28v12M29 34h12"/>
+        </g>
+      </symbol>
+      <symbol id="i-user" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4.5 3.5-7.5 8-7.5s8 3 8 7.5"/>
+        </g>
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3 7 9 6 9-6"/>
+        </g>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4.5" y="10.5" width="15" height="10" rx="2"/>
+          <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
+        </g>
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </g>
+      </symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12s3.6-7 10-7c2 0 3.700.6 5.200 1.500M22 12s-3.600 7-10 7c-2 0-3.700-.6-5.200-1.500"/>
+          <path d="M9.900 9.900a3 3 0 0 0 4.200 4.200M3 3l18 18"/>
+        </g>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12.500 4.500 4.500L19 7.500" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-student" viewBox="0 0 64 64">
+        <g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 12 4 26l28 14 28-14z"/>
+          <path d="M14 33v13c0 4 8 8 18 8s18-4 18-8V33"/>
+          <path d="M32 40 18 33M60 26v16"/>
+        </g>
+      </symbol>
+      <symbol id="i-teacher" viewBox="0 0 64 64">
+        <g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="14" cy="14" r="6"/>
+          <rect x="8" y="26" width="12" height="22" rx="6"/>
+          <path d="M12 48v10M16 48v10"/>
+          <rect x="30" y="8" width="30" height="22" rx="1"/>
+          <path d="M26 36h34M43 36v8M38 48l5-4 5 4"/>
+        </g>
+      </symbol>
+      <symbol id="i-flag" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 6v28M10 6h16l-3 6 3 6H10"/>
+          <circle cx="10" cy="40" r="3"/>
+          <path d="M13 40h8a5 5 0 0 0 5-5v-3"/>
+          <circle cx="36" cy="16" r="2.500"/>
+          <circle cx="36" cy="32" r="2.500"/>
+          <path d="M36 19v10"/>
+        </g>
+      </symbol>
+      <symbol id="i-monitor" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="6" width="38" height="26" rx="3"/>
+          <path d="M24 32v8M15 40h18M5 26h38"/>
+        </g>
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 12c-4-3-10-4-18-4v28c8 0 14 1 18 4 4-3 10-4 18-4V8c-8 0-14 1-18 4z"/>
+          <path d="M24 12v28"/>
+        </g>
+      </symbol>
+      <symbol id="i-trophy" viewBox="0 0 48 48">
+        <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 5h18v14a9 9 0 0 1-18 0z"/>
+          <path d="M15 9H6c0 9 3 13 10 15M33 9h9c0 9-3 13-10 15"/>
+          <path d="M24 28v8M17 36h14l2 6H15z"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="page">
+
+    <!-- ============ LADO ESQUERDO ============ -->
+    <aside class="intro">
+      <a class="logo" href="index.html" aria-label="Codify – página inicial">
+        <img src="assets/img/logo.png" alt="Codify" width="269" height="56">
+      </a>
+
+      <h1 class="intro__title">
+        Sua jornada na<br>
+        programação começa <span class="accent">aqui.</span>
+      </h1>
+
+      <p class="intro__desc">
+        Crie sua conta e tenha acesso a trilhas de missões, salas virtuais,
+        materiais exclusivos e muito mais.
+      </p>
+
+      <ul class="perks">
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-flag"/></svg></span>
+          <div>
+            <h2>Trilhas de Missões</h2>
+            <p>Aprenda de forma prática com desafios progressivos.</p>
+          </div>
+        </li>
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-monitor"/></svg></span>
+          <div>
+            <h2>Salas Virtuais</h2>
+            <p>Participe de aulas, discuta temas e evolua com sua turma.</p>
+          </div>
+        </li>
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-book"/></svg></span>
+          <div>
+            <h2>Material de Apoio</h2>
+            <p>Acesse conteúdos exclusivos sempre que precisar.</p>
+          </div>
+        </li>
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-trophy"/></svg></span>
+          <div>
+            <h2>XP e Conquistas</h2>
+            <p>Ganhe XP, desbloqueie conquistas e acompanhe seu progresso.</p>
+          </div>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ============ FORMULÁRIO ============ -->
+    <main class="panel">
+      <section class="card" aria-labelledby="titulo-cadastro">
+        <div class="card__avatar">
+          <svg aria-hidden="true"><use href="#i-user-plus"/></svg>
+        </div>
+
+        <h2 class="card__title" id="titulo-cadastro">Criar sua conta</h2>
+        <p class="card__sub">Preencha os dados abaixo para começar.</p>
+
+        <form class="form" action="#" method="post" novalidate>
+
+          <fieldset class="roles">
+            <legend>Você é:</legend>
+
+            <div class="roles__grid">
+              <label class="role">
+                <input type="radio" name="perfil" value="aluno" checked>
+                <span class="role__check"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+                <svg class="role__icon" aria-hidden="true"><use href="#i-student"/></svg>
+                <span class="role__name">Aluno</span>
+                <span class="role__desc">Acesse trilhas, missões<br>e salas de aula.</span>
+              </label>
+
+              <label class="role">
+                <input type="radio" name="perfil" value="professor">
+                <span class="role__check"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+                <svg class="role__icon" aria-hidden="true"><use href="#i-teacher"/></svg>
+                <span class="role__name">Professor</span>
+                <span class="role__desc">Crie salas, acompanhe<br>seus alunos e conteúdos</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="nome">Nome completo:</label>
+            <div class="input">
+              <svg class="input__icon" aria-hidden="true"><use href="#i-user"/></svg>
+              <input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail:</label>
+            <div class="input">
+              <svg class="input__icon" aria-hidden="true"><use href="#i-mail"/></svg>
+              <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="senha">Senha:</label>
+            <div class="input">
+              <svg class="input__icon" aria-hidden="true"><use href="#i-lock"/></svg>
+              <input id="senha" name="senha" type="password" placeholder="Mínimo de 8 caracteres" minlength="8" autocomplete="new-password" required>
+              <button class="input__toggle" type="button" data-toggle="senha" aria-label="Mostrar senha">
+                <svg aria-hidden="true"><use href="#i-eye"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="confirmar">Confirmar senha:</label>
+            <div class="input">
+              <svg class="input__icon" aria-hidden="true"><use href="#i-lock"/></svg>
+              <input id="confirmar" name="confirmar" type="password" placeholder="Confirme sua senha" minlength="8" autocomplete="new-password" required>
+              <button class="input__toggle" type="button" data-toggle="confirmar" aria-label="Mostrar senha">
+                <svg aria-hidden="true"><use href="#i-eye"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <label class="terms">
+            <input type="checkbox" name="termos" required>
+            <span class="terms__box"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span>Eu concordo com os <a href="#termos">Termos de Uso</a> e a <a href="#privacidade">Política de Privacidade</a></span>
+          </label>
+
+          <button class="btn btn--primary" type="submit">Cadastrar</button>
+
+          <p class="divider"><span>ou</span></p>
+
+          <button class="btn btn--google" type="button">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path fill="#EA4335" d="M24 9.500c3.500 0 6.600 1.200 9.100 3.600l6.800-6.800C35.800 2.400 30.300 0 24 0 14.600 0 6.500 5.400 2.600 13.200l7.900 6.100C12.400 13.600 17.700 9.500 24 9.500z"/>
+              <path fill="#4285F4" d="M46.500 24.500c0-1.600-.1-3.100-.4-4.500H24v9h12.700c-.6 3-2.300 5.500-4.800 7.200l7.600 5.900c4.400-4.100 7-10.100 7-17.600z"/>
+              <path fill="#FBBC05" d="M10.500 28.700A14.500 14.500 0 0 1 9.500 24c0-1.600.3-3.200.8-4.700l-7.900-6.100A24 24 0 0 0 0 24c0 3.900.9 7.500 2.600 10.800l7.900-6.100z"/>
+              <path fill="#34A853" d="M24 48c6.500 0 11.900-2.100 15.900-5.800l-7.600-5.900c-2.100 1.400-4.900 2.300-8.300 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/>
+            </svg>
+            Cadastrar com Google
+          </button>
+
+          <p class="login-link">Já tem uma conta? <a href="entrar.html">Fazer login</a></p>
+        </form>
+      </section>
+
+      <footer class="footer">
+        <span>© 2026 Codify. Todos os direitos reservados.</span>
+        <a href="#termos" id="termos">Termos de Uso</a>
+        <a href="#privacidade" id="privacidade">Política de Privacidade</a>
+      </footer>
+    </main>
+
+  </div>
+
+  <script>
+    // Mostrar / ocultar senha
+    document.querySelectorAll('[data-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var input = document.getElementById(btn.dataset.toggle);
+        var show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.setAttribute('aria-label', show ? 'Ocultar senha' : 'Mostrar senha');
+        btn.querySelector('use').setAttribute('href', show ? '#i-eye-off' : '#i-eye');
+      });
+    });
+
+    // Confere se as senhas coincidem
+    var form = document.querySelector('.form');
+    form.addEventListener('submit', function (e) {
+      var s = document.getElementById('senha');
+      var c = document.getElementById('confirmar');
+      c.setCustomValidity(s.value !== c.value ? 'As senhas não coincidem.' : '');
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        form.reportValidity();
+      }
+    });
+  </script>
+</body>
+</html>

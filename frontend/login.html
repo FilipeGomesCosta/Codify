@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codify – Entrar</title>
+  <meta name="description" content="Faça login no Codify e continue sua jornada na programação.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+
+  <!-- Ícones (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-path" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 21V4"/>
+          <path d="M5 4h8l-1.5 3L13 10H5"/>
+          <circle cx="5" cy="19" r="1.6"/>
+          <path d="M6.6 19H12"/>
+          <circle cx="18" cy="9" r="1.6"/>
+          <circle cx="18" cy="19" r="1.6"/>
+          <path d="M18 10.6v1.4m0 2v1.4"/>
+        </g>
+      </symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="12" rx="1.5"/>
+          <path d="M3 13h18M12 16v3M8 20h8"/>
+        </g>
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 5c3-1.3 7-1.3 10 1 3-2.3 7-2.3 10-1v14c-3-1.3-7-1.3-10 1-3-2.3-7-2.3-10-1z"/>
+          <path d="M12 6v14"/>
+        </g>
+      </symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 3h10v6a5 5 0 0 1-10 0z"/>
+          <path d="M7 5H3c0 4 1.5 6 4.5 6.5M17 5h4c0 4-1.5 6-4.5 6.5"/>
+          <path d="M12 14v3M8 21l1.5-4h5L16 21z"/>
+        </g>
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>
+        </g>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="10" width="14" height="11" rx="2"/>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+        </g>
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Linha de luz central -->
+  <div class="light-beam" aria-hidden="true"></div>
+
+  <main class="login">
+
+    <!-- ============ LADO ESQUERDO ============ -->
+    <section class="intro" aria-labelledby="intro-title">
+      <a class="logo" href="index.html" aria-label="Codify – página inicial">
+        <img src="assets/img/logo.png" alt="Codify" width="269" height="56">
+      </a>
+
+      <h1 class="intro__title" id="intro-title">
+        Aprenda. Pratique.<br>
+        <span class="accent">Evolua.</span>
+      </h1>
+
+      <p class="intro__desc">
+        A plataforma completa para você dominar a programação
+        de forma prática e divertida.
+      </p>
+
+      <ul class="perks">
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-path"/></svg></span>
+          <div>
+            <h2>Trilhas de Missões</h2>
+            <p>Aprenda de forma prática com desafios progressivos.</p>
+          </div>
+        </li>
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-monitor"/></svg></span>
+          <div>
+            <h2>Salas Virtuais</h2>
+            <p>Participe de aulas, discuta temas e evolua com sua turma.</p>
+          </div>
+        </li>
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-book"/></svg></span>
+          <div>
+            <h2>Material de Apoio</h2>
+            <p>Acesse conteúdos exclusivos sempre que precisar.</p>
+          </div>
+        </li>
+        <li class="perk">
+          <span class="perk__icon"><svg aria-hidden="true"><use href="#i-trophy"/></svg></span>
+          <div>
+            <h2>XP e Conquistas</h2>
+            <p>Ganhe XP, desbloqueie conquistas e acompanhe seu progresso.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ LADO DIREITO ============ -->
+    <section class="auth">
+      <div class="card" aria-labelledby="card-title">
+        <div class="card__badge" aria-hidden="true">&lt;/&gt;</div>
+
+        <h2 class="card__title" id="card-title">Bem-vindo de volta!</h2>
+        <p class="card__sub">Faça login para continuar sua jornada.</p>
+
+        <form class="form" action="#" method="post">
+          <label class="field__label" for="email">E-mail</label>
+          <div class="field">
+            <svg class="field__icon" aria-hidden="true"><use href="#i-mail"/></svg>
+            <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+          </div>
+
+          <label class="field__label" for="senha">Senha</label>
+          <div class="field">
+            <svg class="field__icon" aria-hidden="true"><use href="#i-lock"/></svg>
+            <input id="senha" name="senha" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+            <button class="field__toggle" type="button" aria-label="Mostrar senha"
+              onclick="const i=document.getElementById('senha');i.type=i.type==='password'?'text':'password';">
+              <svg aria-hidden="true"><use href="#i-eye"/></svg>
+            </button>
+          </div>
+
+          <a class="form__forgot" href="#recuperar">Esqueceu sua senha?</a>
+
+          <button class="btn btn--primary" type="submit">Entrar</button>
+        </form>
+
+        <div class="divider"><span>ou</span></div>
+
+        <button class="btn btn--google" type="button">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
+            <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+            <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
+            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/>
+          </svg>
+          Entrar com Google
+        </button>
+
+        <p class="card__signup">Não tem uma conta? <a href="index.html#cadastro">Cadastre-se</a></p>
+      </div>
+
+      <footer class="footer">
+        <span>© 2026 Codify. Todos os direitos reservados.</span>
+        <a href="#termos">Termos de Uso</a>
+        <a href="#privacidade">Política de Privacidade</a>
+      </footer>
+    </section>
+
+  </main>
+
+</body>
+</html>
