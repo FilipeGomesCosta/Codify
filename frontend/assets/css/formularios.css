@@ -1,3 +1,8 @@
+/* =========================================================
+   Codify – Professor: formulários
+   (Adicionar Material de Apoio / Adicionar Atividade)
+   ========================================================= */
+
 .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 500px;
@@ -484,4 +489,257 @@ textarea::placeholder { color: var(--muted-2); }
   .actions { flex-direction: column-reverse; }
   .actions .btn { width: 100%; }
   .dropzone__formats { font-size: 0.85rem; }
+}
+
+/* =========================================================
+   Professor: Criar Sala de Aula
+   ========================================================= */
+.split--sala { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.split--sala .split__main { max-width: 720px; }
+
+.input--boxed {
+  border: 2px solid #142650;
+  background: #07102a;
+}
+
+/* Interruptor em caixa (Configurações) */
+.switch--box {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: 12px 22px;
+  border: 2px solid #0f1f45;
+  background: #07102a;
+}
+
+.switch__icon { width: 24px; height: 24px; color: #3d8bff; }
+
+/* Coluna lateral sem painéis */
+.split__aside--plain { gap: 26px; padding: 72px 28px 32px 8px; }
+
+.block { margin: 0; padding: 0; border: 0; min-width: 0; }
+
+.block__title {
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #e3e8f3;
+}
+
+.block__sub { margin: 2px 0 14px; font-size: 1rem; color: var(--muted-2); }
+
+.room-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding: 10px 14px 10px 18px;
+  border: 1px solid #142650;
+  background: #08132e;
+}
+
+.room-code__icon { width: 30px; height: 30px; color: #3d8bff; }
+
+.room-code output {
+  font-size: 1.35rem;
+  letter-spacing: 1.5px;
+  color: #dfe5f2;
+}
+
+.room-code button {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  margin-left: 30px;
+  padding: 0;
+  background: #0b1735;
+  border: 0;
+  color: #3d8bff;
+  cursor: pointer;
+}
+
+.room-code button svg { width: 24px; height: 24px; }
+
+/* Imagens da sala */
+.arts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px 28px;
+  max-width: 600px;
+}
+
+.art-card input { position: absolute; opacity: 0; pointer-events: none; }
+
+.art-card__box {
+  position: relative;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #07102a;
+  border: 2px solid #0e1d40;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+
+.art-card__box:hover { background: #0a1736; }
+.art-card strong { font-size: 0.9rem; font-weight: 600; }
+
+.art-card__check {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--blue-2);
+  color: #fff;
+  opacity: 0;
+}
+
+.art-card input:checked + .art-card__box { border-color: #1b4ea8; }
+.art-card input:checked + .art-card__box .art-card__check { opacity: 1; }
+.art-card input:focus-visible + .art-card__box { outline: 2px solid var(--blue-2); outline-offset: 2px; }
+
+/* Ilustrações desenhadas em CSS */
+.art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 50px;
+  font-family: "Fira Code", monospace;
+  color: #fff;
+}
+
+.art--code {
+  border-radius: 6px;
+  background: linear-gradient(#2a3550 0 10px, #141a2b 10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+}
+
+.art--code i {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #c6cee0;
+  box-shadow: 6px 0 #c6cee0, 12px 0 #3d8bff;
+}
+
+.art--code b { margin-top: 10px; font-size: 0.9rem; font-weight: 500; }
+
+.art--braces {
+  width: 70px;
+  height: 56px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2b2f86 50%, #23266f 50%);
+}
+
+.art--braces b { font-size: 1.6rem; letter-spacing: 6px; white-space: nowrap; }
+
+.art--laptop { width: 82px; height: 58px; }
+
+.art--laptop i {
+  position: absolute;
+  top: 0;
+  left: 9px;
+  width: 64px;
+  height: 46px;
+  border: 3px solid #4d6fb8;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #1b2c55, #0b1430);
+}
+
+.art--laptop b {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 82px;
+  height: 8px;
+  border-radius: 0 0 6px 6px;
+  background: #4d6fb8;
+}
+
+.art--emoji { font-size: 2.6rem; line-height: 1; font-family: "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif; }
+
+.art--custom {
+  width: 76px;
+  height: 64px;
+  border: 2px dashed #3b4a6b;
+  border-radius: 6px;
+  color: #c6cee0;
+}
+
+.art--custom svg { width: 30px; height: 30px; }
+
+/* Resumo */
+.summary { padding: 18px 0 0; background: none; }
+.summary .panel__title { font-size: 2rem; }
+
+.summary__card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  padding: 22px 24px;
+  border: 1px solid #10224a;
+  background: #08132e;
+}
+
+.summary__card .art--code { width: 82px; height: 74px; margin-top: 8px; }
+.summary__card .art--code b { font-size: 1.2rem; }
+
+.summary__card dl { margin: 0; display: grid; gap: 4px; }
+.summary__card dl > div { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.summary__card dt { font-size: 1.15rem; color: #e3e8f3; }
+
+.summary__card dd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--muted-2);
+}
+
+.copy-btn {
+  display: grid;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #3d8bff;
+  cursor: pointer;
+}
+
+.copy-btn svg, .dd-icon { width: 20px; height: 20px; }
+.dd-icon { color: #e3e8f3; }
+
+@media (max-width: 1350px) {
+  .split--sala { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .arts { gap: 14px; }
+  .summary__card { grid-template-columns: auto minmax(0, 1fr); }
+  .summary__card dl:last-child { grid-column: 2; }
+}
+
+@media (max-width: 1000px) {
+  .split--sala { grid-template-columns: 1fr; }
+  .split__aside--plain { padding: 0 16px 32px; }
+}
+
+@media (max-width: 560px) {
+  .arts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .room-code { gap: 16px; }
+  .room-code button { margin-left: 0; }
+  .summary__card { grid-template-columns: 1fr; }
+  .summary__card dl:last-child { grid-column: auto; }
+  .switch--box { padding: 12px 14px; gap: 12px; }
 }

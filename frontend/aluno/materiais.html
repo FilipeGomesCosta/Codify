@@ -78,14 +78,24 @@
         <span class="badge-count">2</span>
       </a>
 
-      <button class="user" type="button" aria-label="Menu do usuário">
-        <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
-        <span class="user__info">
-          <strong>Usuário</strong>
-          <small>Nível 4</small>
-        </span>
-        <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
-      </button>
+      <details class="user">
+        <summary aria-label="Menu do usuário">
+          <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
+          <span class="user__info">
+            <strong>Usuário</strong>
+            <small>Nível 4</small>
+          </span>
+          <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </summary>
+        <nav class="user__menu" aria-label="Conta">
+          <a href="salas.html">Minhas salas</a>
+          <a href="missoes.html">Trilha de Missões</a>
+          <a href="inventario.html">Inventário</a>
+          <hr>
+          <a href="../index.html">Página inicial</a>
+          <a href="../login.html" class="user__sair">Sair</a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -161,69 +171,17 @@
         </div>
       </form>
 
-      <ul class="mats">
-          <li class="mat mat--blue">
-            <span class="mat__icon"><svg aria-hidden="true"><use href="#i-pdf"/></svg></span>
-            <div class="mat__info">
-              <h2>Introdução à Lógica de Programação</h2>
-              <p>Conceitos básicos de lógica de programação para iniciantes.</p>
-              <small>PDF<i aria-hidden="true">•</i>2.4 MB</small>
-            </div>
-            <time class="mat__date">Hoje</time>
-            <a class="mat__action" href="#" aria-label="Baixar: Introdução à Lógica de Programação"><svg aria-hidden="true"><use href="#i-download"/></svg></a>
-          </li>
-          <li class="mat mat--teal">
-            <span class="mat__icon"><svg aria-hidden="true"><use href="#i-code"/></svg></span>
-            <div class="mat__info">
-              <h2>Estruturas de Repetição em C</h2>
-              <p>Exemplos e exercícios sobre loops e suas aplicações.</p>
-              <small>PDF<i aria-hidden="true">•</i>1.8 MB</small>
-            </div>
-            <time class="mat__date">Ontem</time>
-            <a class="mat__action" href="#" aria-label="Baixar: Estruturas de Repetição em C"><svg aria-hidden="true"><use href="#i-download"/></svg></a>
-          </li>
-          <li class="mat mat--purple">
-            <span class="mat__icon"><svg aria-hidden="true"><use href="#i-play-box"/></svg></span>
-            <div class="mat__info">
-              <h2>Videoaula: Arrays em C</h2>
-              <p>Aprenda como manipular arrays na prática com exemplos.</p>
-              <small>Vídeo<i aria-hidden="true">•</i>24 min</small>
-            </div>
-            <time class="mat__date">21/05/2026</time>
-            <a class="mat__action" href="#" aria-label="Assistir: Videoaula: Arrays em C"><svg aria-hidden="true"><use href="#i-play"/></svg></a>
-          </li>
-          <li class="mat mat--orange">
-            <span class="mat__icon"><svg aria-hidden="true"><use href="#i-slides"/></svg></span>
-            <div class="mat__info">
-              <h2>Slides: Estruturas de Dados</h2>
-              <p>Resumo dos principais conceitos de estruturas de dados.</p>
-              <small>PPTX<i aria-hidden="true">•</i>3.1 MB</small>
-            </div>
-            <time class="mat__date">19/05/2026</time>
-            <a class="mat__action" href="#" aria-label="Baixar: Slides: Estruturas de Dados"><svg aria-hidden="true"><use href="#i-download"/></svg></a>
-          </li>
-          <li class="mat mat--red">
-            <span class="mat__icon"><svg aria-hidden="true"><use href="#i-doc"/></svg></span>
-            <div class="mat__info">
-              <h2>Exercícios Resolvidos de Lógica</h2>
-              <p>Lista de exercícios com resolução comentada.</p>
-              <small>PDF<i aria-hidden="true">•</i>1.4 MB</small>
-            </div>
-            <time class="mat__date">18/05/2026</time>
-            <a class="mat__action" href="#" aria-label="Baixar: Exercícios Resolvidos de Lógica"><svg aria-hidden="true"><use href="#i-download"/></svg></a>
-          </li>
-        </ul>
+      <ul class="mats" aria-live="polite">
+        <li class="carregando">Carregando materiais…</li>
+      </ul>
 
-      <nav class="pagination" aria-label="Paginação">
-        <a href="#" aria-label="Página anterior"><svg aria-hidden="true"><use href="#i-chev-left"/></svg></a>
-        <a href="#" class="is-active" aria-current="page">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#" aria-label="Próxima página"><svg aria-hidden="true"><use href="#i-chev-right"/></svg></a>
-      </nav>
+      <nav class="pagination" aria-label="Paginação" hidden></nav>
     </main>
 
   </div>
 
+  <link rel="stylesheet" href="../assets/css/extras.css">
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/aluno-materiais.js"></script>
 </body>
 </html>

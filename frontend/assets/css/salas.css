@@ -1,3 +1,7 @@
+/* =========================================================
+   Codify – Aluno: Salas de Aula (+ modal "Acessar Sala")
+   ========================================================= */
+
 .salas {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 380px;
@@ -5,7 +9,22 @@
   align-items: start;
 }
 
-/* ---------- Abas ---------- */
+/* ---------- Abas + busca ---------- */
+.salas__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  margin: 8px 0 18px;
+}
+
+.salas__bar .tabs { margin: 0; }
+
+.salas__search {
+  flex: 0 1 300px;
+  height: 46px;
+}
+
 .tabs {
   display: flex;
   gap: 8px;
@@ -14,6 +33,7 @@
 
 .tab {
   padding: 12px 18px;
+  background: #0a1631;
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-2);
@@ -93,16 +113,24 @@
 .room__prof { color: #76839f; }
 .room__level { color: var(--blue-2); }
 
-.room__count {
+.room__meta {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 4px 28px;
   color: #76839f;
 }
 
-.room__count svg { width: 18px; height: 18px; }
+.room__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
-.room__btn { min-width: 110px; }
+.room__meta svg { width: 18px; height: 18px; }
+
+.room__btn { align-self: end; }
+
+.room__btn { min-width: 150px; font-size: 1.1rem; font-weight: 600; }
 
 .room__menu {
   align-self: start;
@@ -178,24 +206,6 @@
 /* =========================================================
    Modal – aberto quando a URL termina em #entrar-sala
    ========================================================= */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: none;
-  place-items: center;
-  padding: 16px;
-}
-
-.modal:target { display: grid; }
-
-.modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(2, 6, 16, 0.78);
-  cursor: default;
-}
-
 .modal__box {
   position: relative;
   width: 100%;
@@ -208,10 +218,6 @@
   animation: pop .2s ease-out;
 }
 
-@keyframes pop {
-  from { opacity: 0; transform: scale(.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
 
 .modal__close {
   position: absolute;

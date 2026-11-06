@@ -94,14 +94,24 @@
         <span class="badge-count">2</span>
       </a>
 
-      <button class="user" type="button" aria-label="Menu do usuário">
-        <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
-        <span class="user__info">
-          <strong>Usuário</strong>
-          <small>Nível 4</small>
-        </span>
-        <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
-      </button>
+      <details class="user">
+        <summary aria-label="Menu do usuário">
+          <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
+          <span class="user__info">
+            <strong>Usuário</strong>
+            <small>Nível 4</small>
+          </span>
+          <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </summary>
+        <nav class="user__menu" aria-label="Conta">
+          <a href="salas.html">Minhas salas</a>
+          <a href="missoes.html">Trilha de Missões</a>
+          <a href="inventario.html">Inventário</a>
+          <hr>
+          <a href="../index.html">Página inicial</a>
+          <a href="../login.html" class="user__sair">Sair</a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -139,53 +149,25 @@
     </aside>
 
     <!-- ============ CONTEÚDO ============ -->
-    <main class="main split atividade">
+    <main class="main split atividade" id="tela-atividade">
       <section class="split__main">
         <header class="task-head">
           <span class="task-head__icon"><svg aria-hidden="true"><use href="#i-doc"/></svg></span>
           <div>
-            <h1 class="page-title">Atividade 03 <span>- Vetores e Matrizes</span></h1>
-            <p class="page-sub">Professor(a): Filipe Gomes</p>
+            <h1 class="page-title" id="tarefa-titulo">Atividade</h1>
+            <p class="page-sub" id="tarefa-prof">Carregando…</p>
           </div>
         </header>
 
-        <a class="back" href="salas.html"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>Voltar</a>
+        <a class="back" id="tarefa-voltar" href="salas.html"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg>Voltar</a>
 
         <section class="statement">
           <h2>Enunciado</h2>
-          <p class="statement__lead">Resolva os exercícios abaixo sobre vetores e matrizes. Justifique todos os passos e apresente os códigos de forma clara e objetiva.</p>
-
           <div class="statement__box">
-            <ol class="exercises">
-              <li>Crie um programa que leia um vetor de 10 inteiros, calcule e exiba a soma dos elementos e a média aritmética.</li>
-              <li>Crie um programa que leia uma matriz 3x3 de inteiros e exiba:
-                <ul>
-                  <li>A soma dos elementos da diagonal principal;</li>
-                  <li>A soma dos elementos da diagonal secundária.</li>
-                </ul>
-              </li>
-              <li>Crie um programa que leia uma matriz 4x5 de inteiros e:
-                <ul>
-                  <li>Exiba a matriz;</li>
-                  <li>Exiba a soma de cada linha;</li>
-                  <li>Exiba a soma de cada coluna.</li>
-                </ul>
-              </li>
-            </ol>
-
-            <h3>Instruções</h3>
-            <ul class="bullets">
-              <li>Utilize apenas as estruturas básicas da linguagem C;</li>
-              <li>Os códigos devem compilar e executar corretamente;</li>
-              <li>Envie o arquivo .c com sua solução ou um arquivo .zip contendo os arquivos do projeto.</li>
-            </ul>
+            <div class="statement__text" id="tarefa-texto"><p class="carregando">Carregando atividade…</p></div>
+            <div id="tarefa-anexo"></div>
           </div>
         </section>
-
-        <aside class="teacher-tip">
-          <h2><svg aria-hidden="true"><use href="#i-info"/></svg>Dica do professor</h2>
-          <p>Reforce os conceitos de vetores e matrizes em C antes de enviar a atividade.</p>
-        </aside>
       </section>
 
       <aside class="split__aside">
@@ -194,22 +176,22 @@
           <ul class="facts">
             <li>
               <svg aria-hidden="true"><use href="#i-calendar"/></svg>
-              <span><strong>Data de entrega</strong><time datetime="2026-09-28T23:59">28/09/2026 às 23:59</time></span>
+              <span><strong>Data de entrega</strong><time id="f-prazo"></time></span>
             </li>
             <li>
               <svg aria-hidden="true"><use href="#i-trophy"/></svg>
-              <span><strong>Pontuação final</strong>10 pontos</span>
+              <span><strong>Pontuação final</strong><span id="f-pontos">10 pontos</span></span>
             </li>
             <li>
               <svg aria-hidden="true"><use href="#i-clock"/></svg>
-              <span><strong>Status atual</strong><em class="status-dot status-dot--pending">Pendente</em></span>
+              <span><strong>Status atual</strong><span id="f-status"><em class="status-dot status-dot--pending">Pendente</em></span></span>
             </li>
           </ul>
         </section>
 
-        <form class="panel" action="#" method="post" enctype="multipart/form-data">
+        <form class="panel" id="form-entrega" action="#" method="post" enctype="multipart/form-data">
           <h2 class="panel__title panel__title--tight">Entrega da atividade</h2>
-          <p class="panel__lead">Anexe sua resposta ou arquivo</p>
+          <p class="panel__lead" id="entrega-lead">Anexe sua resposta ou arquivo</p>
 
           <label class="dropzone" for="resposta">
             <span class="dropzone__hint">Arraste e solte seu arquivo aqui ou</span>
@@ -218,8 +200,9 @@
               <span class="dropzone__btn">Selecionar Arquivo</span>
             </span>
             <span class="dropzone__formats">Formatos aceitos: C, ZIP, PDF, DOCX, PPTX, MP4, PNG, JPG (Máx. 50MB)</span>
-            <input id="resposta" name="arquivo" type="file" accept=".c,.zip,.pdf,.docx,.pptx,.mp4,.png,.jpg,.jpeg">
+            <input id="resposta" name="arquivo" type="file" accept=".c,.h,.zip,.pdf,.doc,.docx,.ppt,.pptx,.mp4,.png,.jpg,.jpeg,.txt">
           </label>
+          <p class="panel__lead" id="arquivo-atual" hidden></p>
 
           <label class="field-label" for="observacao">Observação (opcional)</label>
           <div class="textarea textarea--dashed">
@@ -235,9 +218,11 @@
 
         <section class="panel history">
           <h2 class="panel__title">Histórico de entregas</h2>
-          <div class="empty">
-            <svg aria-hidden="true"><use href="#i-folder"/></svg>
-            <p>Nenhuma entrega realizada ainda.</p>
+          <div id="historico">
+            <div class="empty">
+              <svg aria-hidden="true"><use href="#i-folder"/></svg>
+              <p>Nenhuma entrega realizada ainda.</p>
+            </div>
           </div>
         </section>
       </aside>
@@ -245,5 +230,8 @@
 
   </div>
 
+  <link rel="stylesheet" href="../assets/css/extras.css">
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/aluno-atividades.js"></script>
 </body>
 </html>

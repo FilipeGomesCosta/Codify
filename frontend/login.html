@@ -128,17 +128,18 @@
         <h2 class="card__title" id="card-title">Bem-vindo de volta!</h2>
         <p class="card__sub">Faça login para continuar sua jornada.</p>
 
-        <form class="form" action="#" method="post">
+        <!-- Sem "name" nos campos: a senha não vai para a URL. O envio é feito por assets/js/login.js. -->
+        <form class="form" action="aluno/salas.html" method="get">
           <label class="field__label" for="email">E-mail</label>
           <div class="field">
             <svg class="field__icon" aria-hidden="true"><use href="#i-mail"/></svg>
-            <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+            <input id="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
           </div>
 
           <label class="field__label" for="senha">Senha</label>
           <div class="field">
             <svg class="field__icon" aria-hidden="true"><use href="#i-lock"/></svg>
-            <input id="senha" name="senha" type="password" placeholder="••••••••••" autocomplete="current-password" required>
+            <input id="senha" type="password" placeholder="••••••••••" autocomplete="current-password" required>
             <button class="field__toggle" type="button" aria-label="Mostrar senha"
               onclick="const i=document.getElementById('senha');i.type=i.type==='password'?'text':'password';">
               <svg aria-hidden="true"><use href="#i-eye"/></svg>
@@ -162,7 +163,9 @@
           Entrar com Google
         </button>
 
-        <p class="card__signup">Não tem uma conta? <a href="index.html#cadastro">Cadastre-se</a></p>
+        <p class="card__role">É professor? <a href="professor/salas.html">Acesse a área do professor</a></p>
+
+        <p class="card__signup">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
       </div>
 
       <footer class="footer">
@@ -174,5 +177,8 @@
 
   </main>
 
+  <link rel="stylesheet" href="assets/css/extras.css">
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/login.js"></script>
 </body>
 </html>

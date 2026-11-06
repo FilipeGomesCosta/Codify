@@ -164,7 +164,7 @@
         <h2 class="card__title" id="titulo-cadastro">Criar sua conta</h2>
         <p class="card__sub">Preencha os dados abaixo para começar.</p>
 
-        <form class="form" action="#" method="post" novalidate>
+        <form class="form" action="aluno/salas.html" method="get" novalidate>
 
           <fieldset class="roles">
             <legend>Você é:</legend>
@@ -192,7 +192,7 @@
             <label for="nome">Nome completo:</label>
             <div class="input">
               <svg class="input__icon" aria-hidden="true"><use href="#i-user"/></svg>
-              <input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required>
+              <input id="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required>
             </div>
           </div>
 
@@ -200,7 +200,7 @@
             <label for="email">E-mail:</label>
             <div class="input">
               <svg class="input__icon" aria-hidden="true"><use href="#i-mail"/></svg>
-              <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+              <input id="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
             </div>
           </div>
 
@@ -208,7 +208,7 @@
             <label for="senha">Senha:</label>
             <div class="input">
               <svg class="input__icon" aria-hidden="true"><use href="#i-lock"/></svg>
-              <input id="senha" name="senha" type="password" placeholder="Mínimo de 8 caracteres" minlength="8" autocomplete="new-password" required>
+              <input id="senha" type="password" placeholder="Mínimo de 8 caracteres" minlength="8" autocomplete="new-password" required>
               <button class="input__toggle" type="button" data-toggle="senha" aria-label="Mostrar senha">
                 <svg aria-hidden="true"><use href="#i-eye"/></svg>
               </button>
@@ -219,7 +219,7 @@
             <label for="confirmar">Confirmar senha:</label>
             <div class="input">
               <svg class="input__icon" aria-hidden="true"><use href="#i-lock"/></svg>
-              <input id="confirmar" name="confirmar" type="password" placeholder="Confirme sua senha" minlength="8" autocomplete="new-password" required>
+              <input id="confirmar" type="password" placeholder="Confirme sua senha" minlength="8" autocomplete="new-password" required>
               <button class="input__toggle" type="button" data-toggle="confirmar" aria-label="Mostrar senha">
                 <svg aria-hidden="true"><use href="#i-eye"/></svg>
               </button>
@@ -227,12 +227,15 @@
           </div>
 
           <label class="terms">
-            <input type="checkbox" name="termos" required>
+            <input type="checkbox" required>
             <span class="terms__box"><svg aria-hidden="true"><use href="#i-check"/></svg></span>
             <span>Eu concordo com os <a href="#termos">Termos de Uso</a> e a <a href="#privacidade">Política de Privacidade</a></span>
           </label>
 
-          <button class="btn btn--primary" type="submit">Cadastrar</button>
+          <!-- Os campos abaixo não têm "name" de propósito: assim a senha nunca vai para a URL.
+               Quando o formulário for ligado ao backend, o JavaScript lê os campos pelo id. -->
+          <button class="btn btn--primary btn--aluno" type="submit">Cadastrar</button>
+          <button class="btn btn--primary btn--professor" type="submit" formaction="professor/salas.html">Cadastrar</button>
 
           <p class="divider"><span>ou</span></p>
 
@@ -246,7 +249,7 @@
             Cadastrar com Google
           </button>
 
-          <p class="login-link">Já tem uma conta? <a href="entrar.html">Fazer login</a></p>
+          <p class="login-link">Já tem uma conta? <a href="login.html">Fazer login</a></p>
         </form>
       </section>
 
@@ -281,7 +284,11 @@
         e.preventDefault();
         form.reportValidity();
       }
+      // se estiver tudo certo, assets/js/cadastro.js envia para a API
     });
   </script>
+  <link rel="stylesheet" href="assets/css/extras.css">
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/cadastro.js"></script>
 </body>
 </html>

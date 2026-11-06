@@ -78,14 +78,25 @@
         <span class="badge-count">2</span>
       </a>
 
-      <button class="user" type="button" aria-label="Menu do usuário">
-        <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
-        <span class="user__info">
-          <strong>Usuário</strong>
-          <small>Professor</small>
-        </span>
-        <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
-      </button>
+      <details class="user">
+        <summary aria-label="Menu do usuário">
+          <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
+          <span class="user__info">
+            <strong>Usuário</strong>
+            <small>Professor</small>
+          </span>
+          <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </summary>
+        <nav class="user__menu" aria-label="Conta">
+          <a href="turmas.html">Minhas salas</a>
+          <a href="salas.html">Criar sala</a>
+          <a href="atividades.html">Adicionar atividade</a>
+          <a href="materiais.html">Adicionar material</a>
+          <hr>
+          <a href="../index.html">Página inicial</a>
+          <a href="../login.html" class="user__sair">Sair</a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -96,7 +107,7 @@
       <nav aria-label="Menu principal">
         <ul class="menu">
         <li><a href="../aluno/missoes.html"><svg aria-hidden="true"><use href="#i-flag"/></svg>Trilha de Missões</a></li>
-        <li><a href="salas.html"><svg aria-hidden="true"><use href="#i-monitor"/></svg>Sala de Aula</a></li>
+        <li><a href="turmas.html"><svg aria-hidden="true"><use href="#i-monitor"/></svg>Sala de Aula</a></li>
         <li><a href="materiais.html" class="is-active" aria-current="page"><svg aria-hidden="true"><use href="#i-book"/></svg>Material de Apoio</a></li>
         <li><a href="../aluno/inventario.html"><svg aria-hidden="true"><use href="#i-backpack"/></svg>Inventário</a></li>
         <li><a href="../aluno/loja.html"><svg aria-hidden="true"><use href="#i-cart"/></svg>Loja</a></li>
@@ -237,9 +248,7 @@
           <div class="select select--icon">
             <svg class="select__lead" aria-hidden="true"><use href="#i-users"/></svg>
             <select id="sala" name="sala" required>
-              <option value="" selected disabled>Selecione uma sala</option>
-              <option>Lógica de Programação</option>
-              <option>Linguagem C</option>
+              <option value="" selected disabled>Carregando salas…</option>
             </select>
             <svg aria-hidden="true"><use href="#i-chev-down"/></svg>
           </div>
@@ -296,5 +305,8 @@
 
   </div>
 
+  <link rel="stylesheet" href="../assets/css/extras.css">
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/professor-materiais.js"></script>
 </body>
 </html>

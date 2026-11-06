@@ -1,0 +1,311 @@
+/* =========================================================
+   Codify – Componentes usados pelas telas ligadas à API
+   (avisos, listas montadas pelo JavaScript, entregas, painel
+   do professor). Usa as mesmas cores de app.css.
+   ========================================================= */
+
+[hidden] { display: none !important; }
+
+/* ---------- Avisos (toast) ---------- */
+.toasts {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  display: grid;
+  gap: 10px;
+  max-width: min(420px, calc(100vw - 40px));
+}
+.toast {
+  padding: 14px 18px;
+  border-left: 4px solid var(--teal, #34d9c6);
+  border-radius: 8px;
+  background: #0c1b3d;
+  color: #e8edf7;
+  font: 500 0.95rem/1.4 "Poppins", system-ui, sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+  transition: opacity .4s, transform .4s;
+}
+.toast--erro { border-left-color: #ff5d6c; }
+.toast--saindo { opacity: 0; transform: translateY(8px); }
+
+/* ---------- Status ---------- */
+.status-dot--draft  { color: #8fb8ff; }
+.status-dot--done   { color: #34d9c6; }
+.status-dot--graded { color: #f5c518; }
+.status-dot--late   { color: #ff5d6c; }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #0d2350;
+  color: var(--accent);
+  font-size: .78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.tag--warn { background: #3b2a06; color: #f5c518; }
+
+/* ---------- Upload ---------- */
+.dropzone--sobre { border-color: var(--blue-2) !important; background: rgba(31, 123, 255, .08); }
+.dropzone--cheia .dropzone__hint { color: var(--teal); font-weight: 500; }
+
+/* ---------- Estados de carregamento / vazio ---------- */
+.carregando,
+.vazio {
+  padding: 28px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+.vazio strong { display: block; margin-bottom: 4px; color: var(--text-2); }
+
+/* ---------- Lista de atividades (aluno e professor) ---------- */
+.tasks {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.task {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  background: var(--panel);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.task:hover,
+.task.is-active { border-color: var(--line-strong); background: var(--panel-2); }
+.task__icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #0d2350;
+  color: var(--accent);
+}
+.task__icon svg { width: 26px; height: 26px; }
+.task h3 { margin: 0 0 4px; font-size: 1.02rem; font-weight: 600; color: var(--text); }
+.task p { margin: 0; color: var(--muted); font-size: .88rem; }
+.task__meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 6px !important; }
+.task__side { display: grid; justify-items: end; gap: 6px; text-align: right; font-size: .88rem; }
+.task .status-dot { padding-left: 0; }
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px 0 14px;
+}
+.section-head h2 { margin: 0; font-size: 1.15rem; font-weight: 600; }
+
+/* ---------- Tela da atividade (aluno) ---------- */
+.statement__text p { margin: 0 0 12px; line-height: 1.65; color: var(--text-2); }
+.anexo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}
+.anexo:hover { background: rgba(74, 168, 224, .08); }
+.anexo svg { width: 20px; height: 20px; }
+
+.hist {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hist li {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: .9rem;
+  color: var(--text-2);
+}
+.hist__linha { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.hist small { color: var(--muted); }
+.hist .nota { color: var(--gold); font-weight: 600; }
+.hist .feedback { margin: 4px 0 0; padding: 8px 10px; border-radius: 6px; background: #0d1d42; color: var(--text-2); }
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.link-btn--perigo { color: #ff8a95; }
+
+/* ---------- Material ---------- */
+.mat--sem-arquivo .mat__action { opacity: .35; pointer-events: none; }
+.mat__action { border: 0; background: transparent; cursor: pointer; }
+.mats--lista .mat { grid-template-columns: 48px minmax(0, 1fr) 110px 54px; }
+
+.campo-link[hidden] { display: none; }
+
+/* ---------- Menu da sala (aluno) ---------- */
+.room-pop {
+  position: absolute;
+  top: 46px;
+  right: 10px;
+  z-index: 5;
+  display: grid;
+  min-width: 160px;
+  padding: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .4);
+}
+.room-pop button {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.room-pop button:hover { background: rgba(255, 255, 255, .06); }
+.room-pop .perigo { color: #ff8a95; }
+
+/* Artes das salas (mesmas opções da tela "Criar Sala") */
+.room__thumb--emoji { font-size: 2.6rem; }
+
+/* ---------- Painel do professor (Minhas Salas) ---------- */
+.turmas {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  padding: 32px 36px 48px;
+}
+.turmas__lista { display: grid; gap: 10px; align-content: start; }
+.turma {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.turma:hover, .turma.is-active { border-color: var(--line-strong); background: var(--panel-2); }
+.turma strong { font-size: 1rem; }
+.turma small { color: var(--muted); }
+
+.turma-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px 22px;
+  background: var(--panel);
+  border-radius: var(--radius);
+}
+.turma-head h2 { margin: 0 0 4px; font-size: 1.35rem; }
+.turma-head p { margin: 0; color: var(--muted); }
+.turma-head__acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+.codigo-sala {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 6px;
+  font-family: "Fira Code", monospace;
+  color: var(--teal);
+}
+
+.abas { display: flex; gap: 8px; margin: 22px 0 14px; }
+.abas button {
+  padding: 8px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  cursor: pointer;
+}
+.abas button.is-active { border-color: var(--blue); background: var(--blue); color: #fff; }
+
+/* Tabela de entregas */
+.entregas {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+.entregas th,
+.entregas td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.entregas th { color: var(--muted); font-weight: 500; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+.entregas td small { display: block; color: var(--muted); }
+.entregas .obs { max-width: 280px; color: var(--text-2); }
+.avaliar {
+  display: grid;
+  grid-template-columns: 74px minmax(140px, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+.avaliar input,
+.avaliar textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+  font-size: .9rem;
+}
+.avaliar textarea { min-height: 38px; resize: vertical; }
+.tabela-rolagem { overflow-x: auto; }
+
+.mini-acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+
+@media (max-width: 1100px) {
+  .turmas { grid-template-columns: 1fr; padding: 24px 16px; }
+  .avaliar { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .task { grid-template-columns: 40px minmax(0, 1fr); }
+  .task__side { grid-column: 1 / -1; justify-items: start; text-align: left; }
+}
+
+/* ---------- Ajustes finos ---------- */
+.statement__text a { color: var(--accent); text-decoration: underline; word-break: break-all; }
+.link-btn { display: inline-flex; align-items: center; gap: 6px; justify-self: start; }
+.link-btn svg { width: 18px; height: 18px; flex: none; }
+.hist .link-btn { justify-self: start; }

@@ -1,3 +1,7 @@
+/* =========================================================
+   Codify – Aluno: Material de Apoio (lista)
+   ========================================================= */
+
 .materiais { padding-right: 48px; }
 
 /* ---------- Barra de filtros ---------- */
@@ -9,30 +13,7 @@
   margin-bottom: 22px;
 }
 
-.search {
-  grid-column: 1;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  height: 40px;
-  padding: 0 14px;
-  background: #07102a;
-  border: 1px solid var(--line);
-}
-
-.search:focus-within { border-color: var(--blue-2); }
-.search svg { width: 22px; height: 22px; color: var(--text-2); }
-
-.search input {
-  flex: 1;
-  min-width: 0;
-  background: none;
-  border: 0;
-  outline: 0;
-  font-size: 0.95rem;
-}
-
-.search input::placeholder { color: var(--text-2); }
+.search { grid-column: 1; }
 
 .toolbar .select:nth-of-type(1) { grid-column: 3; }
 .toolbar .select:nth-of-type(2) { grid-column: 4; }
@@ -143,29 +124,6 @@
 
 .mat__action:hover { background: var(--c-bg); }
 .mat__action svg { width: 28px; height: 28px; }
-
-/* ---------- Paginação ---------- */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 12px;
-}
-
-.pagination a {
-  width: 36px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 3px;
-  background: #07102a;
-  font-size: 0.8rem;
-  color: var(--text-2);
-}
-
-.pagination a:hover { background: #0d1d42; }
-.pagination a.is-active { background: var(--blue); color: #fff; }
-.pagination svg { width: 18px; height: 18px; }
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 1200px) {

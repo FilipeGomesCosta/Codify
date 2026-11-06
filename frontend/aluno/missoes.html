@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codify – Trilha de Missões</title>
+  <meta name="description" content="Escolha uma missão, resolva o desafio em C e ganhe XP e moedas.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/app.css">
+  <link rel="stylesheet" href="../assets/css/missoes.css">
+</head>
+<body>
+
+  <!-- Ícones (sprite SVG) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-flag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h13l-3 4.5 3 4.5H5"/></g></symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M3 13h18M12 16v3M8 20h8"/></g></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c3-1.3 7-1.3 10 1 3-2.3 7-2.3 10-1v14c-3-1.3-7-1.3-10 1-3-2.3-7-2.3-10-1z"/><path d="M12 6v14"/></g></symbol>
+      <symbol id="i-backpack" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0v12H6z"/><path d="M10 3.5V2h4v1.5"/><path d="M6 13h12M10 13v3h4v-3"/><path d="M6 11H4v7a2 2 0 0 0 2 2M18 11h2v7a2 2 0 0 1-2 2"/></g></symbol>
+      <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h3l2.5 12h11L21 7H6"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></g></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v6a5 5 0 0 1-10 0z"/><path d="M7 5H3c0 4 1.5 6 4.5 6.5M17 5h4c0 4-1.5 6-4.5 6.5"/><path d="M12 14v3M8 21l1.5-4h5L16 21z"/></g></symbol>
+      <symbol id="i-codewin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 8h18M9.5 12 7.5 14l2 2M14.5 12l2 2-2 2M13 11l-2 6"/></g></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></g></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></g></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></g></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="12" cy="8.5" r="4.5"/><path d="M3.5 21a8.5 8.5 0 0 1 17 0z"/></g></symbol>
+      <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4m7 7-7-7 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-xp" viewBox="0 0 24 24"><path d="M12 1.8 21 7v10l-9 5.2L3 17V7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><text x="12" y="15.2" text-anchor="middle" font-family="Poppins, sans-serif" font-size="8" font-weight="500" fill="currentColor">XP</text></symbol>
+      <symbol id="i-login" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h5a1.5 1.5 0 0 1 1.5 1.5v15A1.5 1.5 0 0 1 19 21h-5"/><path d="m10 16.5 4.5-4.5L10 7.5M14.5 12H3"/><circle cx="17" cy="12.5" r=".6" fill="currentColor"/></g></symbol>
+      <symbol id="i-hash" viewBox="0 0 24 24"><path d="M5 9h15M4 15h15M10 3 8 21M16 3l-2 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h8l-1 8 9-12h-8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-cal-code" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4"/><path d="M10.4 11.2a1.6 1.6 0 1 1 2.2 1.5c-.4.2-.6.5-.6 1v.4M12 16.6v.01"/></g></symbol>
+      <symbol id="i-clipboard" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M9 3h6v4H9zM8 12h8M8 16h5"/></g></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></g></symbol>
+      <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 3 9 3 12 0v-5M22 9v6"/></g></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14a5 5 0 0 1 5.5 5"/></g></symbol>
+      <symbol id="i-dots-v" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></g></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 12h6M9 15h6M9 18h6"/></g></symbol>
+      <symbol id="i-pdf" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M14 2.5H7a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z"/><path d="M14 2.5v5h5"/></g><text x="12" y="17.5" text-anchor="middle" font-family="Poppins, sans-serif" font-size="5.2" font-weight="700" fill="currentColor">PDF</text></symbol>
+      <symbol id="i-play-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M10 8.5v7l6-3.5z"/></g></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></g></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 15-5-5L5 21"/></g></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.5"/><g fill="currentColor"><circle cx="8" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="16" cy="12" r="1.2"/></g></symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 0 1-.5-10A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9"/><path d="M12 12v8M9 15l3-3 3 3"/></g></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.01"/></g></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 16v4h16v-4"/></g></symbol>
+      <symbol id="i-slides" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18M5 4v11h14V4M12 15v3M8 21l4-3 4 3"/><path d="M10 11V8.5a2 2 0 1 1 4 0V11"/></g></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+      <symbol id="i-bullets" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></g></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.5-4.5L3 9M4 13a8 8 0 0 0 14.5 4.5L21 15"/><path d="M3 4v5h5M21 20v-5h-5"/></g></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M6 6l1 15h10l1-15M10 10v7M14 10v7"/></g></symbol>
+      <symbol id="i-check-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="m7.5 12.5 3 3 6-6.5"/></g></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14.5v2.5"/></g></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/><path d="M12 0v1M3 3l1 1M21 3l-1 1M1 10h1M22 10h1"/></g></symbol>
+      <symbol id="i-dollar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M15.5 8.5c-.6-1-1.9-1.5-3.5-1.5-2 0-3.3 1-3.3 2.4 0 3.4 7 1.8 7 5.2 0 1.5-1.5 2.4-3.7 2.4-1.7 0-3.1-.6-3.7-1.7M12 5v2M12 17v2"/></g></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v5M12 17.5v.01"/></g></symbol>
+      <symbol id="i-wifi-off" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.6a10 10 0 0 1 14 0M8.5 16.1a5 5 0 0 1 7 0M12 20h.01M3 3l18 18"/></g></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ CABEÇALHO ============ -->
+  <header class="topbar">
+    <a class="logo" href="../index.html" aria-label="Codify – página inicial">
+      <img src="../assets/img/logo.png" alt="Codify" width="269" height="56">
+    </a>
+
+    <div class="topbar__actions">
+      <a class="icon-btn" href="#configuracoes" aria-label="Configurações"><svg aria-hidden="true"><use href="#i-gear"/></svg></a>
+      <a class="icon-btn" href="#buscar" aria-label="Buscar"><svg aria-hidden="true"><use href="#i-search"/></svg></a>
+      <a class="icon-btn icon-btn--badge" href="#notificacoes" aria-label="Notificações (2 novas)">
+        <svg aria-hidden="true"><use href="#i-bell"/></svg>
+        <span class="badge-count">2</span>
+      </a>
+
+      <details class="user">
+        <summary aria-label="Menu do usuário">
+          <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
+          <span class="user__info">
+            <strong>Usuário</strong>
+            <small>Nível 4</small>
+          </span>
+          <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </summary>
+        <nav class="user__menu" aria-label="Conta">
+          <a href="salas.html">Minhas salas</a>
+          <a href="missoes.html">Trilha de Missões</a>
+          <a href="inventario.html">Inventário</a>
+          <hr>
+          <a href="../index.html">Página inicial</a>
+          <a href="../login.html" class="user__sair">Sair</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <div class="app">
+
+    <!-- ============ MENU LATERAL ============ -->
+    <aside class="sidebar">
+      <nav aria-label="Menu principal">
+        <ul class="menu">
+        <li><a href="missoes.html" class="is-active" aria-current="page"><svg aria-hidden="true"><use href="#i-flag"/></svg>Trilha de Missões</a></li>
+        <li><a href="salas.html"><svg aria-hidden="true"><use href="#i-monitor"/></svg>Sala de Aula</a></li>
+        <li><a href="materiais.html"><svg aria-hidden="true"><use href="#i-book"/></svg>Material de Apoio</a></li>
+        <li><a href="inventario.html"><svg aria-hidden="true"><use href="#i-backpack"/></svg>Inventário</a></li>
+        <li><a href="loja.html"><svg aria-hidden="true"><use href="#i-cart"/></svg>Loja</a></li>
+        <li><a href="#conquistas"><svg aria-hidden="true"><use href="#i-trophy"/></svg>Conquistas</a></li>
+        <li><a href="programacao.html"><svg aria-hidden="true"><use href="#i-codewin"/></svg>Compilador</a></li>
+        </ul>
+      </nav>
+
+      <div class="progress-card">
+        <h2>SEU PROGRESSO</h2>
+        <div class="progress-card__xp">
+          <svg aria-hidden="true"><use href="#i-xp"/></svg>
+          <span>1.250 / 2000</span>
+        </div>
+        <div class="progress-card__level">
+          <span class="bar" role="progressbar" aria-valuenow="1250" aria-valuemin="0" aria-valuemax="2000" aria-label="Experiência"><span style="width:62.5%"></span></span>
+          <small>Nível 4</small>
+        </div>
+        <div class="progress-card__coins">
+          <span class="coin" aria-hidden="true">$</span>
+          <span><strong>MOEDAS</strong>2.340</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ CONTEÚDO ============ -->
+    <main class="main trilha">
+      <section class="trilha__content">
+        <header class="page-head">
+          <h1 class="page-title">Trilha <span>de Missões</span></h1>
+          <p class="page-sub">Escolha uma missão, resolva o desafio em C e ganhe XP e moedas.</p>
+        </header>
+
+        <nav class="pills trilha__filtros" aria-label="Filtrar por dificuldade">
+          <a href="#" class="is-active" aria-current="true">Todas</a>
+          <a href="#iniciante">Iniciante</a>
+          <a href="#intermediario">Intermediário</a>
+          <a href="#avancado">Avançado</a>
+        </nav>
+
+        <ol class="missions">
+          <li class="mission mission--concluida">
+            <span class="mission__node" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <article class="mission__card">
+              <header class="mission__head">
+                <span class="mission__num">Missão 01</span>
+                <span class="mission__status">Concluída</span>
+              </header>
+              <h2>Boas-vindas ao C</h2>
+              <p>Escreva um programa que leia um número inteiro e, em seguida, o exiba.</p>
+              <footer class="mission__foot">
+                <span class="tag tag--iniciante">Iniciante</span>
+                <span class="reward"><svg aria-hidden="true"><use href="#i-xp"/></svg>100 XP</span>
+                <span class="reward"><span class="coin coin--sm" aria-hidden="true"></span>50</span>
+                <a class="btn btn--ghost mission__btn" href="programacao.html">Revisar</a>
+              </footer>
+            </article>
+          </li>
+          <li class="mission mission--andamento">
+            <span class="mission__node" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+            <article class="mission__card">
+              <header class="mission__head">
+                <span class="mission__num">Missão 02</span>
+                <span class="mission__status">Em andamento</span>
+              </header>
+              <h2>Soma de dois números</h2>
+              <p>Leia dois números inteiros e exiba a soma deles.</p>
+              <footer class="mission__foot">
+                <span class="tag tag--iniciante">Iniciante</span>
+                <span class="reward"><svg aria-hidden="true"><use href="#i-xp"/></svg>100 XP</span>
+                <span class="reward"><span class="coin coin--sm" aria-hidden="true"></span>50</span>
+                <a class="btn btn--primary mission__btn" href="programacao.html">Continuar</a>
+              </footer>
+            </article>
+          </li>
+          <li class="mission mission--nova">
+            <span class="mission__node" aria-hidden="true"><svg><use href="#i-code"/></svg></span>
+            <article class="mission__card">
+              <header class="mission__head">
+                <span class="mission__num">Missão 03</span>
+                <span class="mission__status">Disponível</span>
+              </header>
+              <h2>Média de três números</h2>
+              <p>Leia três notas e exiba a média aritmética.</p>
+              <footer class="mission__foot">
+                <span class="tag tag--iniciante">Iniciante</span>
+                <span class="reward"><svg aria-hidden="true"><use href="#i-xp"/></svg>150 XP</span>
+                <span class="reward"><span class="coin coin--sm" aria-hidden="true"></span>60</span>
+                <a class="btn btn--primary mission__btn" href="programacao.html">Iniciar</a>
+              </footer>
+            </article>
+          </li>
+          <li class="mission mission--bloqueada">
+            <span class="mission__node" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+            <article class="mission__card">
+              <header class="mission__head">
+                <span class="mission__num">Missão 04</span>
+                <span class="mission__status">Bloqueada</span>
+              </header>
+              <h2>Verificar par ou ímpar</h2>
+              <p>Leia um número e informe se ele é par ou ímpar.</p>
+              <footer class="mission__foot">
+                <span class="tag tag--intermediario">Intermediário</span>
+                <span class="reward"><svg aria-hidden="true"><use href="#i-xp"/></svg>200 XP</span>
+                <span class="reward"><span class="coin coin--sm" aria-hidden="true"></span>80</span>
+                <span class="mission__lock">Conclua a missão anterior</span>
+              </footer>
+            </article>
+          </li>
+          <li class="mission mission--bloqueada">
+            <span class="mission__node" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+            <article class="mission__card">
+              <header class="mission__head">
+                <span class="mission__num">Missão 05</span>
+                <span class="mission__status">Bloqueada</span>
+              </header>
+              <h2>Tabuada de um número</h2>
+              <p>Leia um número e exiba a tabuada de 1 a 10.</p>
+              <footer class="mission__foot">
+                <span class="tag tag--intermediario">Intermediário</span>
+                <span class="reward"><svg aria-hidden="true"><use href="#i-xp"/></svg>250 XP</span>
+                <span class="reward"><span class="coin coin--sm" aria-hidden="true"></span>100</span>
+                <span class="mission__lock">Conclua a missão anterior</span>
+              </footer>
+            </article>
+          </li>
+        </ol>
+      </section>
+
+      <aside class="trilha__aside">
+        <section class="panel trail-progress">
+          <h2 class="panel__title">Seu avanço</h2>
+          <p class="trail-progress__count"><strong>1</strong> de 5 missões concluídas</p>
+          <span class="bar bar--wide" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" aria-label="Missões concluídas"><span style="width:20%"></span></span>
+          <dl class="trail-progress__stats">
+            <div><dt>XP ganho na trilha</dt><dd>100 XP</dd></div>
+            <div><dt>Moedas ganhas</dt><dd>50</dd></div>
+            <div><dt>Próxima missão</dt><dd>Soma de dois números</dd></div>
+          </dl>
+          <a class="btn btn--primary btn--block" href="programacao.html">Abrir o Compilador</a>
+        </section>
+
+        <section class="panel tip">
+          <span class="tip__icon"><svg aria-hidden="true"><use href="#i-cap"/></svg></span>
+          <div>
+            <h2>Dica Codify</h2>
+            <p>Travou em uma missão? Use uma <a href="loja.html">Dica de Sintaxe</a> da loja ou consulte o <a href="materiais.html">Material de Apoio</a>.</p>
+          </div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+</body>
+</html>

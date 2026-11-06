@@ -1,0 +1,196 @@
+/* =========================================================
+   Codify – Aluno: Trilha de Missões
+   ========================================================= */
+
+.trilha {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 32px;
+  align-items: start;
+  padding-right: 40px;
+}
+
+/* ---------- Filtros ---------- */
+.pills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+
+.pills a {
+  padding: 8px 20px;
+  border: 2px solid #142650;
+  border-radius: 8px;
+  background: #050d22;
+  font-weight: 600;
+  transition: background .2s;
+}
+
+.pills a:hover { background: #0a1631; }
+.pills a.is-active { background: var(--blue); border-color: var(--blue); }
+
+/* ---------- Trilha (linha do tempo) ---------- */
+.missions {
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding-left: 0;
+}
+
+/* linha vertical que liga as missões */
+.missions::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  bottom: 28px;
+  left: 27px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(#2ecc71 0 18%, #1f7bff 18% 30%, #1a2b52 30%);
+}
+
+.mission {
+  --tone: #5f6c8c;
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.mission--concluida { --tone: #2ecc71; }
+.mission--andamento { --tone: #1f7bff; }
+.mission--nova      { --tone: #4aa8e0; }
+
+.mission__node {
+  position: relative;
+  z-index: 1;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--tone);
+  border-radius: 50%;
+  background: #050d22;
+  color: var(--tone);
+}
+
+.mission__node svg { width: 24px; height: 24px; }
+.mission--andamento .mission__node { box-shadow: 0 0 0 6px rgba(31, 123, 255, .18); }
+
+.mission__card {
+  padding: 16px 20px;
+  border: 1px solid #10224a;
+  border-left: 4px solid var(--tone);
+  background: #0a1631;
+}
+
+.mission--bloqueada .mission__card { opacity: .6; }
+
+.mission__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.mission__num { color: var(--muted); }
+.mission__status { font-weight: 700; color: var(--tone); }
+
+.mission__card h2 { margin: 4px 0 2px; font-size: 1.25rem; font-weight: 600; }
+.mission__card p { margin: 0 0 12px; font-size: 0.95rem; color: var(--text-2); }
+
+.mission__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.tag {
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.tag--iniciante     { background: rgba(46, 204, 113, .15); color: #2ecc71; }
+.tag--intermediario { background: rgba(245, 165, 36, .15); color: #f5a524; }
+.tag--avancado      { background: rgba(255, 77, 77, .15); color: #ff6b6b; }
+
+.reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.92rem;
+  color: #e3e8f3;
+}
+
+.reward svg { width: 22px; height: 22px; color: var(--blue-2); }
+
+.mission__btn { margin-left: auto; min-height: 38px; min-width: 120px; font-size: 0.95rem; }
+.mission__lock { margin-left: auto; font-size: 0.85rem; color: var(--muted-2); }
+
+/* ---------- Coluna lateral ---------- */
+.trilha__aside { display: grid; gap: 24px; }
+
+.trail-progress .panel__title { font-size: 1.6rem; }
+
+.trail-progress__count { margin: 0 0 10px; color: var(--text-2); }
+.trail-progress__count strong { font-size: 1.6rem; color: #fff; }
+
+.bar--wide { width: 100%; height: 10px; }
+
+.trail-progress__stats {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.trail-progress__stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.trail-progress__stats dt { color: var(--muted); }
+.trail-progress__stats dd { margin: 0; font-weight: 500; text-align: right; }
+
+/* Dica (mesmo visual da página de salas) */
+.tip { display: flex; align-items: center; gap: 18px; }
+
+.tip__icon {
+  flex: 0 0 auto;
+  width: 66px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0f2350;
+  color: var(--accent);
+}
+
+.tip__icon svg { width: 36px; height: 36px; }
+.tip h2 { margin: 0 0 4px; font-size: 1.5rem; font-weight: 600; color: var(--accent); }
+.tip p { margin: 0; font-size: 0.95rem; line-height: 1.45; color: var(--muted); }
+.tip a { color: var(--accent); text-decoration: underline; }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1280px) {
+  .trilha { grid-template-columns: 1fr; }
+  .trilha__aside { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 1000px) {
+  .trilha { padding-right: 16px; }
+}
+
+@media (max-width: 720px) {
+  .trilha__aside { grid-template-columns: 1fr; }
+  .mission { grid-template-columns: 42px minmax(0, 1fr); gap: 12px; }
+  .mission__node { width: 42px; height: 42px; }
+  .mission__node svg { width: 18px; height: 18px; }
+  .missions::before { left: 20px; }
+  .mission__btn, .mission__lock { margin-left: 0; width: 100%; }
+}

@@ -90,14 +90,24 @@
         <span class="badge-count">2</span>
       </a>
 
-      <button class="user" type="button" aria-label="Menu do usuário">
-        <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
-        <span class="user__info">
-          <strong>Usuário</strong>
-          <small>Nível 4</small>
-        </span>
-        <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
-      </button>
+      <details class="user">
+        <summary aria-label="Menu do usuário">
+          <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
+          <span class="user__info">
+            <strong>Usuário</strong>
+            <small>Nível 4</small>
+          </span>
+          <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </summary>
+        <nav class="user__menu" aria-label="Conta">
+          <a href="salas.html">Minhas salas</a>
+          <a href="missoes.html">Trilha de Missões</a>
+          <a href="inventario.html">Inventário</a>
+          <hr>
+          <a href="../index.html">Página inicial</a>
+          <a href="../login.html" class="user__sair">Sair</a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -154,40 +164,8 @@
           </label>
         </div>
 
-        <ul class="rooms" id="minhas-salas">
-          <li class="room">
-            <div class="room__thumb room__thumb--window" aria-hidden="true">
-              <span class="room__dots"><i></i><i></i><i></i></span>
-              <span class="room__glyph">&lt;/&gt;</span>
-            </div>
-            <div class="room__info">
-              <h2>Lógica de Programação</h2>
-              <p class="room__prof">Prof. Carlos Henrique</p>
-              <p class="room__level">Nível: Médio</p>
-              <p class="room__meta">
-                <span><svg aria-hidden="true"><use href="#i-users"/></svg>28 alunos</span>
-                <span><svg aria-hidden="true"><use href="#i-calendar"/></svg>Última atividade: Hoje</span>
-              </p>
-            </div>
-            <a class="btn btn--primary room__btn" href="atividades.html">Entrar</a>
-            <button class="room__menu" type="button" aria-label="Mais opções da sala Lógica de Programação"><svg aria-hidden="true"><use href="#i-dots-v"/></svg></button>
-          </li>
-          <li class="room">
-            <div class="room__thumb room__thumb--braces" aria-hidden="true">
-              <span class="room__glyph">{ }</span>
-            </div>
-            <div class="room__info">
-              <h2>Linguagem C Aplicada</h2>
-              <p class="room__prof">Prof. Márcia Pimenta</p>
-              <p class="room__level">Nível: Médio</p>
-              <p class="room__meta">
-                <span><svg aria-hidden="true"><use href="#i-users"/></svg>29 alunos</span>
-                <span><svg aria-hidden="true"><use href="#i-calendar"/></svg>Última atividade: Ontem</span>
-              </p>
-            </div>
-            <a class="btn btn--primary room__btn" href="atividades.html">Entrar</a>
-            <button class="room__menu" type="button" aria-label="Mais opções da sala Linguagem C Aplicada"><svg aria-hidden="true"><use href="#i-dots-v"/></svg></button>
-          </li>
+        <ul class="rooms" id="minhas-salas" aria-live="polite">
+          <li class="carregando">Carregando salas…</li>
         </ul>
       </section>
 
@@ -210,7 +188,7 @@
               </a>
             </li>
             <li>
-              <a href="#calendario">
+              <a href="atividades.html">
                 <svg class="quick__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
                 <span><strong>Calendário de aulas</strong><small>Veja sua agenda</small></span>
                 <svg class="quick__chev" aria-hidden="true"><use href="#i-chev-right"/></svg>
@@ -243,7 +221,7 @@
           <label for="codigo">Código da Sala:</label>
           <div class="code-field">
             <span class="code-field__icon"><svg aria-hidden="true"><use href="#i-hash"/></svg></span>
-            <input id="codigo" name="codigo" type="text" placeholder="Ex.: ABC123" maxlength="10" autocomplete="off" required>
+            <input id="codigo" name="codigo" type="text" placeholder="Ex.: C4D7-9B2A" maxlength="10" autocomplete="off" required>
           </div>
           <button class="btn btn--primary btn--block" type="submit">Entrar na Sala</button>
         </form>
@@ -252,5 +230,8 @@
 
   </div>
 
+  <link rel="stylesheet" href="../assets/css/extras.css">
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/aluno-salas.js"></script>
 </body>
 </html>

@@ -90,14 +90,24 @@
         <span class="badge-count">2</span>
       </a>
 
-      <button class="user" type="button" aria-label="Menu do usuário">
-        <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
-        <span class="user__info">
-          <strong>Usuário</strong>
-          <small>Nível 4</small>
-        </span>
-        <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
-      </button>
+      <details class="user">
+        <summary aria-label="Menu do usuário">
+          <span class="user__avatar"><svg aria-hidden="true"><use href="#i-user"/></svg></span>
+          <span class="user__info">
+            <strong>Usuário</strong>
+            <small>Nível 4</small>
+          </span>
+          <svg class="user__chev" aria-hidden="true"><use href="#i-chev-down"/></svg>
+        </summary>
+        <nav class="user__menu" aria-label="Conta">
+          <a href="salas.html">Minhas salas</a>
+          <a href="missoes.html">Trilha de Missões</a>
+          <a href="inventario.html">Inventário</a>
+          <hr>
+          <a href="../index.html">Página inicial</a>
+          <a href="../login.html" class="user__sair">Sair</a>
+        </nav>
+      </details>
     </div>
   </header>
 

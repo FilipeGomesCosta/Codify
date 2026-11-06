@@ -1,3 +1,8 @@
+/* =========================================================
+   Codify – Aluno: Atividade (enunciado + entrega)
+   Usa a estrutura .split de formularios.css
+   ========================================================= */
+
 .atividade { grid-template-columns: minmax(0, 1fr) 520px; }
 .atividade .split__main { padding: 32px 16px 32px 48px; }
 

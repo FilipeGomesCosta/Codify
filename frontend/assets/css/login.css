@@ -1,3 +1,7 @@
+/* =========================================================
+   Codify – Página de Login
+   ========================================================= */
+
 :root {
   --bg: #030a1c;
   --bg-2: #061235;
@@ -325,9 +329,19 @@ img { display: block; max-width: 100%; height: auto; }
   background: linear-gradient(90deg, transparent, rgba(120, 150, 210, 0.2), transparent);
 }
 
+/* ---------- Acesso do professor ---------- */
+.card__role {
+  margin: 28px 0 0;
+  font-size: 1rem;
+  color: var(--muted-2);
+}
+
+.card__role a { color: var(--blue-light); }
+.card__role a:hover { text-decoration: underline; }
+
 /* ---------- Cadastro ---------- */
 .card__signup {
-  margin: 44px 0 0;
+  margin: 10px 0 0;
   font-size: 1.2rem;
   color: var(--muted-2);
 }

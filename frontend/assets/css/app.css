@@ -1,3 +1,9 @@
+/* =========================================================
+   Codify – Estrutura da área logada (aluno e professor)
+   Cabeçalho, menu lateral, cartão de progresso e componentes
+   compartilhados (títulos, botões, painéis, selects).
+   ========================================================= */
+
 :root {
   --bg: #040b1c;
   --bg-main: #050e24;
@@ -93,17 +99,51 @@ svg { flex-shrink: 0; }
   font-weight: 600;
 }
 
+/* Menu do usuário: <details> abre e fecha sem JavaScript */
 .user {
+  position: relative;
+  margin-left: 8px;
+}
+
+.user > summary {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 0;
-  margin-left: 8px;
-  background: none;
-  border: 0;
+  list-style: none;
   cursor: pointer;
-  text-align: left;
+  border-radius: 999px;
 }
+
+.user > summary::-webkit-details-marker { display: none; }
+.user > summary:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 4px; }
+
+.user[open] .user__chev { transform: rotate(180deg); }
+.user__chev { transition: transform .2s; }
+
+.user__menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 40;
+  min-width: 220px;
+  display: grid;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #0a1631;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .5);
+}
+
+.user__menu a {
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  color: var(--text-2);
+}
+
+.user__menu a:hover { background: rgba(31, 123, 255, 0.12); color: #fff; }
+.user__menu hr { width: 100%; margin: 6px 0; border: 0; border-top: 1px solid var(--line); }
+.user__menu .user__sair { color: #ff6b6b; }
 
 .user__avatar {
   width: 50px;
