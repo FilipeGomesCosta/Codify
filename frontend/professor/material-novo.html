@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Adicionar Material</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/formulario.css">
+  <link rel="stylesheet" href="../assets/css/material-novo.css">
+</head>
+<body>
+  <div id="topo"></div>
+  <div class="corpo">
+    <div id="menu"></div>
+    <main>
+      <div class="pagina-form">
+        <div class="coluna-principal">
+          <h1>Adicionar Material <span>de Apoio</span></h1>
+          <p class="subtitulo">Compartilhe conteúdos complementares para apoiar o aprendizado dos alunos.</p>
+          <a href="#" class="voltar" id="voltar"><i data-icone="voltar" data-tam="20"></i> Voltar</a>
+
+          <h2>Informações do Material</h2>
+          <label for="titulo">Título do Material</label>
+          <input type="text" id="titulo" maxlength="100" placeholder="Ex.: Guia de Estruturas de Repetição em C">
+
+          <label for="descricao">Descrição (opcional)</label>
+          <div class="contador">
+            <textarea id="descricao" maxlength="300" placeholder="Descreva o conteúdo deste material e como ele pode ajudar os alunos..."></textarea>
+            <small id="contador">0/300</small>
+          </div>
+
+          <label for="categoria">Categoria</label>
+          <select id="categoria">
+            <option value="">Selecione uma categoria</option>
+            <option>Apostila</option>
+            <option>Exercícios</option>
+            <option>Slides</option>
+            <option>Vídeo-aula</option>
+            <option>Referência</option>
+            <option>Outra</option>
+          </select>
+
+          <label>Tipo de Material</label>
+          <div class="tipos-material">
+            <label><input type="radio" name="tipo" value="documento" checked><i data-icone="arquivo" data-tam="30"></i><b>Documento</b><small>PDF, DOC, PPTX</small></label>
+            <label><input type="radio" name="tipo" value="video"><i data-icone="video" data-tam="30"></i><b>Vídeo</b><small>MP4</small></label>
+            <label><input type="radio" name="tipo" value="link"><i data-icone="link" data-tam="30"></i><b>Link</b><small>Sites e páginas</small></label>
+            <label><input type="radio" name="tipo" value="imagem"><i data-icone="imagem" data-tam="30"></i><b>Imagem</b><small>PNG, JPG, etc.</small></label>
+            <label><input type="radio" name="tipo" value="outro"><i data-icone="reticencias" data-tam="30"></i><b>Outro</b><small>Outros formatos</small></label>
+          </div>
+
+          <div id="blocoArquivo">
+            <label>Arquivo</label>
+            <div class="dropzone" id="zona">
+            <p>Arraste e solte o arquivo aqui ou</p>
+            <div class="linha-zona"><i data-icone="upload" data-tam="32"></i><button type="button" class="cinza">Selecionar Arquivo</button></div>
+            <small>Formatos aceitos: PDF, DOCX, PPTX, MP4, PNG, JPG (Máx. 50MB)</small>
+            <p class="nome-arquivo"></p>
+            <input type="file" id="arquivo" hidden>
+          </div>
+          </div>
+          <div id="blocoLink" hidden>
+            <label for="link" id="rotuloLink">Endereço do link</label>
+            <input type="text" id="link" placeholder="https://">
+          </div>
+
+          <p id="mensagem" class="erro"></p>
+          <div class="botoes-centro"><button id="enviar">Enviar Material</button></div>
+        </div>
+
+        <div class="coluna-lateral">
+          <div class="card-lateral">
+            <h2>Associar a Sala de Aula</h2>
+            <label for="sala" style="margin-top: 0">Sala de Aula</label>
+            <div class="campo"><i data-icone="grupo" data-tam="20"></i><select id="sala"></select></div>
+          </div>
+          <div class="card-lateral">
+            <h2>Visibilidade</h2>
+            <label class="opcao-radio"><input type="radio" name="visibilidade" value="agora" checked><span><b>Disponível para os alunos</b><small>O material ficará visível para todos os alunos da sala.</small></span></label>
+            <label class="opcao-radio"><input type="radio" name="visibilidade" value="agendar"><span><b>Agendar disponibilização</b><small>Defina uma data para o material ficar disponível.</small></span></label>
+            <div class="data-hora">
+              <div class="campo"><i data-icone="calendario" data-tam="18"></i><input type="date" id="data" disabled></div>
+              <div class="campo"><i data-icone="relogio" data-tam="18"></i><input type="time" id="hora" disabled></div>
+            </div>
+          </div>
+          <div class="card-lateral">
+            <h2>Configurações</h2>
+            <div class="opcao-chave"><span><b>Permitir download</b><small>Alunos poderão baixar o arquivo.</small></span><label class="chave"><input type="checkbox" id="download" checked><span></span></label></div>
+            <div class="opcao-chave"><span><b>Mostrar na página inicial da sala</b><small>O material aparecerá em destaque.</small></span><label class="chave"><input type="checkbox" id="destaque" checked><span></span></label></div>
+          </div>
+          <div class="card-lateral dica">
+            <h2><i data-icone="info" data-tam="22"></i> Dica</h2>
+            <p>Materiais de apoio enriquecem o aprendizado e podem ser usados como complemento às atividades e desafios da sala.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icones.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topo.js"></script>
+  <script src="../assets/js/prof-material-novo.js"></script>
+</body>
+</html>

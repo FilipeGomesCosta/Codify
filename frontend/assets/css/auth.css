@@ -1,0 +1,277 @@
+.auth {
+  display: flex;
+  min-height: 100vh;
+  background-color: #04091a;
+}
+
+.auth .lado {
+  flex: 1;
+  padding: 50px 70px;
+  background: linear-gradient(90deg, #04091a, #0a2070 85%, #1a4fd0);
+}
+
+.auth .lado > a img {
+  height: 52px;
+  display: block;
+}
+
+.auth .lado h1 {
+  font-size: 38px;
+  line-height: 1.35;
+  margin: 60px 0 16px 0;
+}
+
+.auth .lado h1 span {
+  color: #3fd9d0;
+}
+
+.auth .lado > p {
+  color: #8d9bbd;
+  max-width: 420px;
+}
+
+.recurso {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  max-width: 440px;
+}
+
+.recurso .caixa-icone {
+  min-width: 58px;
+  height: 58px;
+  border: 1px solid #1d3a80;
+  border-radius: 12px;
+  background-color: #08183d;
+  color: #2f7bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recurso b {
+  display: block;
+  font-weight: 500;
+}
+
+.recurso span {
+  color: #8d9bbd;
+  font-size: 14px;
+}
+
+.linha-azul {
+  width: 5px;
+  background-color: #3a9dff;
+  box-shadow: 0 0 20px 4px #1e7bff;
+}
+
+.auth .direita {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-image: radial-gradient(#10224a 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.cartao-auth {
+  width: 100%;
+  max-width: 520px;
+  background-color: #06112a;
+  border: 1px solid #12285a;
+  border-radius: 30px;
+  padding: 36px 40px;
+}
+
+.cartao-auth h1 {
+  text-align: center;
+  font-size: 28px;
+}
+
+.cartao-auth > p {
+  text-align: center;
+  color: #8d9bbd;
+  margin-top: 0;
+}
+
+.circulo {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 14px auto;
+  border: 1px solid #1d3a80;
+  border-radius: 50%;
+  background-color: #08183d;
+  color: #2f7bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo {
+  position: relative;
+}
+
+.campo .ic {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: #c9d3ee;
+}
+
+.campo input {
+  padding-left: 46px;
+}
+
+.campo button {
+  position: absolute;
+  right: 4px;
+  top: 3px;
+  background: none;
+  border: none;
+  padding: 8px 10px;
+  color: #c9d3ee;
+}
+
+.campo button:hover {
+  background: none;
+  color: #4b9ee0;
+}
+
+.cartao-auth form > button {
+  width: 100%;
+  justify-content: center;
+  padding: 15px;
+  font-size: 17px;
+  margin-top: 8px;
+}
+
+.link-direita {
+  text-align: right;
+  margin: 12px 0;
+}
+
+.link-direita a {
+  text-decoration: none;
+}
+
+.tipos {
+  display: flex;
+  gap: 16px;
+}
+
+.tipos label {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+  border: 1px solid #12285a;
+  border-radius: 12px;
+  padding: 16px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #8d9bbd;
+}
+
+.tipos label b {
+  display: block;
+  color: #e8eefc;
+  font-size: 15px;
+  margin: 6px 0 4px 0;
+}
+
+.tipos .ic {
+  color: #2f8bff;
+}
+
+.tipos input {
+  display: none;
+}
+
+.tipos label:has(input:checked) {
+  border: 2px solid #1e7bff;
+  background-color: #0a1d4d;
+}
+
+.termos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 14px 0 6px 0;
+  font-size: 13px;
+}
+
+.cartao-auth .centro {
+  color: #8d9bbd;
+}
+
+.rodape-auth {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #6b7a9e;
+}
+
+.rodape-auth a {
+  color: #6b7a9e;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .auth {
+    flex-direction: column;
+  }
+
+  .linha-azul {
+    display: none;
+  }
+
+  .auth .lado {
+    padding: 30px;
+  }
+}
+
+.ou {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 12px 0;
+  color: #8d9bbd;
+  font-size: 13px;
+}
+
+.ou::before, .ou::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #12294d;
+}
+
+.cartao-auth form {
+  margin-bottom: 16px;
+}
+
+.cartao-auth form > button.google {
+  background-color: #040b1c;
+  border: 1px solid #12294d;
+  font-weight: 400;
+  font-size: 15px;
+  margin-top: 0;
+}
+
+.tipos label {
+  position: relative;
+}
+
+.tipos label:has(input:checked)::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1e7bff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-10'/%3E%3C/svg%3E") center / 14px no-repeat;
+}

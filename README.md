@@ -1,82 +1,88 @@
 # Codify
 
-Plataforma de ensino de programação: salas de aula, atividades com entrega, material de apoio, missões e loja.
+Site de ensino de programação em C, com trilha de missões, loja, inventário, compilador, salas de aula, atividades e material de apoio.
 
-- **backend/** – API em Node.js + Express + MySQL
-- **frontend/** – telas em HTML/CSS; `frontend/assets/js/` liga as telas à API
+## Estrutura do projeto
+
+```
+codify/
+├── backend/                  servidor (Node.js + Express + MySQL)
+│   ├── package.json
+│   ├── uploads/              arquivos enviados (materiais, atividades, entregas)
+│   └── src/
+│       ├── server.js         inicia o servidor
+│       ├── config/           banco.js (conexão com o MySQL) e email.js (SMTP)
+│       ├── middlewares/      auth.js (login e perfis) e upload.js (arquivos)
+│       ├── routes/           uma rota por assunto (usuarios, missoes, loja, salas...)
+│       ├── services/         compilador.js (gcc) e email.js
+│       └── scripts/          criar-banco.js
+├── database/
+│   └── codify.sql            tabelas e dados de exemplo
+└── frontend/
+    ├── index.html, login.html, cadastro.html, ...   páginas públicas
+    ├── aluno/                páginas do aluno
+    ├── professor/            páginas do professor
+    └── assets/
+        ├── css/              um CSS por tela (estilo.css é o comum)
+        ├── js/               um JS por tela (api.js e topo.js são comuns)
+        └── img/
+```
 
 ## Como rodar
 
-```bash
-cd backend
+1. Instale o Node.js, o MySQL e o compilador `gcc` (o compilador de C do site usa o gcc do próprio computador).
+2. O servidor usa o usuário `root` com a senha `root` no MySQL. Se o seu for diferente, altere `backend/src/config/banco.js`.
+3. No terminal, dentro da pasta `backend`:
+
+```
 npm install
-cp .env.example .env      # preencha DB_PASSWORD e JWT_SECRET
-npm run db:reset          # cria o banco do zero e coloca dados de exemplo
-npm start                 # http://localhost:3000/login.html
+npm run banco
+npm start
 ```
 
-Já tem um banco com dados e não quer apagar? Use `npm run db:migrate`: ele só cria as colunas novas.
+`npm run banco` cria (ou recria) o banco `codify` com os dados de exemplo, usando a mesma conexão do servidor. **Ele apaga o banco `codify` que já existir.** Rode de novo sempre que receber uma versão nova do projeto.
 
-Logins de exemplo (senha `senha123`):
+4. Abra o arquivo `frontend/index.html` (duplo clique) ou acesse http://localhost:3000
 
-| Tipo      | E-mail              |
-|-----------|---------------------|
-| Aluno     | ana@codify.com      |
-| Aluno     | bruno@codify.com    |
-| Professor | carlos@codify.com   |
-| Professor | marcia@codify.com   |
-| Professor | filipe@codify.com   |
+Se aparecer "O banco de dados está desatualizado", rode `npm run banco`.
 
-O front-end funciona aberto pelo próprio backend (`http://localhost:3000/...`) ou pelo Live Server
-(nesse caso as chamadas vão para `http://localhost:3000/api`).
+## Compilador de C no Windows
 
-## Fluxo
+Se aparecer "O compilador gcc não foi encontrado...":
 
-**Professor**
-1. *Sala de Aula → Criar sala* (`professor/salas.html`): nome, descrição, nível e imagem. O código de acesso aparece na tela.
-2. *Minhas salas* (`professor/turmas.html`): vê as salas, atividades, materiais e alunos.
-3. *Adicionar atividade* (`professor/atividades.html`): título, instruções, anexo opcional, data de entrega e visibilidade (agora ou agendada).
-4. *Adicionar material* (`professor/materiais.html`): arquivo ou link, tipo, categoria, visibilidade, permitir download e destaque.
-5. Em *Minhas salas → atividade*: baixa a resposta de cada aluno e dá nota (0 a 10) e feedback.
+1. Instale o gcc: `winget install BrechtSanders.WinLibs.POSIX.UCRT`
+2. Feche **todos** os terminais, abra um novo e confira com `gcc --version`
+3. Reinicie o servidor (`npm start`)
 
-**Aluno**
-1. *Salas de Aula* (`aluno/salas.html`): entra numa sala com o código (com ou sem traço).
-2. *Entrar* na sala: lista de atividades com status (pendente, rascunho, entregue, avaliada) e materiais da sala.
-3. Na atividade (`aluno/atividades.html?id=...`): baixa o anexo, envia arquivo e/ou observação, salva rascunho, envia, reenvia até o prazo e vê a nota e o feedback.
-4. *Material de Apoio* (`aluno/materiais.html`): busca, filtro por tipo, ordem, paginação e download.
+## Logins de exemplo (senha: senha123)
 
-## Regras
+| Tipo | E-mail |
+|---|---|
+| Aluno | ana@codify.com |
+| Aluno | bruno@codify.com |
+| Professor | carlos@codify.com |
+| Professor | marcia@codify.com |
 
-- Professor só acessa as salas que criou; aluno só as salas em que participa.
-- Atividade/material **agendado** só aparece para o aluno a partir da data escolhida.
-- O aluno pode salvar rascunho, enviar e reenviar **até o prazo**. Depois do prazo, ou depois de avaliada, a entrega fica bloqueada.
-- O professor não vê rascunhos, só entregas enviadas. A lista de entregas mostra todos os alunos da sala, e quem não entregou aparece como "pendente".
-- Material com "Permitir download" desligado abre no navegador (inline) em vez de baixar.
-- Arquivos: até 50 MB; PDF, DOC(X), PPT(X), MP4, PNG, JPG, C, H, ZIP, TXT. Ficam em `backend/uploads/` e são apagados quando a atividade, o material, a entrega ou a sala é excluída.
+Salas de exemplo: `ABCD-1234` (aberta) e `WXYZ-5678` (exige aprovação do professor).
 
-## API (principais rotas de atividades e materiais)
+## Recuperar senha por e-mail
 
-Todas exigem `Authorization: Bearer <token>` (vem do `/api/auth/login`). Erros voltam como `{ "erro": "mensagem" }`.
+Para o site enviar o e-mail de verdade, preencha os dados do seu servidor SMTP em `backend/src/config/email.js`. Sem isso, o link de redefinição (válido por 1 hora) aparece no terminal onde o servidor está rodando.
 
-| Método | Rota | Quem | O que faz |
-|---|---|---|---|
-| GET | `/api/salas/codigo` | professor | sugere um código livre para a tela "Criar sala" |
-| POST | `/api/salas` | professor | cria sala `{ nome, descricao?, nivel?, imagem?, codigo_acesso? }` |
-| POST | `/api/salas/entrar` | aluno | entra com `{ codigo_acesso }` |
-| GET | `/api/atividades?sala=` | ambos | lista atividades (aluno: com status da entrega; professor: com totais) |
-| GET | `/api/salas/:idSala/atividades` | ambos | atividades de uma sala |
-| POST | `/api/salas/:idSala/atividades` | professor | cria (multipart): `titulo`, `instrucoes`/`descricao`, `entrega`/`prazo`, `arquivo?`, `visibilidade` + `data` + `hora` |
-| GET | `/api/atividades/:id` | ambos | detalhes (aluno recebe `minha_entrega`) |
-| PUT | `/api/atividades/:id` | professor | edita (mesmos campos, todos opcionais; `remover_arquivo=true`) |
-| DELETE | `/api/atividades/:id` | professor | exclui com as entregas |
-| GET | `/api/atividades/:id/arquivo` | ambos | anexo do professor (`?baixar=0` abre no navegador) |
-| POST | `/api/atividades/:id/entregas` | aluno | entrega (multipart): `arquivo?`, `observacao?`, `acao=rascunho\|enviar` |
-| DELETE | `/api/atividades/:id/entregas` | aluno | desfaz a própria entrega (antes do prazo e da avaliação) |
-| GET | `/api/atividades/:id/entregas` | ambos | professor: todos os alunos; aluno: a própria entrega |
-| PUT | `/api/atividades/:id/entregas/:idAluno/avaliacao` | professor | `{ nota (0–10, aceita vírgula), feedback? }` |
-| GET | `/api/atividades/:id/entregas/:idAluno/arquivo` | professor / o próprio aluno | arquivo da entrega |
-| GET | `/api/materiais?busca=&tipo=&ordem=&sala=&pagina=&limite=` | ambos | lista paginada (`ordem`: recentes, antigos, az) |
-| GET | `/api/salas/:idSala/materiais` | ambos | materiais de uma sala (destaques primeiro) |
-| POST | `/api/salas/:idSala/materiais` | professor | cria (multipart): `titulo`, `descricao?`, `categoria?`, `tipo`, `arquivo` **ou** `link`, `visibilidade`/`data`/`hora`, `download`, `destaque` |
-| GET / PUT / DELETE | `/api/materiais/:id` | GET ambos; PUT/DELETE professor | ver, editar ou excluir |
-| GET | `/api/materiais/:id/arquivo` | ambos | baixa o arquivo (link → redireciona) |
+## Casos de uso e onde estão
+
+| Caso de uso | Tela | Rota do servidor |
+|---|---|---|
+| UC001 Criar conta / UC002 Efetuar login | cadastro, login, esqueci, redefinir | `routes/usuarios.js` |
+| UC003 Realizar missões | aluno/missoes, aluno/missao | `routes/missoes.js` |
+| UC004 Comprar na loja / UC005 Acessar inventário | aluno/loja, aluno/inventario | `routes/loja.js` |
+| UC006 Programar em Linguagem C | aluno/compilador | `routes/compilador.js` |
+| UC007 Criar sala / UC008 Acessar sala | professor/criar-sala, aluno/salas | `routes/salas.js` |
+| UC009 Adicionar material / UC010 Acessar material | professor/material-novo, aluno/materiais | `routes/materiais.js` |
+| UC011 Adicionar atividade / UC012 Acessar atividade | professor/atividade-nova, aluno/atividade | `routes/atividades.js` |
+
+## Observações
+
+- O login fica guardado na memória do servidor. Se o servidor for reiniciado, é preciso entrar de novo.
+- Os arquivos enviados ficam em `backend/uploads` (os arquivos `exemplo-*` são dos materiais de exemplo; não apague).
+- O código dos alunos é executado no próprio computador do servidor. Use só para testes e estudo.

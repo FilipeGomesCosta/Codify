@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Compilador</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/compilador.css">
+</head>
+<body>
+  <div id="topo"></div>
+  <div class="corpo">
+    <div id="menu"></div>
+    <main>
+      <div class="cabecalho">
+        <div>
+          <h1>Programar em <span>Linguagem C</span></h1>
+          <p class="subtitulo">Escreva, compile e execute seu código em C diretamente na plataforma.</p>
+        </div>
+        <div class="acoes">
+          <a href="materiais.html" class="botao cinza"><i data-icone="livro" data-tam="20"></i> Ver materiais de apoio</a>
+          <select id="dificuldade">
+            <option value="iniciante">Dificuldade: Iniciante</option>
+            <option value="intermediario">Dificuldade: Intermediário</option>
+            <option value="avancado">Dificuldade: Avançado</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="duas-colunas">
+        <div>
+          <div class="abas-editor">
+            <div class="aba"><i data-icone="janela" data-tam="20"></i> main.c <span>+</span></div>
+            <div class="ferramentas">
+              <button id="tema" title="Tema do editor"><i data-icone="sol" data-tam="20"></i></button>
+              <button id="copiar" title="Copiar código"><i data-icone="copiar" data-tam="20"></i></button>
+              <button id="tela" title="Tela cheia"><i data-icone="tela" data-tam="20"></i></button>
+            </div>
+          </div>
+          <textarea id="editor" spellcheck="false">#include &lt;stdio.h&gt;
+
+int main() {
+
+    return 0;
+}</textarea>
+          <div class="barra-acoes">
+            <button id="compilar"><i data-icone="play" data-tam="18"></i> Executar código</button>
+            <button id="limpar" class="cinza"><i data-icone="lixeira" data-tam="18"></i> Limpar saída</button>
+            <button id="salvar" class="cinza"><i data-icone="salvar" data-tam="18"></i> Salvar código</button>
+            <input type="text" id="entrada" class="entrada-mini" placeholder="Entrada do programa">
+            <span class="status" id="status"></span>
+          </div>
+          <div class="saida"><small>Saída</small><div id="saida"></div></div>
+
+          <h2>Códigos salvos</h2>
+          <div class="cartao" id="salvos"></div>
+        </div>
+
+        <div class="painel-lateral">
+          <div class="desafio">
+            <div class="topo-desafio">
+              <h3>Desafio Atual</h3>
+              <span class="xp-selo"><i data-icone="xp" data-tam="24"></i> <span id="recompensa"></span></span>
+            </div>
+            <div class="corpo-desafio">
+              <p><b id="nomeMissao"></b></p>
+              <p id="descricao"></p>
+              <p class="rotulo-entrada">ENTRADA</p>
+              <p id="descEntrada"></p>
+              <p class="rotulo-saida">SAÍDA</p>
+              <p id="descSaida"></p>
+              <div class="dica-caixa"><b><i data-icone="lampada" data-tam="22"></i> Dica</b>Use scanf() para ler o valor e printf() para exibir o resultado.</div>
+            </div>
+            <div class="exemplos">
+              <h4>Exemplos</h4>
+              <div id="exemplos"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icones.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topo.js"></script>
+  <script src="../assets/js/aluno-compilador.js"></script>
+</body>
+</html>

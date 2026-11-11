@@ -1,0 +1,311 @@
+body {
+  background: linear-gradient(180deg, #0d1a3a 0%, #13264f 55%, #1b3162 100%);
+}
+
+.site-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 20px;
+  border-bottom: 2px solid #1a2d63;
+}
+
+.site-topo img {
+  height: 48px;
+  display: block;
+}
+
+.site-topo nav a {
+  color: #e8eefc;
+  text-decoration: none;
+  margin: 0 16px;
+}
+
+.site-topo .botao {
+  border-radius: 30px;
+  padding: 14px 40px;
+}
+
+.secao {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.heroi {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.heroi > div {
+  flex: 1;
+}
+
+.heroi h1 {
+  font-size: 54px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.heroi h1 span {
+  color: #3fd9d0;
+}
+
+.tag {
+  display: inline-block;
+  margin: 10px 0 14px 0;
+  padding: 5px 22px;
+  border-radius: 30px;
+  background-color: #3fc7f0;
+  color: #06304a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.heroi p {
+  color: #aebbdc;
+  max-width: 520px;
+}
+
+.heroi .botao {
+  border-radius: 30px;
+  padding: 14px 34px;
+  margin: 12px 10px 0 0;
+}
+
+.janela {
+  background-color: #0b0f1a;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px #00000088;
+}
+
+.janela * {
+  font-family: Consolas, monospace;
+  font-size: 14px;
+}
+
+.barra-janela {
+  background-color: #141a29;
+  padding: 12px 18px;
+  color: #c9d3ee;
+}
+
+.ponto {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.janela pre {
+  margin: 0;
+  padding: 18px;
+  line-height: 1.7;
+  color: #e6ebf7;
+}
+
+.terminal {
+  border-top: 1px solid #1e2638;
+  background-color: #0a0d16;
+}
+
+.roxo {
+  color: #c792ea;
+}
+
+.azul {
+  color: #6fb7ff;
+}
+
+.laranja {
+  color: #ffb86c;
+}
+
+.titulo-secao {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.titulo-secao h1 {
+  font-size: 36px;
+}
+
+.titulo-secao h1 span {
+  color: #3fd9d0;
+}
+
+.grade4 {
+  display: flex;
+  gap: 22px;
+}
+
+.grade4 > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.vantagem {
+  background-color: #06122e;
+  border: 1px solid #12285a;
+  border-radius: 14px;
+  padding: 30px 22px;
+  text-align: center;
+}
+
+.vantagem .ic {
+  color: #2f7bff;
+  margin-bottom: 14px;
+}
+
+.vantagem h3 {
+  font-size: 17px;
+}
+
+.vantagem p {
+  color: #8d9bbd;
+  font-size: 14px;
+}
+
+.passo {
+  text-align: center;
+}
+
+.passo .numero {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px auto;
+  border: 2px solid #1d3a80;
+  border-radius: 50%;
+  background-color: #08194a;
+  color: #4a8dff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passo .numero b {
+  position: absolute;
+  top: -4px;
+  left: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #1565ff;
+  color: white;
+  font-size: 12px;
+  line-height: 28px;
+}
+
+.passo p {
+  color: #8d9bbd;
+  font-size: 14px;
+}
+
+.chamada {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background-color: #07122c;
+  border: 1px solid #12285a;
+  border-radius: 24px;
+  padding: 45px;
+}
+
+.chamada > div:first-child {
+  flex: 1;
+}
+
+.chamada h1 {
+  font-size: 32px;
+}
+
+.chamada h1 span {
+  color: #3fd9d0;
+}
+
+.chamada .grade4 {
+  flex: 2;
+}
+
+.chamada .vantagem {
+  background-color: #0a1736;
+}
+
+.rodape {
+  text-align: center;
+  padding: 30px;
+  font-size: 13px;
+  color: #8d9bbd;
+}
+
+.rodape a {
+  color: #8d9bbd;
+}
+
+@media (max-width: 900px) {
+  .heroi, .chamada, .grade4 {
+    flex-direction: column;
+  }
+}
+
+.heroi .botao.contorno {
+  background: none;
+  border: 1px solid #c9d3ee;
+  border-radius: 4px;
+}
+
+.aba-janela {
+  margin-left: 10px;
+  padding: 6px 14px;
+  background-color: #0b0f1a;
+  font-size: 12px;
+}
+
+.codigo-janela {
+  display: flex;
+}
+
+.numeros-janela {
+  color: #5b6684;
+  text-align: right;
+  padding-right: 4px !important;
+}
+
+.aba-terminal {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px;
+  font-size: 12px;
+  color: #c9d3ee;
+}
+
+.aba-terminal .ferr {
+  display: flex;
+  gap: 14px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background-color: #c9d3ee;
+  vertical-align: middle;
+}
+
+.ic-azul { color: #2f7bff; }
+.ic-amarelo { color: #f5c518; }
+.ic-roxo { color: #7a3fe0; }
+.ic-verde { color: #1fa36a; }
+
+.passo:nth-child(4) .numero { color: #e0a820; }
+.chamada .vantagem:nth-child(1) .ic { color: #1565ff; }
+.chamada .vantagem:nth-child(2) .ic { color: #2f7bff; }
+.chamada .vantagem:nth-child(3) .ic { color: #e0a820; }
+.chamada .vantagem:nth-child(4) .ic { color: #1fa36a; }
+.chamada .vantagem h3 { color: #3fd9d0; font-size: 22px; }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Esqueci a senha</title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+  <div class="auth">
+    <div class="lado">
+      <a href="index.html"><img src="assets/img/logo.png" alt="Codify"></a>
+      <h1>Esqueceu sua <span>senha?</span></h1>
+      <p>Informe o e-mail cadastrado e enviaremos um link para você criar uma nova senha.</p>
+    </div>
+    <div class="linha-azul"></div>
+    <div class="direita">
+      <div class="cartao-auth">
+        <div class="circulo"><i data-icone="cadeado" data-tam="34"></i></div>
+        <h1>Redefinir senha</h1>
+        <p>Digite o e-mail da sua conta.</p>
+
+        <form id="formulario">
+          <label for="email">E-mail cadastrado</label>
+          <div class="campo">
+            <i data-icone="email" data-tam="20"></i>
+            <input type="email" id="email" placeholder="seu@email.com">
+          </div>
+          <p id="mensagem" class="erro"></p>
+          <button type="submit">Enviar</button>
+        </form>
+
+        <p class="centro"><a href="login.html">Voltar para o login</a></p>
+      </div>
+      <div class="rodape-auth">
+        <span>© 2026 Codify. Todos os direitos reservados.</span>
+        <span><a href="termos.html">Termos de Uso</a> &nbsp; <a href="termos.html">Política de Privacidade</a></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/icones.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/esqueci.js"></script>
+</body>
+</html>

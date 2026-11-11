@@ -1,123 +1,153 @@
-// Aluno – Salas de Aula: lista as salas, busca, entra com código e sai da sala
-(async function () {
-  var fmt = Codify.fmt;
-  await Codify.iniciar('aluno');
+const lista = document.querySelector('#lista');
+const janela = document.querySelector('#janelaEntrar');
 
-  var lista = document.getElementById('minhas-salas');
-  var busca = document.querySelector('.salas__search input');
-  var modal = document.getElementById('entrar-sala');
-  var formCodigo = modal.querySelector('form');
+const nomesNivel = { iniciante: 'Iniciante', intermediario: 'Médio', avancado: 'Avançado' };
+let salas = [];
 
-  // Arte do cartão conforme a imagem escolhida pelo professor
-  function thumb(imagem) {
-    var emojis = { computador: '💻', inovacao: '💡', robotica: '🤖' };
-    if (emojis[imagem]) {
-      return '<div class="room__thumb room__thumb--braces room__thumb--emoji" aria-hidden="true"><span class="room__glyph">' + emojis[imagem] + '</span></div>';
+function ultimaAtividade(data) {
+  if (!data) {
+    return 'Nenhuma ainda';
+  }
+  const dias = Math.floor((new Date() - new Date(data)) / 86400000);
+  if (dias <= 0) return 'Hoje';
+  if (dias == 1) return 'Ontem';
+  return 'Há ' + dias + ' dias';
+}
+
+function mostrarSalas() {
+  const busca = document.querySelector('#busca').value.toLowerCase();
+  lista.innerHTML = '';
+
+  for (const sala of salas) {
+    if (!sala.nome.toLowerCase().includes(busca)) {
+      continue;
     }
-    if (imagem === 'programacao') {
-      return '<div class="room__thumb room__thumb--braces" aria-hidden="true"><span class="room__glyph">{ }</span></div>';
-    }
-    return '<div class="room__thumb room__thumb--window" aria-hidden="true"><span class="room__dots"><i></i><i></i><i></i></span><span class="room__glyph">&lt;/&gt;</span></div>';
-  }
 
-  function cartao(s) {
-    var ultima = s.ultima_atividade ? fmt.dataRelativa(s.ultima_atividade) : 'nenhuma';
-    return '<li class="room" data-id="' + s.id_sala + '">'
-      + thumb(s.imagem)
-      + '<div class="room__info">'
-      + '<h2>' + fmt.esc(s.nome) + '</h2>'
-      + '<p class="room__prof">Prof. ' + fmt.esc(s.professor) + '</p>'
-      + '<p class="room__level">Nível: ' + (fmt.NIVEIS[s.nivel] || 'Iniciante') + '</p>'
-      + '<p class="room__meta">'
-      + '<span><svg aria-hidden="true"><use href="#i-users"/></svg>' + s.total_alunos + (s.total_alunos === 1 ? ' aluno' : ' alunos') + '</span>'
-      + '<span><svg aria-hidden="true"><use href="#i-calendar"/></svg>Última atividade: ' + ultima + '</span>'
-      + '</p></div>'
-      + '<a class="btn btn--primary room__btn" href="atividades.html?sala=' + s.id_sala + '">Entrar</a>'
-      + '<button class="room__menu" type="button" aria-haspopup="true" aria-label="Mais opções da sala ' + fmt.esc(s.nome) + '"><svg aria-hidden="true"><use href="#i-dots-v"/></svg></button>'
-      + '</li>';
-  }
-
-  async function carregar() {
-    lista.innerHTML = '<li class="carregando">Carregando salas…</li>';
-    try {
-      var termo = busca.value.trim();
-      var salas = await Codify.api('/salas' + (termo ? '?busca=' + encodeURIComponent(termo) : ''));
-      lista.innerHTML = salas.length
-        ? salas.map(cartao).join('')
-        : '<li class="vazio"><strong>' + (termo ? 'Nenhuma sala encontrada.' : 'Você ainda não participa de nenhuma sala.')
-          + '</strong>Peça o código ao seu professor e clique em “Entrar em Sala”.</li>';
-    } catch (e) {
-      lista.innerHTML = '<li class="vazio">' + fmt.esc(e.message) + '</li>';
-    }
-  }
-
-  // Busca com pequena espera enquanto digita
-  var espera;
-  busca.addEventListener('input', function () {
-    clearTimeout(espera);
-    espera = setTimeout(carregar, 300);
-  });
-
-  // Menu "⋮" de cada sala
-  function fecharMenus() {
-    document.querySelectorAll('.room-pop').forEach(function (m) { m.remove(); });
-  }
-  document.addEventListener('click', fecharMenus);
-  lista.addEventListener('click', function (e) {
-    var botao = e.target.closest('.room__menu');
-    if (!botao) return;
-    e.stopPropagation();
-    fecharMenus();
-    var sala = botao.closest('.room');
-    var nome = sala.querySelector('h2').textContent;
-    var menu = document.createElement('div');
-    menu.className = 'room-pop';
-    menu.innerHTML = '<button type="button" data-acao="atividades">Ver atividades</button>'
-      + '<button type="button" data-acao="materiais">Material de apoio</button>'
-      + '<button type="button" data-acao="sair" class="perigo">Sair da sala</button>';
-    sala.appendChild(menu);
-    menu.addEventListener('click', async function (ev) {
-      var acao = ev.target.dataset.acao;
-      var id = sala.dataset.id;
-      if (acao === 'atividades') location.href = 'atividades.html?sala=' + id;
-      if (acao === 'materiais') location.href = 'materiais.html?sala=' + id;
-      if (acao === 'sair' && confirm('Sair da sala "' + nome + '"? Você poderá voltar com o código.')) {
-        try {
-          await Codify.api('/salas/' + id + '/sair', { method: 'DELETE' });
-          Codify.aviso('Você saiu da sala ' + nome + '.');
-          carregar();
-        } catch (erro) { Codify.aviso(erro.message, 'erro'); }
-      }
+    const linha = document.createElement('div');
+    linha.className = 'sala-linha';
+    linha.innerHTML =
+      '<div class="imagem">' + imagemSala(sala) + '</div>' +
+      '<div class="dados"><h3>' + limpar(sala.nome) + '</h3>' +
+      '<p class="professor">Prof. ' + limpar(sala.professor) + '</p>' +
+      '<p class="nivel">Nível: ' + nomesNivel[sala.nivel] + '</p>' +
+      '<div class="meta"><span>' + icone('grupo', 18) + sala.total_alunos + (sala.total_alunos == 1 ? ' aluno' : ' alunos') + '</span>' +
+      '<span>' + icone('calendario', 18) + 'Última atividade: ' + ultimaAtividade(sala.ultima_atividade) + '</span></div>' +
+      '<button class="pontos" title="Opções">' + icone('pontos', 20) + '</button></div>';
+    linha.querySelector('.pontos').addEventListener('click', function () {
+      opcoesSala(sala);
     });
-  });
 
-  // Modal "Acessar Sala de Aula"
-  formCodigo.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    var campo = formCodigo.querySelector('#codigo');
-    try {
-      await Codify.carregando(formCodigo.querySelector('button'), async function () {
-        var sala = await Codify.api('/salas/entrar', { method: 'POST', body: { codigo_acesso: campo.value } });
-        Codify.aviso('Bem-vindo(a) à sala ' + sala.nome + '!');
-        campo.value = '';
-        location.hash = ''; // fecha o modal (ele abre com #entrar-sala)
-        carregar();
-      });
-    } catch (erro) {
-      Codify.aviso(erro.message, 'erro');
+    if (sala.situacao == 'pendente') {
+      linha.innerHTML += '<span class="aguardando">Aguardando aprovação</span>';
+    } else {
+      linha.innerHTML += '<a class="botao entrar" href="sala.html?id=' + sala.id_sala + '">Entrar</a>';
     }
-  });
+    lista.appendChild(linha);
+  }
 
-  // Ações rápidas: mostra quantas atividades estão pendentes
-  try {
-    var pendentes = await Codify.api('/atividades/pendentes');
-    var item = document.querySelector('.quick__list a[href="atividades.html"] small');
-    if (item) {
-      item.textContent = pendentes.length
-        ? pendentes.length + (pendentes.length === 1 ? ' atividade pendente' : ' atividades pendentes')
-        : 'Nenhuma atividade pendente';
-    }
-  } catch (e) { /* não impede a tela */ }
+  if (lista.innerHTML == '') {
+    lista.innerHTML = '<p class="cinza-texto">Você ainda não participa de nenhuma sala. Use o código do professor para entrar.</p>';
+  }
+}
 
+async function carregar() {
+  const resposta = await api('/salas');
+  if (!resposta.ok) {
+    lista.textContent = resposta.dados.erro;
+    return;
+  }
+  salas = resposta.dados;
+  mostrarSalas();
+}
+
+async function mostrarPendentes() {
+  const resposta = await api('/atividades/pendentes');
+  if (!resposta.ok) {
+    alert(resposta.dados.erro);
+    return;
+  }
+
+  let corpo = '<div class="lista-pendentes">';
+  for (const a of resposta.dados) {
+    corpo += '<p><span>' + limpar(a.titulo) + '<br><small class="cinza-texto">' + limpar(a.sala) + ' - prazo ' + formatarData(a.prazo) +
+      '</small></span><a href="atividade.html?id=' + a.id_atividade + '">Abrir</a></p>';
+  }
+  if (resposta.dados.length == 0) {
+    corpo += '<p>Você não tem atividades pendentes.</p>';
+  }
+  abrirDialogo('Atividades pendentes', corpo + '</div>', [{ texto: 'Fechar', classe: 'cinza' }]);
+}
+
+function opcoesSala(sala) {
+  abrirDialogo('Opções da sala', '<p class="centro">' + limpar(sala.nome) + '</p>', [
+    { texto: 'Sair da sala', classe: 'vermelho', acao: function () { sairDaSala(sala); } },
+    { texto: 'Fechar', classe: 'cinza' }
+  ]);
+}
+
+async function sairDaSala(sala) {
+  if (!confirm('Deseja realmente sair da sala "' + sala.nome + '"?')) {
+    return;
+  }
+  const resposta = await api('/salas/' + sala.id_sala + '/sair', 'POST');
+  alert(resposta.ok ? resposta.dados.mensagem : resposta.dados.erro);
   carregar();
-})();
+}
+
+async function mostrarAgenda() {
+  const resposta = await api('/agenda');
+  if (!resposta.ok) {
+    alert(resposta.dados.erro);
+    return;
+  }
+
+  let corpo = '<div class="lista-pendentes">';
+  for (const a of resposta.dados) {
+    corpo += '<p><span><b>' + formatarData(a.prazo) + '</b><br>' + limpar(a.titulo) + '<br><small class="cinza-texto">' + limpar(a.sala) +
+      ' - ' + (a.status == 'pendente' ? 'pendente' : 'entregue') + '</small></span><a href="atividade.html?id=' + a.id_atividade + '">Abrir</a></p>';
+  }
+  if (resposta.dados.length == 0) {
+    corpo += '<p>Nenhum prazo de entrega próximo.</p>';
+  }
+  abrirDialogo('Calendário de aulas', corpo + '</div>', [{ texto: 'Fechar', classe: 'cinza' }]);
+}
+
+function abrirEntrar() {
+  janela.showModal();
+}
+
+document.querySelector('#abrirEntrar').addEventListener('click', abrirEntrar);
+document.querySelector('#acaoCodigo').addEventListener('click', abrirEntrar);
+document.querySelector('#acaoCalendario').addEventListener('click', mostrarAgenda);
+document.querySelector('#acaoPendentes').addEventListener('click', mostrarPendentes);
+document.querySelector('#fecharEntrar').addEventListener('click', function () {
+  janela.close();
+});
+document.querySelector('#busca').addEventListener('input', mostrarSalas);
+
+document.querySelector('#formulario').addEventListener('submit', async function (evento) {
+  evento.preventDefault();
+
+  const codigo = document.querySelector('#codigo').value.trim();
+  if (codigo == '') {
+    alert('Digite o código da sala.');
+    return;
+  }
+
+  const resposta = await api('/salas/entrar', 'POST', { codigo: codigo });
+  if (!resposta.ok) {
+    alert(resposta.dados.erro);
+    return;
+  }
+
+  alert(resposta.dados.mensagem);
+  janela.close();
+  if (resposta.dados.id_sala) {
+    window.location.href = 'sala.html?id=' + resposta.dados.id_sala;
+  } else {
+    carregar();
+  }
+});
+
+iniciarPagina('aluno');
+carregar();

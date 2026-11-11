@@ -1,0 +1,60 @@
+.tipos-material {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tipos-material label {
+  position: relative;
+  margin: 0;
+  padding: 16px 6px 12px 6px;
+  text-align: center;
+  background-color: #07152b;
+  border: 1px solid #12294d;
+  cursor: pointer;
+  font-size: 11px;
+  color: #8d9bbd;
+}
+
+.tipos-material label .ic {
+  color: #c9d3ee;
+}
+
+.tipos-material label b {
+  display: block;
+  margin: 6px 0 2px 0;
+  color: #e8eefc;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tipos-material label small {
+  display: block;
+  font-size: 11px;
+}
+
+.tipos-material input {
+  display: none;
+}
+
+.tipos-material label:has(input:checked) {
+  border: 2px solid #1e7bff;
+  background-color: #0a1d3d;
+}
+
+.tipos-material label:has(input:checked)::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1e7bff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-10'/%3E%3C/svg%3E") center / 12px no-repeat;
+}
+
+@media (max-width: 900px) {
+  .tipos-material {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

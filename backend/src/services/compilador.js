@@ -1,74 +1,50 @@
-// Compila e executa código C com o gcc do servidor.
-//
-// ATENÇÃO – SEGURANÇA: executar código de alunos no próprio servidor é
-// perigoso (o programa pode ler arquivos, travar a máquina etc.). Por isso
-// este recurso vem DESLIGADO (EXECUTAR_CODIGO=false no .env). Ligue só
-// para testes locais. Em produção, use um ambiente isolado (container
-// Docker sem rede ou um serviço como o Judge0).
-const { execFile } = require('node:child_process');
-const fs = require('node:fs/promises');
-const os = require('node:os');
-const path = require('node:path');
-const HttpError = require('../utils/HttpError');
+const { execFile } = require('child_process');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
-const TEMPO_COMPILACAO = 10000; // ms
-const TEMPO_EXECUCAO = 3000; // ms
-const SAIDA_MAXIMA = 64 * 1024; // 64 KB
-
-function rodar(comando, args, { cwd, timeout, entrada = '' }) {
+function rodar(comando, argumentos, pasta, entrada) {
   return new Promise((resolve) => {
-    const processo = execFile(
-      comando,
-      args,
-      { cwd, timeout, maxBuffer: SAIDA_MAXIMA, killSignal: 'SIGKILL' },
-      (erro, stdout, stderr) => {
-        resolve({
-          ok: !erro,
-          erroSistema: erro?.code === 'ENOENT',
-          tempoEsgotado: Boolean(erro?.killed),
-          codigoSaida: erro ? (typeof erro.code === 'number' ? erro.code : 1) : 0,
-          stdout,
-          stderr,
-        });
-      },
-    );
-    processo.stdin.on('error', () => {}); // programa pode fechar a entrada antes
+    const processo = execFile(comando, argumentos, { cwd: pasta, timeout: 5000 }, (erro, saida, erros) => {
+      resolve({ erro: erro, saida: saida, erros: erros });
+    });
+    processo.stdin.on('error', () => {});
     processo.stdin.end(entrada);
   });
 }
 
-async function compilarEExecutar(codigoFonte, entrada) {
-  if (process.env.EXECUTAR_CODIGO !== 'true') {
-    throw new HttpError(503, 'A execução de código está desativada no servidor.');
-  }
+async function compilarEExecutar(codigo, entrada) {
+  const pasta = fs.mkdtempSync(path.join(os.tmpdir(), 'codify-'));
+  fs.writeFileSync(path.join(pasta, 'main.c'), codigo);
 
-  const pasta = await fs.mkdtemp(path.join(os.tmpdir(), 'codify-'));
   try {
-    await fs.writeFile(path.join(pasta, 'main.c'), codigoFonte);
-
-    const compilacao = await rodar('gcc', ['main.c', '-o', 'main', '-std=c11', '-Wall', '-lm'], {
-      cwd: pasta,
-      timeout: TEMPO_COMPILACAO,
-    });
-    if (compilacao.erroSistema) throw new HttpError(500, 'O compilador gcc não está instalado no servidor.');
-    if (!compilacao.ok) {
-      return { status: 'erro', etapa: 'compilacao', saida: '', erros: compilacao.stderr };
+    const programa = process.platform == 'win32' ? 'main.exe' : 'main';
+    const compilacao = await rodar('gcc', ['main.c', '-o', programa], pasta, '');
+    if (compilacao.erro && compilacao.erro.code == 'ENOENT') {
+      return { falhaServico: true, semGcc: true };
+    }
+    if (compilacao.erro) {
+      const erros = compilacao.erros.replace(/main\.c:(\d+):\d+: /g, 'Linha $1: ');
+      return { compilou: false, saida: '', erros: erros };
     }
 
-    const execucao = await rodar('./main', [], { cwd: pasta, timeout: TEMPO_EXECUCAO, entrada });
-    return {
-      status: 'compilado',
-      etapa: 'execucao',
-      saida: execucao.stdout,
-      erros: execucao.tempoEsgotado
-        ? `Tempo limite de execução excedido (${TEMPO_EXECUCAO / 1000}s).`
-        : execucao.stderr,
-      avisos: compilacao.stderr, // warnings do gcc (-Wall)
-      codigo_saida: execucao.codigoSaida,
-    };
+    const execucao = await rodar(path.join(pasta, programa), [], pasta, entrada || '');
+    let erros = execucao.erros;
+    if (execucao.erro && execucao.erro.killed) {
+      erros = 'O programa demorou demais e foi interrompido.';
+    }
+    return { compilou: true, saida: execucao.saida, erros: erros };
   } finally {
-    await fs.rm(pasta, { recursive: true, force: true });
+    fs.rmSync(pasta, { recursive: true, force: true });
   }
 }
 
-module.exports = { compilarEExecutar };
+function mensagemDeFalha(resultado) {
+  if (resultado.semGcc) {
+    return 'O compilador gcc não foi encontrado no computador do servidor. Instale o gcc, reinicie o servidor e tente novamente. Seu código foi mantido.';
+  }
+  return 'Não foi possível realizar a compilação. Seu código foi mantido, tente novamente.';
+}
+
+module.exports = compilarEExecutar;
+module.exports.mensagemDeFalha = mensagemDeFalha;

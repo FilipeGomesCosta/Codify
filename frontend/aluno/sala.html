@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Sala</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/sala.css">
+</head>
+<body>
+  <div id="topo"></div>
+  <div class="corpo">
+    <div id="menu"></div>
+    <main>
+      <div class="topo-pagina">
+        <div class="imagem" id="imagem"></div>
+        <div>
+          <h1 id="nome"></h1>
+          <p class="subtitulo" id="info" style="margin: 0"></p>
+        </div>
+      </div>
+
+      <h2>Atividades</h2>
+      <div class="cartao tabela-cartao">
+        <table>
+          <thead>
+            <tr><th>Atividade</th><th>Prazo</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="atividades"></tbody>
+        </table>
+      </div>
+
+      <h2>Materiais de apoio</h2>
+      <div class="cartao tabela-cartao">
+        <table>
+          <thead>
+            <tr><th>Título</th><th>Tipo</th><th></th></tr>
+          </thead>
+          <tbody id="materiais"></tbody>
+        </table>
+      </div>
+
+      <p><a href="salas.html">Voltar para Minhas Salas</a></p>
+    </main>
+  </div>
+
+  <script src="../assets/js/icones.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topo.js"></script>
+  <script src="../assets/js/aluno-sala.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+.barra-texto {
+  display: flex;
+  gap: 6px;
+  padding: 6px 10px;
+  background-color: #07152b;
+  border: 1px solid #12294d;
+  border-bottom: none;
+}
+
+.barra-texto button {
+  min-width: 30px;
+  padding: 4px 8px;
+  background: none;
+  border: none;
+  color: #9aa8c7;
+  font-size: 14px;
+  justify-content: center;
+}
+
+.barra-texto button:hover {
+  background-color: #0b1f3d;
+  color: white;
+}
+
+.area-instrucoes {
+  height: 150px;
+  border-radius: 0;
+  font-family: Consolas, monospace;
+}
+
+.previa {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 14px;
+  background-color: #0a1d3d;
+  border: 1px solid #12294d;
+}
+
+.previa b {
+  display: block;
+  color: #e8eefc;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.previa small {
+  display: block;
+  margin-top: 4px;
+  color: #8d9bbd;
+}
+
+.obrigatorios {
+  line-height: 1.9;
+  color: #e8eefc !important;
+}

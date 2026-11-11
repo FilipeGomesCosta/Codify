@@ -1,38 +1,34 @@
-// Autenticação por token JWT e controle de acesso por tipo de usuário
-const jwt = require('jsonwebtoken');
-const HttpError = require('../utils/HttpError');
+const crypto = require('crypto');
 
-/** Exige o cabeçalho "Authorization: Bearer <token>". Preenche req.usuario. */
-function autenticar(req, res, next) {
-  const [esquema, token] = (req.headers.authorization || '').split(' ');
-  if (esquema !== 'Bearer' || !token) {
-    throw new HttpError(401, 'Faça login para continuar.');
+const sessoes = {};
+
+function criarSessao(usuario) {
+  const token = crypto.randomUUID();
+  sessoes[token] = usuario;
+  return token;
+}
+
+function logado(req, res, next) {
+  const usuario = sessoes[req.headers.token];
+  if (!usuario) {
+    return res.status(401).json({ erro: 'Faça login para continuar.' });
   }
-  try {
-    const dados = jwt.verify(token, process.env.JWT_SECRET);
-    req.usuario = { id: dados.id, tipo: dados.tipo, nome: dados.nome };
-  } catch {
-    throw new HttpError(401, 'Sessão inválida ou expirada. Faça login novamente.');
+  req.usuario = usuario;
+  next();
+}
+
+function soAluno(req, res, next) {
+  if (req.usuario.tipo != 'aluno') {
+    return res.status(403).json({ erro: 'Essa função é só para alunos.' });
   }
   next();
 }
 
-/** Libera a rota só para os tipos informados. Ex.: permitir('professor') */
-function permitir(...tipos) {
-  return (req, res, next) => {
-    if (!tipos.includes(req.usuario?.tipo)) {
-      throw new HttpError(403, 'Você não tem permissão para acessar este recurso.');
-    }
-    next();
-  };
+function soProfessor(req, res, next) {
+  if (req.usuario.tipo != 'professor') {
+    return res.status(403).json({ erro: 'Essa função é só para professores.' });
+  }
+  next();
 }
 
-function gerarToken(usuario) {
-  return jwt.sign(
-    { id: usuario.id_usuario, tipo: usuario.tipo, nome: usuario.nome },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRES_IN || '8h' },
-  );
-}
-
-module.exports = { autenticar, permitir, gerarToken };
+module.exports = { criarSessao, logado, soAluno, soProfessor };

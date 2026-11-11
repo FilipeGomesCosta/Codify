@@ -1,272 +1,166 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Codify – Domine a Lógica de Programação</title>
-  <meta name="description" content="Aprenda linguagem C jogando: missões interativas, compilação em tempo real e gamificação.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - </title>
+  <link rel="stylesheet" href="assets/css/estilo.css">
+  <link rel="stylesheet" href="assets/css/inicio.css">
 </head>
 <body>
 
-  <!-- Ícones (sprite SVG) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="i-target" viewBox="0 0 64 64">
-        <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M52 32a20 20 0 1 1-20-20"/>
-          <path d="M42 32a10 10 0 1 1-10-10"/>
-          <path d="M32 32 54 10"/>
-          <path d="M44 6l2 10 10 2"/>
-        </g>
-        <circle cx="32" cy="32" r="3" fill="currentColor"/>
-      </symbol>
-      <symbol id="i-bolt" viewBox="0 0 64 64">
-        <path d="M38 4 16 36h14l-6 24 24-34H34z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-      </symbol>
-      <symbol id="i-trophy" viewBox="0 0 64 64">
-        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 6h24v18a12 12 0 0 1-24 0z"/>
-          <path d="M20 12H8c0 12 4 18 13 20M44 12h12c0 12-4 18-13 20"/>
-          <path d="M32 36v10M22 46h20v6H22zM16 52h32v6H16z"/>
-        </g>
-      </symbol>
-      <symbol id="i-code" viewBox="0 0 64 64">
-        <path d="M20 14 6 32l14 18M44 14l14 18-14 18M37 8 27 56" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      </symbol>
-      <symbol id="i-rocket" viewBox="0 0 64 64">
-        <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M44 6c8 0 14 6 14 14 0 12-12 24-24 28L16 30C20 18 32 6 44 6z"/>
-          <circle cx="40" cy="24" r="5"/>
-          <path d="M16 30 6 32l8 8M34 48l-2 10-8-8M22 42 10 54M14 50 6 58M26 54 20 60"/>
-        </g>
-      </symbol>
-      <symbol id="i-card" viewBox="0 0 64 64">
-        <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="10" width="56" height="44" rx="5"/>
-          <path d="M4 22h56"/>
-          <rect x="12" y="34" width="12" height="8" rx="2"/>
-          <path d="M38 44h14"/>
-        </g>
-      </symbol>
-      <symbol id="i-xp" viewBox="0 0 64 64">
-        <g fill="none" stroke="currentColor" stroke-width="3.5">
-          <circle cx="32" cy="32" r="28"/>
-          <circle cx="32" cy="32" r="23"/>
-        </g>
-        <text x="32" y="41" text-anchor="middle" font-family="Poppins, sans-serif" font-size="25" font-weight="400" fill="currentColor">XP</text>
-      </symbol>
-      <symbol id="i-users" viewBox="0 0 64 64">
-        <g fill="currentColor">
-          <circle cx="32" cy="16" r="9"/>
-          <circle cx="13" cy="24" r="7"/>
-          <circle cx="51" cy="24" r="7"/>
-          <path d="M16 54c0-12 7-20 16-20s16 8 16 20z"/>
-          <path d="M2 48c0-9 4-15 11-15 2 0 4 .5 6 1.5-4 4-6 9-6 13.5zM62 48c0-9-4-15-11-15-2 0-4 .5-6 1.5 4 4 6 9 6 13.5z"/>
-        </g>
-      </symbol>
-      <symbol id="i-bars" viewBox="0 0 64 64">
-        <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round">
-          <rect x="6" y="34" width="12" height="22"/>
-          <rect x="26" y="20" width="12" height="36"/>
-          <rect x="46" y="6" width="12" height="50"/>
-          <path d="M2 58h60" stroke-linecap="round"/>
-        </g>
-      </symbol>
-    </defs>
-  </svg>
+  <div class="site-topo">
+    <img src="assets/img/logo.png" alt="Codify">
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#vantagens">Trilha de Missões</a>
+      <a href="#como-funciona">Sala Virtual</a>
+      <a href="#chamada">Material de Apoio</a>
+    </nav>
+    <a href="login.html" class="botao">Entrar</a>
+  </div>
 
-  <!-- ============ CABEÇALHO ============ -->
-  <header class="header">
-    <div class="container header__inner">
-      <a class="logo" href="#inicio" aria-label="Codify – página inicial">
-        <img src="assets/img/logo.png" alt="Codify" width="269" height="56">
-      </a>
-
-      <nav class="nav" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
-        <a href="#trilha">Trilha de Missões</a>
-        <a href="#sala">Sala Virtual</a>
-        <a href="#material">Material de Apoio</a>
-      </nav>
-
-      <a class="btn btn--primary btn--sm" href="login.html">Entrar</a>
+  <div class="secao heroi" id="inicio">
+    <div>
+      <h1>Domine a Lógica de <span>Programação</span></h1>
+      <span class="tag">APRENDA LINGUAGEM C JOGANDO</span>
+      <p>Supere os obstáculos dos conceitos sintáticos e desenvolva o seu raciocínio lógico através de missões interativas, compilação em tempo real e gamificação focada em desafios práticos de engenharia de software.</p>
+      <a href="cadastro.html" class="botao">Cadastre-se!</a>
+      <a href="#como-funciona" class="botao contorno">Ver Demonstração</a>
     </div>
-  </header>
 
-  <main id="inicio">
-
-    <!-- ============ HERO ============ -->
-    <section class="hero container">
-      <div class="hero__text">
-        <h1 class="hero__title">
-          Domine a Lógica<br>
-          de <span class="accent">Programação</span>
-        </h1>
-
-        <span class="badge">APRENDA LINGUAGEM C JOGANDO</span>
-
-        <p class="hero__desc">
-          Supere os obstáculos dos conceitos sintáticos e desenvolva o seu
-          raciocínio lógico através de missões interativas, compilação em
-          tempo real e gamificação focada em desafios práticos de engenharia
-          de software.
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="cadastro.html">Cadastre-se!</a>
-          <a class="btn btn--outline" href="#como-funciona">Ver Demonstração</a>
+    <div>
+      <div class="janela">
+        <div class="barra-janela">
+          <span class="ponto" style="background-color: #ff5f56"></span>
+          <span class="ponto" style="background-color: #ffbd2e"></span>
+          <span class="ponto" style="background-color: #27c93f"></span>
+          <span class="aba-janela">missao_1introducao.c &nbsp;x</span>
         </div>
-      </div>
+        <div class="codigo-janela">
+<pre class="numeros-janela">1
+2
+3
+4
+5
+6
+7
+8
+9</pre>
+<pre><span class="roxo">#include</span> <span class="laranja">&lt;stdio.h&gt;</span>
 
-      <div class="editor" role="img" aria-label="Exemplo de código em C com saída no terminal">
-        <div class="editor__bar">
-          <span class="dot dot--red"></span>
-          <span class="dot dot--yellow"></span>
-          <span class="dot dot--green"></span>
-          <span class="editor__tab">missao_1introducao.c <span class="editor__close">✕</span></span>
+<span class="azul">int</span> main() {
+    <span class="azul">int</span> pontos = <span class="laranja">120</span>;
+    <span class="roxo">if</span> (pontos &gt; <span class="laranja">100</span>) {
+        printf(<span class="laranja">"Parabéns! Subiu de Nível! \n"</span>);
+    }
+    <span class="roxo">return</span> <span class="laranja">0</span>;
+}</pre>
         </div>
-
-        <pre class="editor__code"><code><span class="ln">1</span><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
-<span class="ln">2</span>
-<span class="ln">3</span><span class="kw">int</span> main() {
-<span class="ln">4</span>    <span class="kw">int</span> pontos = <span class="nu">120</span>;
-<span class="ln">5</span>    <span class="kw">if</span> (pontos &gt; <span class="nu">100</span>) {
-<span class="ln">6</span>        printf(<span class="st">”Parabéns! Subiu de Nível! \n”</span>);
-<span class="ln">7</span>    }
-<span class="ln">8</span>    <span class="kw">return</span> <span class="nu">0</span>;
-<span class="ln">9</span>}</code></pre>
-
         <div class="terminal">
-          <div class="terminal__bar">
-            <span class="terminal__tab">Terminal <span class="editor__close">✕</span></span>
-            <span class="terminal__tools" aria-hidden="true">
-              <span>+</span><span>⌄</span><span>◫</span><span>🗑</span>
-            </span>
-          </div>
-          <pre class="terminal__out"><code>&gt; Parabéns! Subiu de Nível!
-<span class="ok">&gt; Processo finalizado com sucesso (0)</span> <span class="cursor"></span></code></pre>
+          <div class="aba-terminal"><span>Terminal &nbsp;x</span><span class="ferr"><i data-icone="mais" data-tam="14"></i> <i data-icone="baixo" data-tam="14"></i> <i data-icone="tela" data-tam="14"></i> <i data-icone="lixeira" data-tam="14"></i></span></div>
+<pre>&gt; Parabéns! Subiu de Nível!
+<span style="color: #27c93f">&gt; Processo finalizado com sucesso (0)</span> <span class="cursor"></span></pre>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- ============ POR QUE CODIFY ============ -->
-    <section class="section container" id="trilha">
-      <h2 class="section__title">Por que aprender com o <span class="accent">Codify?</span></h2>
-      <p class="section__sub section__sub--muted">Uma plataforma feita para quem quer aprender de verdade.</p>
-
-      <div class="features">
-        <article class="card">
-          <svg class="card__icon c-blue" aria-hidden="true"><use href="#i-target"/></svg>
-          <h3>Missões Interativas</h3>
-          <p>Aprenda fazendo missões interativas que evoluem com o seu conhecimento.</p>
-        </article>
-
-        <article class="card">
-          <svg class="card__icon c-yellow" aria-hidden="true"><use href="#i-bolt"/></svg>
-          <h3>Compilação em Tempo Real</h3>
-          <p>Escreva, compile e veja os resultados do seu código na hora.</p>
-        </article>
-
-        <article class="card">
-          <svg class="card__icon c-purple" aria-hidden="true"><use href="#i-trophy"/></svg>
-          <h3>Gamificação</h3>
-          <p>Ganhe XP, suba de nível, conquiste recompensas e se torne um mestre da lógica.</p>
-        </article>
-
-        <article class="card">
-          <svg class="card__icon c-green" aria-hidden="true"><use href="#i-code"/></svg>
-          <h3>Conteúdo Prático</h3>
-          <p>Desafios reais de programação para preparar você para o mundo da tecnologia.</p>
-        </article>
+  <div class="secao" id="vantagens">
+    <div class="titulo-secao">
+      <h1>Por que aprender com o <span>Codify?</span></h1>
+      <p class="cinza-texto">Uma plataforma feita para quem quer aprender de verdade.</p>
+    </div>
+    <div class="grade4">
+      <div class="vantagem">
+        <span class="ic-azul"><i data-icone="alvo" data-tam="56"></i></span>
+        <h3>Missões Interativas</h3>
+        <p>Aprenda fazendo missões interativas que evoluem com o seu conhecimento.</p>
       </div>
-    </section>
-
-    <!-- ============ COMO FUNCIONA ============ -->
-    <section class="section container" id="sala">
-      <span id="como-funciona"></span>
-      <h2 class="section__title">Como <span class="accent">funciona?</span></h2>
-      <p class="section__sub">Aprender nunca foi tão divertido.</p>
-
-      <ol class="steps">
-        <li class="step">
-          <div class="step__circle">
-            <span class="step__num">1</span>
-            <svg class="c-blue" aria-hidden="true"><use href="#i-rocket"/></svg>
-          </div>
-          <h3>Escolha sua missão</h3>
-          <p>Acesse a Trilha de Missões e escolha por onde quer começar.</p>
-        </li>
-
-        <li class="step">
-          <div class="step__circle">
-            <span class="step__num">2</span>
-            <svg class="c-blue" aria-hidden="true"><use href="#i-card"/></svg>
-          </div>
-          <h3>Resolva os desafios</h3>
-          <p>Leia o enunciado, escreva seu código e teste suas soluções.</p>
-        </li>
-
-        <li class="step">
-          <div class="step__circle">
-            <span class="step__num">3</span>
-            <svg class="c-blue" aria-hidden="true"><use href="#i-xp"/></svg>
-          </div>
-          <h3>Ganhe XP e evolua</h3>
-          <p>Complete missões, ganhe XP e desbloqueie novos desafios.</p>
-        </li>
-
-        <li class="step">
-          <div class="step__circle">
-            <span class="step__num">4</span>
-            <svg class="c-gold" aria-hidden="true"><use href="#i-trophy"/></svg>
-          </div>
-          <h3>Conquiste recompensas</h3>
-          <p>Suba no ranking conquiste medalhas e mostre seu talento!</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ============ CTA FINAL ============ -->
-    <section class="cta container" id="cadastro">
-      <div class="cta__text">
-        <h2>Junte-se a milhares de estudantes e evolua sua lógica de forma</h2>
-        <p class="cta__highlight">divertida e eficiente!</p>
-        <a class="btn btn--primary btn--rect" href="cadastro.html">Cadastre-se agora! &nbsp;&gt;</a>
+      <div class="vantagem">
+        <span class="ic-amarelo"><i data-icone="raio" data-tam="56"></i></span>
+        <h3>Compilação em Tempo Real</h3>
+        <p>Escreva, compile e veja os resultados do seu código na hora.</p>
       </div>
+      <div class="vantagem">
+        <span class="ic-roxo"><i data-icone="trofeu" data-tam="56"></i></span>
+        <h3>Gamificação</h3>
+        <p>Ganhe XP, suba de nível, conquiste recompensas e se torne um mestre da lógica.</p>
+      </div>
+      <div class="vantagem">
+        <span class="ic-verde"><i data-icone="codigo" data-tam="56"></i></span>
+        <h3>Conteúdo Prático</h3>
+        <p>Desafios reais de programação para preparar você para o mundo da tecnologia.</p>
+      </div>
+    </div>
+  </div>
 
-      <div class="audience" id="material">
-        <article class="audience__item">
-          <svg class="c-blue" aria-hidden="true"><use href="#i-users"/></svg>
+  <div class="secao" id="como-funciona">
+    <div class="titulo-secao">
+      <h1>Como <span>funciona?</span></h1>
+      <p class="cinza-texto">Aprender nunca foi tão divertido.</p>
+    </div>
+    <div class="grade4">
+      <div class="passo">
+        <div class="numero"><b>1</b><i data-icone="foguete" data-tam="44"></i></div>
+        <h3>Escolha sua missão</h3>
+        <p>Acesse a Trilha de Missões e escolha por onde quer começar.</p>
+      </div>
+      <div class="passo">
+        <div class="numero"><b>2</b><i data-icone="janela" data-tam="44"></i></div>
+        <h3>Resolva os desafios</h3>
+        <p>Leia o enunciado, escreva seu código e teste suas soluções.</p>
+      </div>
+      <div class="passo">
+        <div class="numero"><b>3</b><i data-icone="xp" data-tam="44"></i></div>
+        <h3>Ganhe XP e evolua</h3>
+        <p>Complete missões, ganhe XP e desbloqueie novos desafios.</p>
+      </div>
+      <div class="passo">
+        <div class="numero"><b>4</b><i data-icone="trofeu" data-tam="44"></i></div>
+        <h3>Conquiste recompensas</h3>
+        <p>Use suas moedas na loja para comprar dicas e pistas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="secao" id="chamada">
+    <div class="chamada">
+      <div>
+        <h1>Junte-se a milhares de estudantes e evolua sua lógica de forma <span>divertida e eficiente!</span></h1>
+        <a href="cadastro.html" class="botao">Cadastre-se agora! &gt;</a>
+      </div>
+      <div class="grade4">
+        <div class="vantagem">
+          <i data-icone="grupo" data-tam="44"></i>
           <h3>Professor</h3>
-          <p>Tenha acesso à salas de aula e materiais de apoio</p>
-        </article>
-
-        <article class="audience__item">
-          <svg class="c-blue" aria-hidden="true"><use href="#i-code"/></svg>
+          <p>Tenha acesso a salas de aula e materiais de apoio.</p>
+        </div>
+        <div class="vantagem">
+          <i data-icone="codigo" data-tam="44"></i>
           <h3>Aluno</h3>
           <p>Complete as missões, entregue atividades e comece a programar agora mesmo!</p>
-        </article>
-
-        <article class="audience__item">
-          <svg class="c-gold" aria-hidden="true"><use href="#i-trophy"/></svg>
+        </div>
+        <div class="vantagem">
+          <i data-icone="trofeu" data-tam="44"></i>
           <h3>Compilador</h3>
-          <p>O Codify possui um próprio compilador que permite o aluno testar seus códigos</p>
-        </article>
-
-        <article class="audience__item">
-          <svg class="c-green" aria-hidden="true"><use href="#i-bars"/></svg>
+          <p>O Codify possui um próprio compilador que permite ao aluno testar seus códigos.</p>
+        </div>
+        <div class="vantagem">
+          <i data-icone="grafico" data-tam="44"></i>
           <h3>Carreira</h3>
-          <p>Inicie na programação e esteja preparado para adentrar no mercado de trabalho na área de TI</p>
-        </article>
+          <p>Inicie na programação e esteja preparado para adentrar no mercado de trabalho na área de TI.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-  </main>
+  <div class="rodape">
+    © 2026 Codify. <a href="termos.html">Termos de Uso</a> | <a href="termos.html">Política de Privacidade</a>
+  </div>
 
+
+  <script src="assets/js/icones.js"></script>
+  <script src="assets/js/api.js"></script>
 </body>
 </html>

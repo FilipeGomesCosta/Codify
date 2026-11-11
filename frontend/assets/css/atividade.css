@@ -1,226 +1,99 @@
-/* =========================================================
-   Codify – Aluno: Atividade (enunciado + entrega)
-   Usa a estrutura .split de formularios.css
-   ========================================================= */
-
-.atividade { grid-template-columns: minmax(0, 1fr) 520px; }
-.atividade .split__main { padding: 32px 16px 32px 48px; }
-
-/* ---------- Cabeçalho da atividade ---------- */
-.task-head {
+.cabecalho-atividade {
   display: flex;
+  gap: 18px;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 4px;
 }
 
-.task-head__icon {
-  flex: 0 0 auto;
-  width: 70px;
-  height: 80px;
-  display: grid;
-  place-items: center;
-  background: #0b1a3d;
-  color: #2f6bff;
+.icone-doc.grande {
+  width: 68px;
+  height: 68px;
+  background-color: #0a2a8a;
+  color: white;
+  border-radius: 6px;
 }
 
-.task-head__icon svg { width: 52px; height: 58px; }
-
-.task-head .page-title { font-size: clamp(1.6rem, 2.4vw, 2.3rem); }
-.task-head .page-sub { margin-top: 4px; }
-
-.atividade .back { margin: 0 0 18px; }
-
-/* ---------- Enunciado ---------- */
-.statement h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 400;
+.cabecalho-atividade h1 span {
+  color: #5aaaf0;
 }
 
-.statement__lead {
-  max-width: 560px;
-  margin: 2px 0 8px;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--muted);
+.secao-texto {
+  margin: 14px 0 6px 0;
+  font-weight: 500;
+  font-size: 20px;
 }
 
-.statement__box {
-  padding: 12px 12px 14px;
-  background: #0a1631;
+.caixa-texto {
+  padding: 20px 24px;
+  line-height: 1.6;
+  background-color: #08183a;
+  border: 1px solid #12294d;
 }
 
-.exercises {
-  margin: 0 0 14px;
-  padding: 10px 14px 10px 30px;
-  border: 2px solid #0f1f45;
-  list-style: decimal;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: #e3e8f3;
+.caixa-texto p {
+  margin: 2px 0;
 }
 
-.exercises ul,
-.bullets {
-  list-style: disc;
-  padding-left: 20px;
+.caixa-texto ul, .caixa-texto ol {
+  margin: 4px 0;
+  padding-left: 26px;
 }
 
-.exercises > li::marker { color: #c6cee0; }
-
-.statement__box h3 {
-  margin: 0 0 10px 8px;
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #c6cee0;
-}
-
-.bullets {
-  margin: 0 0 0 10px;
-  padding-left: 28px;
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: #e3e8f3;
-}
-
-/* Dica do professor */
-.teacher-tip {
-  margin-top: 12px;
-  padding: 10px 14px 12px;
-  background: #0a1631;
-}
-
-.teacher-tip h2 {
+.info-linha {
   display: flex;
+  gap: 18px;
   align-items: center;
-  gap: 10px;
-  margin: 0 0 4px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--accent);
+  margin: 18px 0;
 }
 
-.teacher-tip svg { width: 28px; height: 28px; color: #3d8bff; }
-.teacher-tip p { margin: 0; font-size: 1.05rem; color: #e3e8f3; }
-
-/* ---------- Coluna lateral ---------- */
-.atividade .split__aside { padding-top: 34px; gap: 14px; }
-.atividade .split__aside .panel { padding: 18px 20px 20px; }
-.atividade .split__aside .panel__title { font-size: 1.6rem; margin-bottom: 8px; }
-.panel__title--tight { margin-bottom: 0 !important; }
-
-.panel__lead { margin: 0 0 12px; font-size: 1.05rem; color: #c6cee0; }
-
-/* Informações */
-.facts { display: grid; gap: 18px; }
-
-.facts li {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.info-linha .ic {
+  color: #9aa8c7;
 }
 
-.facts svg { width: 48px; height: 48px; color: #8592b0; }
-
-.facts strong {
+.info-linha b {
   display: block;
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #e3e8f3;
+  font-weight: 500;
 }
 
-.facts span,
-.facts time { font-size: 1rem; color: var(--muted-2); }
-
-.status-dot {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding-left: 12px;
-  font-style: normal;
+.info-linha small {
+  color: #8d9bbd;
+  font-size: 14px;
 }
 
-.status-dot::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: currentColor;
+.info-linha small.pendente::before, .info-linha small.entregue::before, .info-linha small.avaliada::before {
+  content: '\2022 ';
+  font-size: 18px;
 }
 
-.status-dot--pending { color: #f5a524; }
-
-/* Entrega */
-.atividade .dropzone {
-  align-items: flex-start;
-  margin-bottom: 18px;
-  border-style: dashed;
-  border-color: #1a2b52;
-  text-align: left;
+.info-linha small.pendente {
+  color: #e8890c;
 }
 
-.atividade .dropzone__row { margin-left: 30px; }
-.atividade .dropzone__formats { font-size: 0.9rem; }
-
-.textarea--dashed { border-style: dashed; border-color: #1a2b52; }
-
-.submit-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 12px;
+.info-linha small.entregue, .info-linha small.avaliada {
+  color: #4cd98a;
 }
 
-.btn--sm {
-  min-height: 36px;
-  padding: 0 10px;
-  font-size: 0.85rem;
-  gap: 6px;
-}
-
-.btn--outline-sm {
-  min-height: 36px;
-  padding: 0 10px;
-  gap: 6px;
-  border: 1px solid #c6cee0;
-  background: transparent;
-  color: #fff;
-  font-size: 0.85rem;
-}
-
-.btn--outline-sm:hover { background: rgba(255, 255, 255, .06); }
-.btn--sm svg, .btn--outline-sm svg { width: 18px; height: 18px; }
-
-/* Histórico */
-.empty {
-  display: grid;
-  justify-items: center;
-  gap: 4px;
-  padding: 4px 0 0;
+.historico-vazio {
   text-align: center;
+  color: #8d9bbd;
 }
 
-.empty svg { width: 64px; height: 56px; color: #d4a72c; }
-.empty p { margin: 0; font-size: 1rem; color: var(--muted-2); }
-
-/* ---------- Responsivo ---------- */
-@media (max-width: 1350px) {
-  .atividade { grid-template-columns: minmax(0, 1fr) 420px; }
-  .atividade .split__main { padding-left: 28px; }
+.historico-vazio .ic {
+  color: #d9a31a;
+  display: block;
+  margin: 0 auto 6px auto;
 }
 
-@media (max-width: 1000px) {
-  .atividade { grid-template-columns: 1fr; }
-  .atividade .split__main { padding: 24px 16px; }
-  .atividade .split__aside { padding: 0 16px 32px; }
+.historico-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #12294d;
+  font-size: 14px;
 }
 
-@media (max-width: 560px) {
-  .task-head { align-items: flex-start; gap: 14px; }
-  .task-head__icon { width: 52px; height: 60px; }
-  .task-head__icon svg { width: 38px; height: 42px; }
-  .exercises, .bullets { font-size: 0.95rem; }
-  .atividade .dropzone__row { margin-left: 0; }
-  .submit-row .btn { flex: 1 1 auto; }
+.historico-item small {
+  color: #8d9bbd;
+}
+
+#blocoEntrega .botoes-form button {
+  padding: 8px 14px;
+  font-size: 13px;
 }

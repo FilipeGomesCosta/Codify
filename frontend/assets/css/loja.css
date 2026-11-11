@@ -1,215 +1,133 @@
-/* =========================================================
-   Codify – Aluno: Loja (+ janelas de compra)
-   ========================================================= */
-
-.loja > * { max-width: 860px; }
-
-.loja__filters {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
+.titulo-icone {
+  display: flex;
+  align-items: center;
   gap: 14px;
-  margin-bottom: 20px;
 }
 
-.loja__filters .search { height: 48px; }
-
-.loja__filters .select select {
-  height: 48px;
-  background: #07102a;
-  text-align: center;
+.busca {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 22px;
+  max-width: 900px;
 }
 
-/* ---------- Grade de itens ---------- */
-.shop {
+.busca .campo {
+  flex: 3;
+}
+
+.busca select {
+  flex: 1;
+}
+
+.campo {
+  position: relative;
+}
+
+.campo .ic {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: #c9d3ee;
+}
+
+.campo input {
+  padding-left: 46px;
+}
+
+.grade-itens {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px 20px;
+  gap: 20px;
+  max-width: 900px;
 }
 
-.shop-card {
-  --tone: #2fc9c1;
-  --tone-bg: rgba(47, 201, 193, .18);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 14px 14px 12px;
-  border: 3px solid #1d5a78;
-  border-radius: 28px;
-  background: linear-gradient(180deg, #071630, #050d22);
-  transition: transform .15s, border-color .2s, box-shadow .2s;
-}
-
-.shop-card:hover {
-  transform: translateY(-3px);
-  border-color: #2f8fb8;
-  box-shadow: 0 10px 30px rgba(20, 120, 200, .2);
-}
-
-.shop-card--mis  { --tone: #f5a524; --tone-bg: rgba(245, 165, 36, .2); }
-.shop-card--mis2 { --tone: #a66bff; --tone-bg: rgba(166, 107, 255, .2); }
-.shop-card--mis3 { --tone: #2fc9c1; --tone-bg: transparent; }
-
-.shop-card__art {
-  align-self: center;
-  width: 118px;
-  height: 104px;
-  display: grid;
-  place-items: center;
-  margin-bottom: 10px;
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-  background: radial-gradient(circle, #0f2a4a, #081830);
-  font-family: "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
-  font-size: 3.6rem;
-  line-height: 1;
-}
-
-.shop-card__tag {
-  align-self: flex-start;
-  padding: 1px 12px;
-  border-radius: 999px;
-  background: var(--tone-bg);
-  color: var(--tone);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-}
-
-.shop-card strong { margin-top: 4px; font-size: 1.15rem; font-weight: 500; }
-
-.shop-card small {
-  flex: 1;
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: var(--muted);
-}
-
-.price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 8px;
-  font-size: 1.15rem;
-}
-
-.loja .pagination { margin-top: 28px; }
-
-/* =========================================================
-   Janelas de compra (modais) – abrem por #detalhes,
-   #confirmar, #insuficientes, #realizada, #erro, #offline
-   ========================================================= */
-
-.dlg {
-  --tone: #4aa8e0;
-  --ring: #1d5a78;
-  position: relative;
-  width: 100%;
-  max-width: 380px;
-  overflow: hidden;
-  border: 3px solid var(--ring);
+.item {
+  padding: 16px 18px 18px 18px;
+  border: 3px solid #1c6c8c;
   border-radius: 30px;
-  background: #050d22;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
-  animation: pop .2s ease-out;
+  background-color: #061428;
+  cursor: pointer;
 }
 
-
-.dlg--red   { --tone: #ff4d4d; --ring: #6a2a2a; }
-.dlg--green { --tone: #2ecc71; --ring: #1d5a5a; }
-.dlg--teal  { --tone: #2fc9c1; --ring: #1d5a5a; }
-.dlg--blue  .dlg__title { color: #fff; }
-
-.dlg__title {
-  margin: 0;
-  padding: 18px 16px 12px;
-  border-bottom: 1px solid color-mix(in srgb, var(--ring) 70%, transparent);
-  font-size: 1.15rem;
-  font-weight: 700;
-  text-align: center;
-  text-transform: uppercase;
-  color: var(--tone);
+.item:hover {
+  border-color: #3fd9d0;
 }
 
-.dlg__body { padding: 16px 26px 6px; }
+.hexagono {
+  width: 120px;
+  height: 104px;
+  margin: 0 auto 8px auto;
+  padding: 18px;
+  background-color: #0a2240;
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+}
 
-.dlg__item,
-.dlg__msg {
+.item .etiqueta {
+  border-radius: 20px;
+  padding: 3px 14px;
+}
+
+.item h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 8px 0 2px 0;
+}
+
+.item p {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #8d9bbd;
+  min-height: 36px;
+}
+
+.preco {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 18px;
-}
-
-.dlg__art {
-  font-family: "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
-  font-size: 3.4rem;
-}
-
-.dlg__item strong { font-size: 1.1rem; font-weight: 500; }
-.dlg__item p, .dlg__msg p { margin: 2px 0 0; font-size: 0.9rem; line-height: 1.45; color: var(--muted); }
-.dlg__msg svg { width: 58px; height: 58px; color: var(--tone); }
-.dlg--teal .dlg__msg svg { color: #c6cee0; }
-.dlg__msg p { color: #c6cee0; font-size: 1rem; }
-
-.dlg__lead { margin: 6px 0 0; font-size: 1.1rem; text-align: center; }
-.dlg__lead strong { font-weight: 400; }
-
-/* saldo */
-.bal {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2px 12px;
-  margin-top: 14px;
-  padding: 10px 24px;
-  border: 3px solid color-mix(in srgb, var(--tone) 35%, #3a2a2a);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  color: #c6cee0;
-}
-
-.dlg--blue .bal { border-color: #5a2f2f; }
-
-.bal__v {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  font-size: 1rem;
-  color: #fff;
-}
-
-.dlg__actions {
-  display: grid;
   gap: 8px;
-  padding: 14px 32px 24px;
+  font-weight: 600;
+  font-size: 17px;
 }
 
-.dlg__btn {
-  display: grid;
-  place-items: center;
-  height: 38px;
-  background: var(--blue);
-  font-size: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  transition: filter .2s;
+.Auxílio {
+  background-color: #11505c;
+  color: #3fd9d0;
 }
 
-.dlg__btn:hover { filter: brightness(1.15); }
-.dlg__btn--alt { background: #142650; }
+.Missão {
+  background-color: #5b4210;
+  color: #ffb43f;
+}
 
-/* ---------- Responsivo ---------- */
+.Recurso {
+  background-color: #3b2a6b;
+  color: #b58bff;
+}
+
+dialog .hexagono {
+  width: 90px;
+  height: 80px;
+  padding: 12px;
+}
+
+dialog .preco {
+  justify-content: space-between;
+  border: 1px solid #1c6c8c;
+  border-radius: 24px;
+  padding: 8px 18px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+dialog .item-dialogo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 14px;
+}
+
 @media (max-width: 900px) {
-  .shop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-@media (max-width: 560px) {
-  .loja__filters { grid-template-columns: 1fr; }
-  .shop { gap: 14px; }
-  .shop-card { border-radius: 20px; padding: 12px 10px; }
-  .shop-card__art { width: 90px; height: 80px; font-size: 2.6rem; }
-  .shop-card strong { font-size: 1rem; }
-  .dlg__body { padding: 14px 18px 4px; }
-  .dlg__actions { padding: 12px 18px 20px; }
+  .grade-itens {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,329 +1,284 @@
-/* =========================================================
-   Codify – Aluno: Salas de Aula (+ modal "Acessar Sala")
-   ========================================================= */
-
-.salas {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
-  gap: 32px;
-  align-items: start;
-}
-
-/* ---------- Abas + busca ---------- */
-.salas__bar {
+.area-salas {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px 28px;
-  margin: 8px 0 18px;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-.salas__bar .tabs { margin: 0; }
+.area-salas > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
 
-.salas__search {
-  flex: 0 1 300px;
+.abas-salas {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.abas-salas button {
+  background-color: #07142a;
+  border: 1px solid #12294d;
+  padding: 13px 28px;
+}
+
+.abas-salas button.ativa {
+  background-color: #0a4fc4;
+  border-color: #0a4fc4;
+}
+
+.abas-salas .campo {
+  position: relative;
+  width: 270px;
+}
+
+.abas-salas .campo .ic {
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: #c9d3ee;
+}
+
+.abas-salas .campo input {
+  padding-left: 46px;
   height: 46px;
 }
 
-.tabs {
+.sala-linha {
   display: flex;
-  gap: 8px;
-  margin: 8px 0 18px;
+  gap: 22px;
+  align-items: stretch;
+  padding: 12px;
+  margin-bottom: 14px;
+  background-color: #08162b;
+  border: 1px solid #0f2442;
 }
 
-.tab {
-  padding: 12px 18px;
-  background: #0a1631;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--text-2);
-  transition: background .2s;
+.sala-linha .imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.tab:hover { background: rgba(255, 255, 255, 0.04); }
-.tab.is-active { background: var(--blue); color: #fff; }
+.sala-linha .imagem {
+  width: 128px;
+  height: 92px;
+  padding: 6px;
+  background-color: #0d1b33;
+  border-radius: 4px;
+}
 
-/* ---------- Cartões de sala ---------- */
-.rooms { display: grid; gap: 14px; }
-
-.room {
+.sala-linha .dados {
+  flex: 1;
   position: relative;
-  display: grid;
-  grid-template-columns: 112px minmax(0, 1fr) auto 32px;
-  align-items: center;
-  gap: 18px;
-  padding: 16px 12px 16px 14px;
-  background: var(--panel);
 }
 
-.room__thumb {
-  position: relative;
-  height: 88px;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  background: #0f1d3d;
-  border: 1px solid #1a2b52;
-}
-
-.room__glyph {
-  white-space: nowrap;
-  font-family: "Fira Code", monospace;
-  font-size: 1.8rem;
-  color: #c6cee0;
-}
-
-.room__thumb--window .room__glyph { margin-top: 12px; }
-
-.room__dots {
-  position: absolute;
-  top: 8px;
-  left: 10px;
-  display: flex;
-  gap: 4px;
-}
-
-.room__dots i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #8a96b4;
-}
-
-.room__dots i:last-child { background: var(--blue-2); }
-
-.room__thumb--braces {
-  background: linear-gradient(90deg, #1a2c66 50%, #142456 50%);
-  border-color: #233a7a;
-}
-
-.room__thumb--braces .room__glyph {
-  font-size: 2.4rem;
-  letter-spacing: 8px;
-  color: #fff;
-}
-
-.room__info h2 {
+.sala-linha h3 {
+  font-size: 20px;
+  font-weight: 400;
   margin: 0;
-  font-size: 1.3rem;
+}
+
+.sala-linha .professor {
+  margin: 2px 0;
+  color: #8d9bbd;
+}
+
+.sala-linha .nivel {
+  color: #2f7bd6;
+  margin: 2px 0 10px 0;
+}
+
+.sala-linha .meta {
+  display: flex;
+  gap: 24px;
+  color: #8d9bbd;
+  font-size: 14px;
+}
+
+.sala-linha .meta span {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sala-linha .entrar {
+  align-self: flex-end;
+  min-width: 140px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.aguardando {
+  align-self: flex-end;
+  padding: 10px 20px;
+  color: #ffc857;
+  border: 1px solid #5b4210;
+  font-size: 14px;
+}
+
+.acoes-rapidas {
+  width: 380px;
+}
+
+.acoes-rapidas .cartao {
+  padding: 22px 24px;
+  border-radius: 4px;
+}
+
+.acoes-rapidas h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 8px 0;
   font-weight: 500;
 }
 
-.room__info p { margin: 2px 0 0; font-size: 0.95rem; }
-.room__prof { color: #76839f; }
-.room__level { color: var(--blue-2); }
-
-.room__meta {
+.acao {
+  white-space: normal;
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px 28px;
-  color: #76839f;
-}
-
-.room__meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.room__meta svg { width: 18px; height: 18px; }
-
-.room__btn { align-self: end; }
-
-.room__btn { min-width: 150px; font-size: 1.1rem; font-weight: 600; }
-
-.room__menu {
-  align-self: start;
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  background: none;
-  border: 0;
-  color: var(--text-2);
-  cursor: pointer;
-}
-
-.room__menu svg { width: 22px; height: 22px; }
-
-/* ---------- Coluna lateral ---------- */
-.salas__aside { display: grid; gap: 28px; }
-
-.quick { padding-top: 36px; }
-.quick .panel__title { font-size: 1.9rem; margin-bottom: 18px; }
-
-.quick__list a {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) 20px;
   align-items: center;
   gap: 16px;
-  padding: 16px 0;
+  width: 100%;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  border-top: 1px solid #12294d;
+  border-radius: 0;
+  color: #e8eefc;
+  text-align: left;
+  font-weight: 400;
+  text-decoration: none;
 }
 
-.quick__list a:hover strong { color: #fff; }
-.quick__icon { width: 30px; height: 30px; color: var(--text-2); }
+.acao:hover {
+  background: none;
+  color: #4b9ee0;
+}
 
-.quick__list strong {
+.acao > span {
+  flex: 1;
+}
+
+.acao b {
   display: block;
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--text-2);
-  transition: color .2s;
+  font-size: 19px;
+  font-weight: 400;
 }
 
-.quick__list small { font-size: 0.85rem; color: var(--muted-2); }
-.quick__chev { width: 20px; height: 20px; color: var(--text-2); }
+.acao small {
+  color: #8d9bbd;
+  font-size: 14px;
+}
 
-.tip {
+.dica-codify {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
 }
 
-.tip__icon {
-  flex: 0 0 auto;
-  width: 66px;
-  height: 66px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #0f2350;
-  color: var(--accent);
-}
-
-.tip__icon svg { width: 36px; height: 36px; }
-
-.tip h2 {
-  margin: 0 0 4px;
-  font-size: 1.7rem;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.tip p { margin: 0; font-size: 0.95rem; line-height: 1.45; color: var(--muted-2); }
-
-/* =========================================================
-   Modal – aberto quando a URL termina em #entrar-sala
-   ========================================================= */
-.modal__box {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  padding: 44px 34px 52px;
-  border-radius: 34px;
-  background: #0a1631;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  animation: pop .2s ease-out;
-}
-
-
-.modal__close {
-  position: absolute;
-  top: 22px;
-  right: 30px;
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-}
-
-.modal__close svg { width: 22px; height: 22px; }
-
-.modal__icon {
-  width: 76px;
-  height: 76px;
-  margin: 0 auto 16px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #0b1f4a;
-  border: 2px solid #12408f;
-  color: #2fa6ff;
-}
-
-.modal__icon svg { width: 40px; height: 40px; }
-
-.modal__title {
+.dica-codify .circulo-icone {
   margin: 0;
-  font-size: 1.4rem;
-  font-weight: 500;
+  min-width: 64px;
+  width: 64px;
+  height: 64px;
 }
 
-.modal__sub {
-  margin: 4px 0 26px;
-  font-size: 0.9rem;
-  color: var(--text-2);
+.dica-codify h2 {
+  margin: 0 0 4px 0;
 }
 
-.modal__form {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 12px;
+.dica-codify p {
+  margin: 0;
+  color: #8d9bbd;
+}
+
+dialog.acessar {
+  position: relative;
+  width: 430px;
+  border: none;
+  background-color: #06182e;
+  text-align: center;
+}
+
+dialog.acessar h3 {
+  text-transform: none;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+dialog.acessar > p {
+  margin: 0 0 16px 0;
+  color: #8d9bbd;
+  font-size: 14px;
+}
+
+dialog.acessar label {
   text-align: left;
 }
 
-.modal__form label { font-size: 0.95rem; }
+.campo-hash {
+  display: flex;
+  border: 1px solid #1d4f9a;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #07142a;
+}
 
-.code-field {
+.campo-hash span {
+  width: 42px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  height: 46px;
-  padding: 0 14px;
-  border: 1px solid #20438a;
-  background: #050c1d;
+  justify-content: center;
+  color: #4b9ee0;
 }
 
-.code-field:focus-within { border-color: var(--blue-2); }
-
-.code-field__icon {
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 3px;
-  background: var(--blue);
-  color: #fff;
+.campo-hash input {
+  border: none;
 }
 
-.code-field__icon svg { width: 14px; height: 14px; }
-
-.code-field input {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  background: none;
-  border: 0;
-  outline: 0;
-  text-transform: uppercase;
+dialog.acessar form > button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 14px;
 }
 
-.code-field input::placeholder { color: var(--muted); text-transform: none; }
-
-.modal__form .btn { margin-top: 18px; min-height: 44px; font-size: 1.1rem; font-weight: 600; }
-
-/* ---------- Responsivo ---------- */
-@media (max-width: 1280px) {
-  .salas { grid-template-columns: 1fr; }
-  .salas__aside { grid-template-columns: 1fr 1fr; }
+.lista-pendentes {
+  text-align: left;
+  font-size: 14px;
 }
 
-@media (max-width: 720px) {
-  .salas__aside { grid-template-columns: 1fr; }
+.lista-pendentes p {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #12294d;
+  padding-bottom: 8px;
+}
 
-  .room {
-    grid-template-columns: 84px minmax(0, 1fr) 28px;
-    gap: 12px;
+@media (max-width: 1100px) {
+  .area-salas {
+    flex-direction: column;
   }
 
-  .room__thumb { height: 72px; }
-  .room__thumb--braces .room__glyph { font-size: 2rem; letter-spacing: 6px; }
-  .room__btn { grid-column: 1 / -1; grid-row: 2; }
-  .room__menu { grid-column: 3; grid-row: 1; }
-  .room__info h2 { font-size: 1.1rem; }
+  .acoes-rapidas {
+    width: 100%;
+  }
+}
 
-  .modal__box { padding: 40px 20px 36px; border-radius: 24px; }
+.sala-linha .pontos {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  background: none;
+  border: none;
+  color: #c9d3ee;
+}
+
+.sala-linha .pontos:hover {
+  background: none;
+  color: #4b9ee0;
 }

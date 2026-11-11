@@ -1,202 +1,175 @@
-/* =========================================================
-   Codify – Aluno: Inventário
-   ========================================================= */
-
-.inventario {
-  --r-comum: #8592b0;
-  --r-raro: #3d7fd6;
-  --r-epico: #8a4dff;
-  --r-lendario: #e8892b;
-  padding-right: 48px;
-}
-
-/* ---------- Filtros ---------- */
-.inv-bar {
+.titulo-icone {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: 14px;
-  margin-bottom: 18px;
 }
 
-.pills { display: flex; flex-wrap: wrap; gap: 18px; }
-
-.pills a {
-  min-width: 150px;
-  padding: 10px 20px;
-  border: 2px solid #142650;
-  border-radius: 8px;
-  background: #050d22;
-  font-size: 1.05rem;
-  font-weight: 600;
-  text-align: center;
-  transition: background .2s;
-}
-
-.pills a:hover { background: #0a1631; }
-.pills a.is-active { background: var(--blue); border-color: var(--blue); }
-
-.inv-bar .select { width: 220px; }
-
-.inv-bar .select select {
-  height: 46px;
-  background: #050d22;
-  font-size: 1.05rem;
-}
-
-/* ---------- Resumo ---------- */
-.stats {
+.barra-filtros {
   display: flex;
-  flex-wrap: wrap;
+  gap: 12px;
   align-items: center;
-  gap: 20px;
-  padding: 8px 20px;
   margin-bottom: 18px;
-  border: 2px solid #10224a;
-  border-radius: 14px;
-  background: #050d22;
 }
 
-.stats__total {
+.barra-filtros .abas {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.barra-filtros .abas button {
+  background-color: #07142a;
+  border: 1px solid #12294d;
+  padding: 12px 34px;
+}
+
+.barra-filtros .abas button.ativa {
+  background-color: #0a4fc4;
+  border-color: #0a4fc4;
+}
+
+.barra-filtros select {
+  width: 210px;
+}
+
+.resumo {
   display: flex;
   align-items: center;
   gap: 24px;
-  min-width: 260px;
+  padding: 20px 30px;
+  margin-bottom: 22px;
+  background-color: #06142b;
+  border: 1px solid #12294d;
+  border-radius: 14px;
 }
 
-.stats__icon {
-  width: 86px;
-  height: 86px;
-  display: grid;
-  place-items: center;
+.resumo .circulo-mochila {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #12396d;
   border-radius: 50%;
-  background: #0a1a40;
-  border: 2px solid #12408f;
-  color: #2fa6ff;
+  color: #19c2ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08224d;
 }
 
-.stats__icon svg { width: 46px; height: 46px; }
-
-.stats__total p { margin: 0; font-size: 1.05rem; color: #c6cee0; }
-
-.stats__total strong {
-  display: block;
-  font-size: 2.4rem;
-  font-weight: 600;
-  line-height: 1.1;
-  color: #fff;
+.resumo .total {
+  flex: 1.3;
+  color: #c9d3ee;
 }
 
-.stats__total small { font-size: 1rem; font-weight: 400; }
+.resumo .total b {
+  font-size: 38px;
+  margin-right: 8px;
+}
 
-.stats__list {
+.resumo .raridade {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0;
   text-align: center;
+  font-size: 22px;
+  font-weight: 600;
 }
 
-.stats__list dt { font-size: 1.2rem; font-weight: 600; }
-.stats__list dd { margin: 4px 0 0; font-size: 1.3rem; color: #c6cee0; }
+.resumo .raridade span {
+  display: block;
+  font-size: 30px;
+  font-weight: 500;
+  color: #c9d3ee;
+}
 
-.r-comum dt    { color: var(--r-comum); }
-.r-raro dt     { color: var(--r-raro); }
-.r-epico dt    { color: var(--r-epico); }
-.r-lendario dt { color: var(--r-lendario); }
+.Comum {
+  color: #9aa4b8;
+}
 
-/* ---------- Grade de itens ---------- */
-.inv-grid {
+.Raro {
+  color: #3a8bff;
+}
+
+.Épico {
+  color: #7a3fe0;
+}
+
+.Lendário {
+  color: #e8890c;
+}
+
+.grade-inventario {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 18px 46px;
+  gap: 16px;
 }
 
-.inv {
-  --r: var(--r-comum);
-  --r-bg: #1b2333;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  min-height: 178px;
-  padding: 14px 8px 12px;
-  border: 1px solid #0c1838;
-  background: #040b1c;
+.slot {
+  padding: 18px 8px 12px 8px;
   text-align: center;
-  transition: background .2s, border-color .2s;
+  background-color: #07152b;
+  border: 1px solid #12294d;
+  cursor: pointer;
 }
 
-.inv:hover { background: #07122b; border-color: color-mix(in srgb, var(--r) 40%, #0c1838); }
-
-.inv--raro     { --r: #4aa8ff; --r-bg: #0d2a52; }
-.inv--epico    { --r: #a66bff; --r-bg: #241554; }
-.inv--lendario { --r: #e8892b; --r-bg: #3a2610; }
-
-.inv__art {
-  height: 72px;
-  display: grid;
-  place-items: center;
-  font-family: "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
-  font-size: 3.6rem;
-  line-height: 1;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .5));
+.slot:hover {
+  border-color: #3a8bff;
 }
 
-.xp-coin {
-  width: 62px;
-  height: 62px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #ffd27a, #f29a1d 60%, #b8650a);
-  box-shadow: inset 0 0 0 4px #ffb84d;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #fff3d6;
-  text-shadow: 0 2px 0 #b8650a;
+.slot .imagem {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 8px auto;
 }
 
-.inv strong { font-size: 0.9rem; font-weight: 600; line-height: 1.25; }
-
-.rarity {
-  margin-top: auto;
-  padding: 2px 12px;
-  background: var(--r-bg);
-  color: var(--r);
-  font-size: 0.78rem;
-  font-weight: 700;
+.slot b {
+  display: block;
+  font-size: 13px;
+  min-height: 38px;
+  font-weight: 600;
 }
 
-.inv--comum .rarity { color: #9aa3b5; }
-
-.inv small { font-size: 0.82rem; font-weight: 700; color: #4aa8ff; }
-
-/* ---------- Responsivo ---------- */
-@media (max-width: 1400px) {
-  .inv-grid { gap: 16px; }
+.slot .nivel-raridade {
+  display: inline-block;
+  min-width: 60px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: #0f1d36;
+  border: 1px solid #1a2d52;
 }
 
-@media (max-width: 1200px) {
-  .inv-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.slot .nivel-raridade.Comum {
+  color: #aab3c6;
 }
 
-@media (max-width: 1000px) {
-  .inventario { padding-right: 16px; }
+.slot .nivel-raridade.Raro {
+  color: #3fd9d0;
 }
 
-@media (max-width: 720px) {
-  .pills { gap: 8px; }
-  .pills a { min-width: 0; padding: 8px 14px; font-size: 0.9rem; }
-  .inv-bar .select { width: 100%; }
-  .stats__total { min-width: 0; }
-  .stats__list { grid-template-columns: repeat(2, minmax(0, 1fr)); flex-basis: 100%; }
-  .inv-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.slot .nivel-raridade.Épico {
+  color: #a86bff;
 }
 
-@media (max-width: 420px) {
-  .inv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.slot .nivel-raridade.Lendário {
+  color: #f2a413;
+}
+
+.slot small {
+  display: block;
+  margin-top: 8px;
+  color: #4b9ee0;
+}
+
+dialog .imagem {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 10px auto;
+}
+
+@media (max-width: 1100px) {
+  .grade-inventario {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .resumo {
+    flex-wrap: wrap;
+  }
 }

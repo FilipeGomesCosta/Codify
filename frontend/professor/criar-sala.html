@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Criar Sala de Aula</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/criar-sala.css">
+</head>
+<body>
+  <div id="topo"></div>
+  <div class="corpo">
+    <div id="menu"></div>
+    <main>
+      <h1>Criar <span>Sala de Aula</span></h1>
+      <p class="subtitulo">Crie um espaço para sua turma aprender, colaborar e evoluir.</p>
+
+      <div class="criar">
+        <div>
+          <h2>Informações da Sala</h2>
+          <label for="nome">Nome da Sala:</label>
+          <input type="text" id="nome" maxlength="100" placeholder="Ex.: Turma de Programação 2026">
+
+          <label for="descricao">Descrição (opcional)</label>
+          <div class="contador">
+            <textarea id="descricao" maxlength="150" placeholder="Escreva uma breve descrição sobre a sala..."></textarea>
+            <small id="contador">0/150</small>
+          </div>
+
+          <label for="nivel">Nível de Ensino</label>
+          <select id="nivel">
+            <option value="">Selecione o nível</option>
+            <option value="iniciante">Iniciante</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+          </select>
+
+          <label for="linguagem">Linguagem de programação principal</label>
+          <select id="linguagem">
+            <option value="C">C</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="JavaScript">JavaScript</option>
+          </select>
+
+          <h2>Configurações</h2>
+          <div class="opcao">
+            <i data-icone="cadeado" data-tam="22"></i>
+            <div><b>Sala aberta</b><small>Alunos podem entrar usando o código</small></div>
+            <label class="chave"><input type="checkbox" id="aberta" checked><span></span></label>
+          </div>
+          <div class="opcao">
+            <i data-icone="grupo" data-tam="22"></i>
+            <div><b>Aprovação de entrada</b><small>Aprovar novos membros antes de entrarem</small></div>
+            <label class="chave"><input type="checkbox" id="aprovacao"><span></span></label>
+          </div>
+
+          <p id="mensagem" class="erro"></p>
+          <div class="botoes-criar">
+            <button class="cinza" id="cancelar">Cancelar</button>
+            <button id="criar">Criar Sala</button>
+          </div>
+        </div>
+
+        <div>
+          <label style="margin-top: 20px">Código da Sala</label>
+          <p class="sub">Os alunos usarão este código para entrar na sala.</p>
+          <div class="codigo-sala"><i data-icone="codigo" data-tam="22"></i><b id="codigo">----</b><button id="novoCodigo" title="Gerar outro código"><i data-icone="atualizar" data-tam="20"></i></button></div>
+
+          <label>Imagem da Sala (opcional)</label>
+          <p class="sub">Escolha uma imagem para representar sua sala.</p>
+          <div class="imagens">
+            <label><input type="radio" name="imagem" value="codigo" checked><div class="imagem" data-arte="codigo"></div>Código</label>
+            <label><input type="radio" name="imagem" value="programacao"><div class="imagem" data-arte="programacao"></div>Programação</label>
+            <label><input type="radio" name="imagem" value="computador"><div class="imagem" data-arte="computador"></div>Computador</label>
+            <label><input type="radio" name="imagem" value="inovacao"><div class="imagem" data-arte="inovacao"></div>Inovação</label>
+            <label><input type="radio" name="imagem" value="robotica"><div class="imagem" data-arte="robotica"></div>Robótica</label>
+            <label class="personalizada"><input type="radio" name="imagem" value="personalizada"><div class="imagem" id="tilePersonalizada"><i data-icone="mais" data-tam="30"></i></div>Personalizada<input type="file" id="arquivoImagem" accept=".png,.jpg" hidden></label>
+          </div>
+
+          <h2>Resumo da Sala</h2>
+          <div class="resumo-sala">
+            <div class="imagem" id="resumoImagem"></div>
+            <div class="colunas">
+              <div>
+                <p><span>Nome:</span> <b id="resumoNome">-</b></p>
+                <p><span>Linguagem:</span> <b id="resumoLinguagem">C</b></p>
+                <p><span>Nível:</span> <b id="resumoNivel">-</b></p>
+              </div>
+              <div>
+                <p><span>Código:</span> <b id="resumoCodigo">-</b></p>
+                <p><span>Tipo:</span> <b id="resumoTipo">Aberta</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icones.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topo.js"></script>
+  <script src="../assets/js/prof-criar-sala.js"></script>
+</body>
+</html>

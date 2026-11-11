@@ -1,36 +1,36 @@
-// Upload de arquivos com multer (até 50 MB, formatos da tela de envio)
-const crypto = require('node:crypto');
-const path = require('node:path');
 const multer = require('multer');
-const HttpError = require('../utils/HttpError');
-const { PASTA_UPLOADS } = require('../utils/arquivos');
+const path = require('path');
+const crypto = require('crypto');
 
-const EXTENSOES = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.mp4', '.png', '.jpg', '.jpeg', '.c', '.h', '.zip', '.txt'];
-const TAMANHO_MAXIMO = 50 * 1024 * 1024; // 50 MB
+const permitidos = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.mp4', '.png', '.jpg', '.c', '.h', '.zip', '.txt'];
 
-/**
- * Cria o middleware de upload para uma subpasta de uploads/.
- * Uso na rota: upload('materiais').single('arquivo')
- */
-function upload(pasta) {
-  return multer({
-    storage: multer.diskStorage({
-      destination: path.join(PASTA_UPLOADS, pasta),
-      // nome aleatório: evita sobrescrever arquivos e nomes maliciosos
-      filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname).toLowerCase();
-        cb(null, `${crypto.randomUUID()}${ext}`);
-      },
-    }),
-    limits: { fileSize: TAMANHO_MAXIMO, files: 1 },
-    fileFilter: (req, file, cb) => {
-      const ext = path.extname(file.originalname).toLowerCase();
-      if (!EXTENSOES.includes(ext)) {
-        return cb(new HttpError(400, `Formato não aceito. Use: ${EXTENSOES.join(', ')}.`));
-      }
-      cb(null, true);
-    },
-  });
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: path.join(__dirname, '..', '..', 'uploads'),
+    filename: function (req, file, cb) {
+      cb(null, crypto.randomUUID() + path.extname(file.originalname).toLowerCase());
+    }
+  }),
+  limits: { fileSize: 50 * 1024 * 1024 },
+  fileFilter: function (req, file, cb) {
+    const extensao = path.extname(file.originalname).toLowerCase();
+    if (!permitidos.includes(extensao)) {
+      return cb(new Error('Esse arquivo não pode ser anexado. Use: ' + permitidos.join(', ')));
+    }
+    cb(null, true);
+  }
+});
+
+function tipoDoArquivo(nome) {
+  const extensao = path.extname(nome).toLowerCase();
+  if (extensao == '.mp4') return 'video';
+  if (extensao == '.png' || extensao == '.jpg') return 'imagem';
+  if (extensao == '.zip') return 'outro';
+  return 'documento';
 }
 
-module.exports = upload;
+function nomeOriginal(arquivo) {
+  return Buffer.from(arquivo.originalname, 'latin1').toString('utf8');
+}
+
+module.exports = { upload, tipoDoArquivo, nomeOriginal };

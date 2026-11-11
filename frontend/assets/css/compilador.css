@@ -1,322 +1,384 @@
-/* =========================================================
-   Codify – Aluno: Compilador (Programar em Linguagem C)
-   ========================================================= */
-
-.ide { padding-right: 48px; }
-
-/* ---------- Topo ---------- */
-.ide__head {
+.cabecalho {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 16px 24px;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-.ide__tools {
+.cabecalho .acoes {
+  flex-shrink: 0;
   display: flex;
-  flex-wrap: wrap;
   gap: 14px;
-  margin-top: 8px;
-}
-
-.chip {
-  position: relative;
-  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  height: 46px;
-  padding: 0 18px;
-  border: 1px solid var(--line);
-  background: #07102a;
-  font-size: 0.95rem;
-  color: #e3e8f3;
-  transition: background .2s;
 }
 
-.chip:hover { background: #0b1736; }
-.chip svg { width: 22px; height: 22px; }
-
-.chip--select select {
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 0 24px 0 0;
-  background: none;
-  border: 0;
-  color: var(--teal);
-  cursor: pointer;
+.cabecalho .acoes select {
+  width: 270px;
+  height: 44px;
 }
 
-.chip--select option { background: #0b1735; color: var(--text); }
-.chip--select > svg { position: absolute; right: 14px; width: 18px; height: 18px; pointer-events: none; }
-
-.ide__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 440px;
-  gap: 40px;
-  align-items: start;
+.duas-colunas {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
 }
 
-/* ---------- Editor ---------- */
-.editor {
+.duas-colunas > div:first-child {
+  flex: 1;
   min-width: 0;
-  background: #040a19;
-  border: 1px solid #0c1838;
 }
 
-.editor__bar {
+.painel-lateral {
+  width: 340px;
+}
+
+.abas-editor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #07142a;
+  border: 1px solid #12294d;
+  border-bottom: none;
+}
+
+.abas-editor .aba {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 14px 0 6px;
-  height: 46px;
-  background: #050d22;
-  border-bottom: 2px solid #0c1838;
+  padding: 12px 18px;
+  background-color: #0a1d3b;
+  color: #e8eefc;
 }
 
-.editor__tab {
-  display: inline-flex;
+.abas-editor .aba .ic {
+  color: #3a8bff;
+}
+
+.abas-editor .ferramentas {
+  padding-right: 14px;
+  display: flex;
+  gap: 12px;
+}
+
+.abas-editor .ferramentas button {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: #c9d3ee;
+}
+
+.abas-editor .ferramentas button:hover {
+  color: #4b9ee0;
+  background: none;
+}
+
+.editor {
+  display: flex;
+  background-color: #040c1d;
+  border: 1px solid #12294d;
+  height: 340px;
+}
+
+.editor.cheio {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  height: auto;
+  z-index: 20;
+}
+
+.numeros {
+  width: 52px;
+  padding: 16px 0;
+  text-align: center;
+  white-space: pre;
+  overflow: hidden;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6b7a9e;
+}
+
+.codigo-area {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.codigo-area textarea, .realce {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 16px 16px 16px 6px;
+  border: none;
+  border-radius: 0;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 24px;
+  tab-size: 4;
+  white-space: pre;
+  resize: none;
+}
+
+.codigo-area textarea {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: none;
+  color: transparent;
+  caret-color: #cfe1ff;
+}
+
+.editor.claro .codigo-area textarea {
+  caret-color: #12234a;
+}
+
+.realce {
+  overflow: hidden;
+  pointer-events: none;
+  color: #cfe1ff;
+}
+
+.cod-azul { color: #4da3ff; }
+.cod-texto { color: #ffb43f; }
+.cod-funcao { color: #ff5f5f; }
+.cod-comentario { color: #6b7a9e; }
+
+.barra-acoes {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: #07142a;
+  border: 1px solid #12294d;
+  border-top: none;
+}
+
+.barra-acoes .status {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.barra-acoes .status.ok {
+  color: #3fd69b;
+}
+
+.barra-acoes .status.falha {
+  color: #ff6b6b;
+}
+
+.saida {
+  margin-top: 0;
+  background-color: #040c1d;
+  border: 1px solid #12294d;
+  border-top: none;
+}
+
+.saida > small {
+  display: block;
+  padding: 12px 20px 0 20px;
+  color: #9aa8c7;
+}
+
+#saida {
+  padding: 14px 20px 20px 20px;
+  min-height: 120px;
+  font-family: Consolas, monospace;
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  color: #cfe1ff;
+}
+
+.desafio {
+  background-color: #07142a;
+  border: 1px solid #12294d;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.desafio .topo-desafio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 22px 8px 22px;
+}
+
+.desafio .topo-desafio h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #c9d3ee;
+}
+
+.desafio .xp-selo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.desafio .corpo-desafio {
+  padding: 0 22px 18px 22px;
+  font-size: 14px;
+}
+
+.desafio .corpo-desafio b {
+  font-weight: 500;
+}
+
+.desafio .rotulo-entrada {
+  color: #ff4d4d;
+  font-weight: 700;
+  margin: 16px 0 2px 0;
+}
+
+.desafio .rotulo-saida {
+  color: #2fc27a;
+  font-weight: 700;
+  margin: 16px 0 2px 0;
+}
+
+.desafio p {
+  margin: 4px 0;
+}
+
+.dica-caixa {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background-color: #0a1d3b;
+  font-size: 13px;
+}
+
+.dica-caixa b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #3a8bff;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.exemplos {
+  border-top: 1px solid #12294d;
+  padding-top: 14px;
+}
+
+.exemplos h4 {
+  margin: 0 0 8px 22px;
+  font-weight: 400;
+  color: #c9d3ee;
+  font-size: 17px;
+}
+
+.exemplos .exemplo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 22px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: #c9d3ee;
+  font-weight: 400;
+  text-align: left;
+}
+
+.exemplos .exemplo:hover, .exemplos .exemplo.ativo {
+  background-color: #0a3fa8;
+  color: white;
+}
+
+.painel-lateral .cartao {
+  margin-top: 18px;
+}
+
+.painel-lateral .cartao h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linha-item {
+  display: flex;
   align-items: center;
   gap: 10px;
-  height: 100%;
-  padding: 0 22px 0 12px;
-  background: #0a1631;
-  font-size: 1rem;
+  margin: 10px 0;
+  font-size: 14px;
 }
 
-.editor__c {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #2f80ff;
-}
-
-.editor__add,
-.editor__actions button {
+.linha-item .imagem {
   width: 34px;
   height: 34px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  background: none;
-  border: 0;
-  border-radius: 4px;
-  color: #dfe5f2;
-  cursor: pointer;
 }
 
-.editor__add:hover,
-.editor__actions button:hover { background: rgba(255, 255, 255, .06); }
-
-.editor__add svg { width: 14px; height: 14px; }
-.editor__actions { display: flex; gap: 8px; margin-left: auto; }
-.editor__actions svg { width: 22px; height: 22px; }
-
-.editor__body {
-  display: grid;
-  grid-template-columns: 54px minmax(0, 1fr);
-  min-height: 300px;
-  padding: 14px 0;
+.linha-item span {
+  flex: 1;
 }
 
-.editor__gutter,
-.editor__code {
-  margin: 0;
-  font-family: "Fira Code", monospace;
-  font-size: 0.95rem;
-  line-height: 1.75;
+.linha-item button {
+  padding: 5px 16px;
+  font-size: 13px;
 }
 
-.editor__gutter {
-  padding-right: 18px;
-  text-align: right;
-  color: #8592b0;
-  user-select: none;
+#resultado {
+  margin-top: 14px;
 }
 
-.editor__code {
-  padding: 0 16px;
-  overflow-x: auto;
-  outline: 0;
-  color: #e3e8f3;
-  caret-color: #2f80ff;
-  tab-size: 4;
-}
-
-/* o <code> herdaria outra fonte e desalinharia as linhas */
-.editor__code code { font: inherit; }
-
-/* destaque de sintaxe */
-.tk-pp  { color: #4aa8e0; }
-.tk-inc { color: #f5a524; }
-.tk-kw  { color: #4aa8e0; }
-.tk-fn  { color: #ff5b5b; }
-
-/* Barra de execução */
-.editor__run {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
-  padding: 14px;
-  border-top: 2px solid #0c1838;
-  border-bottom: 2px solid #0c1838;
-}
-
-.btn--run { min-height: 40px; padding: 0 16px; font-weight: 600; }
-.btn--run svg { width: 20px; height: 20px; }
-
-.btn--clear {
-  min-height: 40px;
-  padding: 0 18px;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.btn--clear svg { width: 18px; height: 18px; }
-
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-.status svg { width: 20px; height: 20px; }
-.status--ok { color: #2ecc71; }
-
-/* Console */
-.console { min-height: 170px; padding: 14px 20px; }
-
-.console h2 {
-  margin: 0 0 10px;
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: #c6cee0;
-}
-
-.console pre {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  font-size: 1rem;
-  line-height: 2;
-  color: #c6cee0;
-  white-space: pre-wrap;
-}
-
-.console .in { margin-left: 8px; font-weight: 600; color: #2ecc71; }
-
-/* ---------- Desafio ---------- */
-.challenge {
-  overflow: hidden;
-  border: 1px solid #10224a;
-  border-radius: 18px;
-  background: #050d22;
-}
-
-.challenge__card { padding: 20px 16px 16px 22px; }
-
-.challenge__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.challenge__head h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #c6cee0;
-}
-
-.xp-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.85rem;
-}
-
-.xp-pill svg { width: 26px; height: 26px; color: var(--blue-2); }
-
-.challenge h3 { margin: 0; font-size: 1.15rem; font-weight: 500; }
-
-.challenge p {
-  margin: 2px 0 10px;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #c6cee0;
-}
-
-.challenge h4 { margin: 12px 0 0; font-size: 1.05rem; font-weight: 700; }
-.tag-in  { color: #ff4d4d; }
-.tag-out { color: #2ecc71; }
-
-.hint {
-  margin-top: 16px;
-  padding: 10px 12px 4px;
-  background: #0a1631;
-}
-
-.hint h4 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 4px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #3d8bff;
-}
-
-.hint svg { width: 26px; height: 26px; }
-
-.hint code {
-  font-family: "Fira Code", monospace;
-  font-size: 0.9em;
-  color: #e3e8f3;
-}
-
-.examples { padding: 8px 0 10px; border-top: 1px solid #10224a; }
-
-.examples h2 {
-  margin: 0 0 6px;
-  padding: 0 16px;
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #c6cee0;
-}
-
-.examples a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 22px 8px 16px;
-  font-size: 1rem;
-  color: #c6cee0;
-  transition: background .2s;
-}
-
-.examples a:hover { background: #0a1631; }
-.examples a.is-active { background: var(--blue); color: #fff; }
-.examples a svg { width: 20px; height: 20px; }
-
-/* ---------- Responsivo ---------- */
-@media (max-width: 1300px) {
-  .ide__grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; }
+.balao-ajuda {
+  margin: 12px 0 0 0;
+  padding: 10px 14px;
+  background-color: #0a1d3b;
+  color: #c9d3ee;
+  font-size: 13px;
 }
 
 @media (max-width: 1100px) {
-  .ide { padding-right: 16px; }
-  .ide__grid { grid-template-columns: 1fr; }
+  .duas-colunas, .cabecalho {
+    flex-direction: column;
+  }
+
+  .painel-lateral {
+    width: 100%;
+  }
 }
 
-@media (max-width: 560px) {
-  .editor__body { grid-template-columns: 38px minmax(0, 1fr); }
-  .editor__gutter { padding-right: 10px; }
-  .editor__gutter, .editor__code { font-size: 0.82rem; }
-  .status { margin-left: 0; }
-  .chip { flex: 1 1 auto; justify-content: center; }
+.entrada-mini {
+  width: 150px;
+  height: 42px;
+}
+
+.editor.claro {
+  background-color: #f4f7fd;
+}
+
+.editor.claro .realce {
+  color: #12234a;
+}
+
+.editor.claro .numeros {
+  color: #8a97b8;
+}
+
+.imagem-item {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 8px auto;
+}
+
+dialog .preco {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 8px 18px;
+  border: 1px solid #1c6c8c;
+  border-radius: 24px;
+  font-size: 14px;
 }

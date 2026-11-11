@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Missão</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/compilador.css">
+</head>
+<body>
+  <div id="topo"></div>
+  <div class="corpo">
+    <div id="menu"></div>
+    <main>
+      <div class="cabecalho">
+        <div>
+          <h1 id="titulo">Missão</h1>
+          <p class="subtitulo" id="categoria"></p>
+        </div>
+        <div class="acoes">
+          <a href="missoes.html" class="botao cinza"><i data-icone="direita" data-tam="18"></i> Voltar para a trilha</a>
+        </div>
+      </div>
+
+      <div class="duas-colunas">
+        <div>
+          <div class="abas-editor">
+            <div class="aba"><i data-icone="janela" data-tam="20"></i> main.c <span>+</span></div>
+            <div class="ferramentas">
+              <button id="tema" title="Tema do editor"><i data-icone="sol" data-tam="20"></i></button>
+              <button id="copiar" title="Copiar código"><i data-icone="copiar" data-tam="20"></i></button>
+              <button id="tela" title="Tela cheia"><i data-icone="tela" data-tam="20"></i></button>
+            </div>
+          </div>
+          <textarea id="editor" spellcheck="false">#include &lt;stdio.h&gt;
+
+int main() {
+
+    return 0;
+}</textarea>
+          <div class="barra-acoes">
+            <button id="executar"><i data-icone="play" data-tam="18"></i> Executar código</button>
+            <button id="finalizar" class="verde"><i data-icone="check" data-tam="18"></i> Finalizar missão</button>
+            <input type="text" id="entrada" placeholder="Entrada do teste" style="width: 180px; height: 42px">
+            <span class="status" id="status"></span>
+          </div>
+          <div class="saida"><small>Saída</small><div id="saida"></div></div>
+          <p id="resultado"></p>
+        </div>
+
+        <div class="painel-lateral">
+          <div class="desafio">
+            <div class="topo-desafio">
+              <h3>Desafio Atual</h3>
+              <span class="xp-selo"><i data-icone="xp" data-tam="24"></i> <span id="recompensa"></span></span>
+            </div>
+            <div class="corpo-desafio">
+              <p><b id="nomeMissao"></b></p>
+              <p id="descricao"></p>
+              <p class="rotulo-entrada">ENTRADA</p>
+              <p id="descEntrada"></p>
+              <p class="rotulo-saida">SAÍDA</p>
+              <p id="descSaida"></p>
+              <p class="balao-ajuda" id="ajuda" hidden></p>
+            </div>
+          </div>
+
+          <div class="cartao">
+            <h3><i data-icone="mochila" data-tam="22"></i> Inventário</h3>
+            <div id="itens"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icones.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topo.js"></script>
+  <script src="../assets/js/aluno-missao.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codify - Adicionar Atividade</title>
+  <link rel="stylesheet" href="../assets/css/estilo.css">
+  <link rel="stylesheet" href="../assets/css/formulario.css">
+  <link rel="stylesheet" href="../assets/css/atividade-nova.css">
+</head>
+<body>
+  <div id="topo"></div>
+  <div class="corpo">
+    <div id="menu"></div>
+    <main>
+      <div class="pagina-form">
+        <div class="coluna-principal">
+          <h1>Adicionar <span>Atividade</span></h1>
+          <p class="subtitulo">Crie uma nova atividade e disponibilize para os alunos da sala de aula.</p>
+          <a href="#" class="voltar" id="voltar"><i data-icone="voltar" data-tam="20"></i> Voltar</a>
+
+          <h2>Informações da Atividade</h2>
+          <label for="titulo">Título da Atividade <span class="obrigatorio">*</span></label>
+          <input type="text" id="titulo" maxlength="100" placeholder="Ex.: Lista de exercícios - Vetores e Matrizes">
+
+          <label for="descricao">Instruções (opcional)</label>
+          <div class="barra-texto">
+            <button type="button" data-formato="negrito" title="Negrito"><b>B</b></button>
+            <button type="button" data-formato="sublinhado" title="Sublinhado"><u>U</u></button>
+            <button type="button" data-formato="lista" title="Lista"><i data-icone="lista" data-tam="16"></i></button>
+            <button type="button" data-formato="ordenada" title="Lista numerada"><i data-icone="ordenada" data-tam="16"></i></button>
+            <button type="button" data-formato="link" title="Link"><i data-icone="link" data-tam="16"></i></button>
+          </div>
+          <div class="contador">
+            <textarea id="descricao" maxlength="2000" class="area-instrucoes" placeholder="Descreva as instruções da atividade para os alunos..."></textarea>
+            <small id="contador">0/2000</small>
+          </div>
+
+          <label>Anexar arquivo (opcional)</label>
+          <div class="dropzone" id="zona">
+            <p>Arraste e solte o arquivo aqui ou</p>
+            <div class="linha-zona"><i data-icone="upload" data-tam="32"></i><button type="button" class="cinza">Selecionar Arquivo</button></div>
+            <small>Formatos aceitos: PDF, DOCX, PPTX, MP4, PNG, JPG (Máx. 50MB)</small>
+            <p class="nome-arquivo"></p>
+            <input type="file" id="arquivo" hidden>
+          </div>
+
+          <label for="prazo">Data de entrega <span class="obrigatorio">*</span></label>
+          <input type="date" id="prazo" style="width: 260px">
+
+          <p id="mensagem" class="erro"></p>
+          <div class="botoes-centro">
+            <button type="button" class="cinza" id="cancelar">Cancelar</button>
+            <button id="adicionar">Adicionar Atividade</button>
+          </div>
+        </div>
+
+        <div class="coluna-lateral">
+          <div class="card-lateral">
+            <h2>Associar a Sala de Aula</h2>
+            <label for="sala" style="margin-top: 0">Sala de Aula</label>
+            <div class="campo"><i data-icone="grupo" data-tam="20"></i><select id="sala"></select></div>
+          </div>
+          <div class="card-lateral">
+            <h2>Visibilidade</h2>
+            <label class="opcao-radio"><input type="radio" name="visibilidade" value="agora" checked><span><b>Disponível para os alunos</b><small>A atividade ficará visível para todos os alunos da sala.</small></span></label>
+            <label class="opcao-radio"><input type="radio" name="visibilidade" value="agendar"><span><b>Agendar disponibilização</b><small>Defina uma data para a atividade ficar disponível.</small></span></label>
+            <div class="data-hora">
+              <div class="campo"><i data-icone="calendario" data-tam="18"></i><input type="date" id="data" disabled></div>
+              <div class="campo"><i data-icone="relogio" data-tam="18"></i><input type="time" id="hora" disabled></div>
+            </div>
+          </div>
+          <div class="card-lateral">
+            <h2>Configurações</h2>
+            <div class="opcao-chave"><span><b>Permitir entregas após o prazo</b><small>Alunos poderão entregar atrasado.</small></span><label class="chave"><input type="checkbox" id="atraso"><span></span></label></div>
+            <label for="pontuacao">Pontuação (nota máxima)</label>
+            <input type="number" id="pontuacao" value="10" min="1" max="100">
+          </div>
+          <div class="card-lateral">
+            <h2><i data-icone="olho" data-tam="24"></i> Pré-visualização</h2>
+            <p class="cinza-texto">A atividade será exibida para os alunos conforme o exemplo abaixo:</p>
+            <div class="previa">
+              <div class="icone-doc"><i data-icone="arquivo" data-tam="30"></i></div>
+              <div>
+                <b id="previaTitulo">Título da atividade</b>
+                <small id="previaPrazo">Prazo: dd/mm/aaaa</small>
+                <small id="previaArquivo"><i data-icone="link" data-tam="14"></i> Sem arquivo</small>
+              </div>
+            </div>
+          </div>
+          <div class="card-lateral">
+            <h2>Campos obrigatórios</h2>
+            <p class="obrigatorios"><span class="obrigatorio">*</span> Título da Atividade<br><span class="obrigatorio">*</span> Data de entrega</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/icones.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/topo.js"></script>
+  <script src="../assets/js/prof-atividade-nova.js"></script>
+</body>
+</html>

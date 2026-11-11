@@ -1,0 +1,90 @@
+.titulo-icone {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.resumo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 30px;
+  margin-bottom: 22px;
+  background-color: #06142b;
+  border: 1px solid #12294d;
+  border-radius: 14px;
+}
+
+.circulo-mochila {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #12396d;
+  border-radius: 50%;
+  color: #19c2ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08224d;
+}
+
+.resumo .total {
+  color: #c9d3ee;
+}
+
+.resumo .total b {
+  font-size: 38px;
+  margin-right: 8px;
+}
+
+.grade-conquistas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.conquista {
+  padding: 22px;
+  text-align: center;
+  background-color: #07152b;
+  border: 1px solid #12294d;
+  border-radius: 14px;
+  opacity: 0.6;
+}
+
+.conquista.feita {
+  opacity: 1;
+  border-color: #1c6c8c;
+}
+
+.conquista .medalha {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 12px auto;
+  border-radius: 50%;
+  background-color: #0a2240;
+  color: #6b7a9e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conquista.feita .medalha {
+  background-color: #0a3a5e;
+  color: #f2b21c;
+}
+
+.conquista p {
+  color: #8d9bbd;
+  font-size: 14px;
+  margin: 4px 0 10px 0;
+}
+
+.conquista small {
+  color: #9aa8c7;
+}
+
+@media (max-width: 900px) {
+  .grade-conquistas {
+    grid-template-columns: 1fr;
+  }
+}
