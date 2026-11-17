@@ -80,11 +80,9 @@ function arquivoValido(arquivo) {
   const extensao = arquivo.name.split('.').pop().toLowerCase();
 
   if (!permitidos.includes(extensao)) {
-    alert('Esse arquivo não pode ser anexado. Tipos aceitos: ' + permitidos.join(', '));
     return false;
   }
   if (arquivo.size > 50 * 1024 * 1024) {
-    alert('O arquivo é muito grande (máximo de 50 MB).');
     return false;
   }
   return true;
@@ -95,12 +93,10 @@ async function baixarArquivo(url, nome, visualizar) {
   try {
     resposta = await fetch(SERVIDOR + '/api' + url, { headers: { token: localStorage.getItem('token') } });
   } catch (erro) {
-    alert('Sem conexão com a Internet. Não foi possível acessar o arquivo.');
     return;
   }
 
   if (!resposta.ok) {
-    alert('Não foi possível acessar ou baixar o arquivo. Tente novamente.');
     return;
   }
 
@@ -359,7 +355,6 @@ async function compilarCodigo(codigo, entrada, saida, status) {
 function ligarFerramentasEditor(campo) {
   document.querySelector('#copiar').addEventListener('click', function () {
     navigator.clipboard.writeText(campo.value);
-    alert('Código copiado!');
   });
   document.querySelector('#tema').addEventListener('click', function () {
     campo.parentNode.classList.toggle('claro');

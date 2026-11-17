@@ -110,10 +110,8 @@ document.querySelector('#compilar').addEventListener('click', async function () 
 document.querySelector('#salvar').addEventListener('click', async function () {
   const resposta = await api('/codigos', 'POST', { conteudo: editor.value, status: statusAtual });
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
-  alert(resposta.dados.mensagem);
   carregarSalvos();
 });
 

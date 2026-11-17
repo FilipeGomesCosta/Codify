@@ -44,10 +44,8 @@ formulario.addEventListener('submit', async function (evento) {
     return;
   }
 
-  alert(resposta.dados.mensagem);
   window.location.href = RAIZ + 'login.html';
 });
 
 document.querySelector('#google').addEventListener('click', function () {
-  alert('O acesso com Google estará disponível em breve. Use seu e-mail e senha.');
 });

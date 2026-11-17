@@ -98,7 +98,6 @@ document.querySelector('#adicionar').addEventListener('click', async function ()
     return;
   }
 
-  alert(resposta.dados.mensagem);
   window.location.href = 'sala.html?id=' + campoSala.value;
 });
 

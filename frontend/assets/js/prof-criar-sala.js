@@ -60,7 +60,6 @@ campoImagem.addEventListener('change', function () {
   }
   const extensao = arquivo.name.split('.').pop().toLowerCase();
   if (extensao != 'png' && extensao != 'jpg') {
-    alert('Escolha uma imagem PNG ou JPG.');
     campoImagem.value = '';
     return;
   }
@@ -114,7 +113,6 @@ document.querySelector('#criar').addEventListener('click', async function () {
     return;
   }
 
-  alert(resposta.dados.mensagem + '\nCódigo de acesso: ' + resposta.dados.codigo_acesso + '\nCompartilhe esse código com os alunos.');
   window.location.href = 'sala.html?id=' + resposta.dados.id_sala;
 });
 

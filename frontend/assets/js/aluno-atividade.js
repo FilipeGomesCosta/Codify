@@ -34,7 +34,6 @@ function mostrarHistorico(entrega, atividade) {
 async function carregar() {
   const resposta = await api('/atividades/' + id);
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     window.location.href = 'salas.html';
     return;
   }
@@ -89,7 +88,6 @@ async function enviar(rascunho) {
   const arquivo = campoArquivo.files[0];
   const observacao = campoObservacao.value.trim();
   if (!arquivo && observacao == '' && !rascunho) {
-    alert('Envie um arquivo ou escreva uma observação.');
     return;
   }
 
@@ -102,11 +100,9 @@ async function enviar(rascunho) {
 
   const resposta = await api('/atividades/' + id + '/entregar', 'POST', dados);
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
 
-  alert(resposta.dados.mensagem);
   window.location.reload();
 }
 

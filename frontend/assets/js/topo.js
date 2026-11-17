@@ -65,11 +65,9 @@ function ferramentasTopo(tipo) {
         nova_senha: document.querySelector('#cfgSenha').value
       });
       if (!resposta.ok) {
-        alert(resposta.dados.erro);
         return;
       }
       localStorage.setItem('usuario', JSON.stringify(resposta.dados.usuario));
-      alert(resposta.dados.mensagem);
       window.location.reload();
     });
   });

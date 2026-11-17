@@ -5,7 +5,6 @@ const nomesNivel = { iniciante: 'Iniciante', intermediario: 'Médio', avancado: 
 async function carregar() {
   const resposta = await api('/salas/' + id);
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     window.location.href = 'salas.html';
     return;
   }

@@ -3,14 +3,12 @@ const nomesNivel = { iniciante: 'Iniciante', intermediario: 'Médio', avancado: 
 
 async function responder(idAluno, aceitar) {
   const resposta = await api('/salas/' + id + '/aprovar', 'POST', { id_aluno: idAluno, aceitar: aceitar });
-  alert(resposta.ok ? resposta.dados.mensagem : resposta.dados.erro);
   window.location.reload();
 }
 
 async function carregar() {
   const resposta = await api('/salas/' + id);
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     window.location.href = 'salas.html';
     return;
   }

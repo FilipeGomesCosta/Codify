@@ -10,7 +10,6 @@ const nomesCategoria = { iniciante: 'Iniciante', intermediario: 'Intermediário'
 async function carregarMissao() {
   const resposta = await api('/missoes/' + id);
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     window.location.href = 'missoes.html';
     return;
   }
@@ -64,13 +63,11 @@ async function carregarItens() {
 async function usarItem(idItem) {
   const resposta = await api('/inventario/usar', 'POST', { id_item: idItem, id_missao: id });
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
 
   ajuda.hidden = false;
   ajuda.textContent = resposta.dados.texto;
-  alert(resposta.dados.mensagem);
   carregarItens();
 }
 

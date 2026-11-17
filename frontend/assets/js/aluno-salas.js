@@ -63,7 +63,6 @@ async function carregar() {
 async function mostrarPendentes() {
   const resposta = await api('/atividades/pendentes');
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
 
@@ -90,14 +89,12 @@ async function sairDaSala(sala) {
     return;
   }
   const resposta = await api('/salas/' + sala.id_sala + '/sair', 'POST');
-  alert(resposta.ok ? resposta.dados.mensagem : resposta.dados.erro);
   carregar();
 }
 
 async function mostrarAgenda() {
   const resposta = await api('/agenda');
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
 
@@ -130,17 +127,14 @@ document.querySelector('#formulario').addEventListener('submit', async function 
 
   const codigo = document.querySelector('#codigo').value.trim();
   if (codigo == '') {
-    alert('Digite o código da sala.');
     return;
   }
 
   const resposta = await api('/salas/entrar', 'POST', { codigo: codigo });
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
 
-  alert(resposta.dados.mensagem);
   janela.close();
   if (resposta.dados.id_sala) {
     window.location.href = 'sala.html?id=' + resposta.dados.id_sala;

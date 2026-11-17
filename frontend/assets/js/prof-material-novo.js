@@ -104,7 +104,6 @@ document.querySelector('#enviar').addEventListener('click', async function () {
     return;
   }
 
-  alert(resposta.dados.mensagem);
   voltar();
 });
 

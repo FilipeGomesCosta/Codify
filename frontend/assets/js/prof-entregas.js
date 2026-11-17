@@ -4,7 +4,6 @@ const textosStatus = { pendente: 'Pendente', entregue: 'Entregue', avaliada: 'Av
 async function carregar() {
   const resposta = await api('/atividades/' + id + '/entregas');
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     window.location.href = 'salas.html';
     return;
   }
@@ -61,7 +60,6 @@ async function carregar() {
           nota: campoNota.value,
           feedback: campoFeedback.value
         });
-        alert(resposta.ok ? resposta.dados.mensagem : resposta.dados.erro);
         if (resposta.ok) {
           carregar();
         }

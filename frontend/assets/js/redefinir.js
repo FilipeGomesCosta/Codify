@@ -20,6 +20,5 @@ document.querySelector('#formulario').addEventListener('submit', async function 
     return;
   }
 
-  alert(resposta.dados.mensagem);
   window.location.href = RAIZ + 'login.html';
 });

@@ -74,7 +74,6 @@ function mostrarMissoes() {
 async function abrirMissao(id) {
   const resposta = await api('/missoes/' + id + '/iniciar', 'POST');
   if (!resposta.ok) {
-    alert(resposta.dados.erro);
     return;
   }
   window.location.href = 'missao.html?id=' + id;
